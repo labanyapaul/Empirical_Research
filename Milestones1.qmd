@@ -7,30 +7,41 @@ format:
     toc: true
     toc_depth: 2
     self-contained: true
+biliography: bibliography.bib
 ---
 
-# Research Proposal 
+# Research Proposal
 
-Motivation
+**Motivation**
 
-Research Question 
+**Research Question**
 
-Literature Overview
-i) the RQ and the empirical setting (identification strategy)
-ii) how they measure the key variables (data source, units)
-iii) what they find and for who is identified in time and space
-iv) why you are doing something different
+**Literature Overview**
 
-Data Description 
-i) at which level is your data uniquely identified? 
-ii) which are your main variables?
-iii) how do these variables measure the phenomena you are interested in studying? 
+i\) the RQ and the empirical setting (identification strategy)
 
-Empirical Strategy 
-- Settings: 
--Treatment: 
--Controls: 
--Bias and Identification: 
-- Type of Effect: 
+ii\) how they measure the key variables (data source, units)
+
+iii\) what they find and for who is identified in time and space
+
+iv\) why you are doing something different
+
+**Data Description**
+
+i\) at which level is your data uniquely identified?
+
+ii\) which are your main variables?
+
+iii\) how do these variables measure the phenomena you are interested in studying?
+
+**Empirical Strategy**
+
+*Settings:*
+
+*Treatment:*
+
+*Controls: Bias and Identification:*
+
+*Type of Effect:*
 
 # Data Set
