@@ -10,38 +10,29 @@ format:
 biliography: bibliography.bib
 ---
 
-# Research Proposal
+# Abstract
 
-**Motivation**
+This paper studies the trade off between income and health that waste-pickers face whilst working in the landfills of Sub-Saharan Africa...
 
-**Research Question**
+**Keywords:** landfills, waste pickers, health, income,
 
-**Literature Overview**
+# 1. Introduction
 
-i\) the RQ and the empirical setting (identification strategy)
 
-ii\) how they measure the key variables (data source, units)
 
-iii\) what they find and for who is identified in time and space
+# 2. Literature Overview and Existing Evidence
 
-iv\) why you are doing something different
+# 3. Methodology
+## 3.1 Research Design
+## 3.2 Prediction    
 
-**Data Description**
+# 4. Data Set and Collection
+## 4.1 Sample Size and Selection
+Two Way Fixed Effects Model
 
-i\) at which level is your data uniquely identified?
+# 5. Data Analysis and Results
 
-ii\) which are your main variables?
+# 6.Robustness Checks
 
-iii\) how do these variables measure the phenomena you are interested in studying?
+# 7. Conclusion
 
-**Empirical Strategy**
-
-*Settings:*
-
-*Treatment:*
-
-*Controls: Bias and Identification:*
-
-*Type of Effect:*
-
-# Data Set
