@@ -31,6 +31,15 @@ It is crucial to note that landfills also serve as a source of income for certai
 
 # 2. Literature Overview and Existing Evidence
 
+Existing scientific research investigates the relationship between health effects and income opportunities among populations residing near landfills (Fazzo et al., 2023). Previous studies in Kenya and Ghana have explored the health and environmental impacts of landfill proximity, as well as initiatives aimed at formalizing waste picker activities and proposing solid waste management strategies (Oteng-Ababio, 2014; Lissah et al., 2020; Adzawla et al., 2019; Obiri-Nyarko et al., 2021; Kaluli et al., 2011). However, none have specifically addressed the relative strength of the impact between health and income for individuals near these sites. 
+
+In the case of Kenya, Wekisa et al. (2020) conducted a study titled "Spatial distribution of waste collection points and their implications on quality of life in Mombasa County, Kenya," aiming to elucidate the relationship between proximity to garbage collection points/landfills and the Quality of Life Index. Employing Pearson correlation coefficient analysis, the research revealed a noteworthy positive correlation between income levels and proximity to landfills. However, this correlation came at a cost: increased exposure to diseases and a decline in air quality were observed as consequences of such proximity. 
+
+In a similar context, Dr. Simon K. Kimani's research delved into the impact of pollutant exposure on the health of women waste pickers at Dandora Dumpsite in Nairobi, Kenya. Utilizing a questionnaire-based data collection method and a cross-sectional study design, the investigation aimed to assess the health status of female landfill workers in Dandora. The findings were alarming, indicating that a staggering 90.8% of the female waste pickers had experienced illness within the past six months. Further contributing to the understanding of waste management's socio-economic ramifications, Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on Socioeconomic Lives of Residents of Dandora," focused on households living near the Dandora dumpsite. Through questionnaire surveys involving 121 households, the research examined two key variables: income from solid waste management and household expenditure. Descriptive and correlation analyses unveiled a substantial finding: the total income derived from solid waste management contributed a significant 82.88% towards the total household expenditure. Moreover, a statistically significant correlation (r=0.389, p=0.01) underscored the interplay between income generated from waste management activities and household financial stability.
+
+In the context of Ghana, Obiri- Nyarko et al.'s study (2021) collected soil samples from various zones in the Kpone landfill site to investigate key variables: the quantity and spatial distribution of heavy metals and their effects on health risks and agricultural suitability. The investigation into heavy metal contamination—such as arsenic, copper, zinc, lead, and mercury—in landfill soil reveal that while low concentrations of these metals may not pose immediate harm to humans, prolonged and direct exposure to elevated levels presents significant health risks. Specifically, even at low concentrations, arsenic and lead exhibit adverse effects on both the environment and human health. Particularly vulnerable are children, for whom ingestion of substances from these landfills constitutes almost all the associated risk (99.31%). Analysis indicates that pathways to carcinogenic health hazards primarily involve ingestion and dermal contact, with inhalation being the least significant. Notably, the relatively high concentration of arsenic in the soils contributes significantly to elevated cancer risks, reaching 99.9% in adults. In a separate investigation conducted by Lettor (2018), the study examined the health implications of waste management operations at the Tamale landfill. The research encompassed residential areas within a five-hundred-meter radius of the landfill site in Tamale. Sample collection procedures were randomized, and data were gathered through interviews, focus groups, and questionnaires. The findings revealed that over 90% of individuals near the landfill experienced odours, contrasting with only 2% reported further than five-hundred-meters away. Moreover, the study identified improper waste disposal practices leading to contamination of groundwater and surface waters. It was evident from the results that inadequate management and failure to adhere to international standards expose nearby residents to various diseases and contaminants. 
+
+
 # 3. Methodology
 
 ## 3.1 Research Design
@@ -63,6 +72,15 @@ Two Way Fixed Effects Model
 - Wisconsin Department of Natural Resources (2023)	https://dnr.wisconsin.gov/topic/OpenBurning/Impacts.html
 -	(Morais et al. 2022). https://iopscience.iop.org/article/10.1088/1748-9326/ac6b49 
 -	(Ezeah et al. 2013).  Ezeah C, Fazakerley J A and Roberts C L 2013 Emerging trends in informal sector recycling in developing and transition countries Waste Manage. 33 2509–19
-- 
+- (Oteng-Ababio 2014; 
+-	Lissah et al. 2020; 
+-	Adzawla et al. 2019; 
+-	Obiri-Nyarko et al. 2021; 
+-	Kaluli et al. 2011
+-	Wekisa et al. (2020)
+-	Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on Socioeconomic Lives of Residents of Dandora," 
+-	
+
+
 
 # 9. Appendix
