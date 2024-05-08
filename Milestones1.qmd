@@ -12,22 +12,35 @@ biliography: bibliography.bib
 
 # Abstract
 
-This paper studies the trade off between income and health that waste-pickers face whilst working in the landfills of Sub-Saharan Africa...
+
+This paper studies the trade-off that waste pickers face between income and health whilst working in the landfills of Sub- Saharan Africa. Specifically, Ghana and Kenya, where informal e-waste economies have arisen due to mismanagement of engineered landfills, low overall employability levels and other challenges faced in developing countries. These landfills provide a source of income whilst also a health and environmental hazard to those in proximity. Existing quantitative and qualitative data from these countries help determine which variable outperforms the other by using Two…
 
 **Keywords:** landfills, waste pickers, health, income,
 
 # 1. Introduction
 
+Across the globe, the phenomena of overconsumption and overproduction have precipitated a significant rise in waste generation, burdening both humanity and the Earth. Concurrently, the escalating reports of carbon dioxide emissions perpetuate the global warming crisis, which continues to afflict civilization yesterday, today, and tomorrow. These detrimental consequences show the extent to which the Earth's ecological boundaries are being pushed (Rockström et al., 2009, p. 32). 
 
+Solid waste originates from a multitude of sources, including raw material extraction, manufacturing, consumption, and waste treatment processes. These activities encompass various sectors, including agriculture, mining, construction, energy production, commerce, industry, and households (United Nations, 2024). Solid waste management stands as a critical global concern, with urban populations projected to generate an estimated 1.42 kilograms of solid waste per capita by 2025, as reported by the World Bank (2012). Among the methods employed to address waste, modern landfills provide engineered facilities designed to meet stringent environmental and regulatory standards, as outlined by the US Environmental Protection Agency (2024). Nevertheless, while landfills undergo meticulous planning to ensure environmental safety and are subject to monitoring for groundwater contamination and air quality, effective management systems are indispensable to sustain these safeguards. Notably, leading waste producers such as the USA, UK, Canada, and Germany play significant roles, with the USA alone producing approximately 811 kilograms of waste per capita annually, as documented in the Global Waste Index (2022). 
+
+In recent years, there has been a growing scholarly interest in the phenomenon of waste colonialism, particularly as nations in the Global South confront a surge in waste imports from Western countries. The practice of developed nations exporting their waste to less developed counterparts is not a recent development; it has persisted for decades, facilitated by lax regulations in the destination countries, and often occurring illegally (Ezeah et al., 2013). Typically, this practice represents the final stage of waste disposal, with the waste either destined for landfill sites or incineration facilities. Despite some Western nations leading in recycling efforts, they paradoxically emerge as major exporters of waste, as highlighted in a report by The Guardian (2021). Germany stands out as the foremost exporter of plastic waste, with recent data indicating exports valued at approximately US$355 million as of 2022 (OEC, 2023). This assertion underscores the significant role played by advanced economies in the global waste trade landscape. 
+
+Inadequately managed landfills pose significant health risks to nearby populations, contributing to elevated rates of congenital anomalies and respiratory diseases (Mattiello et al. 2013). These health threats stem from the release of hazardous gases, including ammonia, sulphides, methane, and carbon dioxide. Given the escalation of global temperatures, the production of these gases is on the rise, with potential longevity exceeding 50 years. Moreover, exposure to these emissions can induce a range of adverse health effects such as coughing, nasal and ocular irritation, throat irritation, nausea, acute asthma, chest pain, and nasal congestion, as outlined by Health (2021). Additionally, the combustion of plastics via open burning releases toxic chemicals like dioxins, as highlighted in a report by Wisconsin Department of Natural Resources (2023). 
+
+It is crucial to note that landfills also serve as a source of income for certain communities, playing a role in poverty alleviation efforts in Sub-Saharan African countries like Ghana and Kenya. This informal sector is often indispensable as individuals engage in activities such as material recovery and recycling, particularly of metals (often through open burning) and plastics, thus creating a valuable resource stream within their communities. This informal economy encompasses various roles, including collectors, middlemen, burners, and others (Morais et al., 2022)... 
 
 # 2. Literature Overview and Existing Evidence
 
 # 3. Methodology
+
 ## 3.1 Research Design
-## 3.2 Prediction    
+
+## 3.2 Prediction
 
 # 4. Data Set and Collection
+
 ## 4.1 Sample Size and Selection
+
 Two Way Fixed Effects Model
 
 # 5. Data Analysis and Results
@@ -36,3 +49,20 @@ Two Way Fixed Effects Model
 
 # 7. Conclusion
 
+# 8. References
+
+-	Rockström, J., et al. (2009). Planetary boundaries: Exploring the safe operating space for humanity. Ecology and Society, 14(2), 32.
+-	United Nations 2024, https://www.un.org/esa/sustdev/natlinfo/indicators/methodology_sheets/consumption_production/waste_generation.pdf
+-	US Environmental Protection Agency (2024) https://www.epa.gov/landfills/basic-information-about-landfills 
+-	Global Waste Index (2022) https://waste-management-world.com/research/global-waste-index-2022-ranking-the-biggest-waste-polluters-worldwide/
+- OEC, 2023	(https://oec.world/en/profile/hs/scrap-plastic 
+- The Guardian (2021)	https://www.theguardian.com/environment/2021/dec/31/waste-colonialism-countries-grapple-with-wests-unwanted-plastic 
+-	 World Bank (2012) https://documents1.worldbank.org/curated/en/302341468126264791/pdf/68135-REVISED-What-a-Waste-2012-Final-updated.pdf
+-	Matiello et al. 2013 http://gurasos.org/statico/documentacion/Health%20effects%20associated%20with%20the%20disposal%20of%20solid%20waste%20in%20landfills%20and%20incinerators%20in%20populations%20living%20in%20surrounding%20areas.pdf 
+-	Health (2021) https://www.health.ny.gov/environmental/outdoors/air/landfill_gas.htm#:~:text=Short%2Dterm%20exposures%20(typically%20up,%2C%20nausea%2C%20and%20breathing%20difficulties.
+- Wisconsin Department of Natural Resources (2023)	https://dnr.wisconsin.gov/topic/OpenBurning/Impacts.html
+-	(Morais et al. 2022). https://iopscience.iop.org/article/10.1088/1748-9326/ac6b49 
+-	(Ezeah et al. 2013).  Ezeah C, Fazakerley J A and Roberts C L 2013 Emerging trends in informal sector recycling in developing and transition countries Waste Manage. 33 2509–19
+- 
+
+# 9. Appendix
