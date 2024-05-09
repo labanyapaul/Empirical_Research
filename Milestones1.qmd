@@ -39,6 +39,9 @@ In a similar context, Dr. Simon K. Kimani's research delved into the impact of p
 
 In the context of Ghana, Obiri- Nyarko et al.'s study (2021) collected soil samples from various zones in the Kpone landfill site to investigate key variables: the quantity and spatial distribution of heavy metals and their effects on health risks and agricultural suitability. The investigation into heavy metal contamination—such as arsenic, copper, zinc, lead, and mercury—in landfill soil reveal that while low concentrations of these metals may not pose immediate harm to humans, prolonged and direct exposure to elevated levels presents significant health risks. Specifically, even at low concentrations, arsenic and lead exhibit adverse effects on both the environment and human health. Particularly vulnerable are children, for whom ingestion of substances from these landfills constitutes almost all the associated risk (99.31%). Analysis indicates that pathways to carcinogenic health hazards primarily involve ingestion and dermal contact, with inhalation being the least significant. Notably, the relatively high concentration of arsenic in the soils contributes significantly to elevated cancer risks, reaching 99.9% in adults. In a separate investigation conducted by Lettor (2018), the study examined the health implications of waste management operations at the Tamale landfill. The research encompassed residential areas within a five-hundred-meter radius of the landfill site in Tamale. Sample collection procedures were randomized, and data were gathered through interviews, focus groups, and questionnaires. The findings revealed that over 90% of individuals near the landfill experienced odours, contrasting with only 2% reported further than five-hundred-meters away. Moreover, the study identified improper waste disposal practices leading to contamination of groundwater and surface waters. It was evident from the results that inadequate management and failure to adhere to international standards expose nearby residents to various diseases and contaminants. 
 
+Mensah and Nalumu (2023) investigated the motivations and challenges of informal sector workers in the context of income generation. Employing a mixed-method approach involving interviews and questionnaires, the researchers utilized statistical analysis tools such as SPSS (Statistical Package for the Social Sciences), followed by Exploratory Factor Analysis (EFA) and Relative Importance Index (RII), to discern patterns and draw conclusions. Their findings suggest that waste pickers may prioritize immediate financial gain over their health due to economic necessity, as evidenced by their willingness to endure short-term and long-term health risks associated with landfill work. This highlights the primacy of survival considerations in shaping the decision-making of informal sector workers. In a study conducted by Owusu-Sekyere (2018), the effects of landfills in Kumasi on economic development were examined. The research used focus groups and in-depth interviews involving stakeholders such as public health departments, employment desks, waste management departments, environmental sanitation offices, as well as households and informal workers. The findings revealed several positive economic impacts associated with landfills, including benefits accruing to waste pickers through the collection of recyclable materials (such as plastics, metals including copper, gold, and silver, and glass), farmers benefiting from cultivatable areas, and homeowners experiencing appreciation in property values due to the construction of access roads for the landfill area. Notably, 90% of respondents reported a positive impact on land value. These findings underscore the role of landfills in job creation and their potential contribution to poverty alleviation within nearby communities, where monetary considerations often outweigh health risks.
+
+
 
 # 3. Methodology
 
@@ -79,7 +82,10 @@ Two Way Fixed Effects Model
 -	Kaluli et al. 2011
 -	Wekisa et al. (2020)
 -	Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on Socioeconomic Lives of Residents of Dandora," 
--	
+-	Lettor (2018), 
+-	Mensah and Nalumu (2023)
+-	Owusu- Sekyere (2018)
+
 
 
 
