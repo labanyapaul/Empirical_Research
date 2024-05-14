@@ -14,7 +14,7 @@ biliography: bibliography.bib
 
 ## Motivation
 
-The staggering reality of over 15 million individuals inhabiting garbage dump communities globally, though likely an underreported figure, highlights a pressing concern. This number is not static; it's
+The staggering reality of over 15 million individuals inhabiting garbage dump communities globally, though likely an under reported figure, highlights a pressing concern. This number is not static; it's
 steadily increasing. Alarmingly, a significant portion of this population, conservatively estimated at
 two-thirds, resides in the sub-Saharan Africa region alone. The well-being of these individuals,
 teetering on the edge of poverty, demands urgent attention. When we speak of well-being in this
@@ -96,7 +96,7 @@ alleviation within nearby communities, where monetary considerations often outwe
 
 We utilize georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from DHS databases. The dataset is structured at the
 household level, collected via questionnaires administered to household members. Categorical
-variables such as 'Has fallen sick in the past one month' serve as indicators of health status, while
+variables such as 'Adult had illness recently' serve as indicators of health status, while
 wealth index data is utilized as a proxy for household income levels.
 To map out where the landfills are and how they've changed over time, we use images from Google
 Earth Pro covering about 10 years, from 2014 to 2024. Landfills that are worked on -  
