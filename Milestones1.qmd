@@ -10,58 +10,136 @@ format:
 biliography: bibliography.bib
 ---
 
-# Abstract
+# 1. Research Proposal
+
+## Motivation
+
+The staggering reality of over 15 million individuals inhabiting garbage dump communities globally, though likely an underreported figure, highlights a pressing concern. This number is not static; it's
+steadily increasing. Alarmingly, a significant portion of this population, conservatively estimated at
+two-thirds, resides in the sub-Saharan Africa region alone. The well-being of these individuals,
+teetering on the edge of poverty, demands urgent attention. When we speak of well-being in this
+context, we refer primarily to two fundamental facets: health and income. We want to understand
+how living near landfills affects communities. These environments, often synonymous with
+destitution and neglect. By studying this, we hope to help these communities by understanding and
+finding ways to make their lives better through future policy making.
+
+## Research question
+
+How does proximity to landfills impact the health and income of people living in Ghana and Kenya?
+
+## Literature overview
+
+Existing scientific research investigates the relationship between health effects and income opportunities among populations residing near landfills (Fazzo et al., 2023). Previous studies in Kenya
+and Ghana have explored the health and environmental impacts of landfill proximity, as well as
+initiatives aimed at formalizing waste picker activities and proposing solid waste management
+strategies (Oteng-Ababio, 2014; Lissah et al., 2020; Adzawla et al., 2019; Obiri-Nyarko et al., 2021;
+Kaluli et al., 2011). However, none have specifically addressed the relative strength of the impact
+between health and income for individuals near these sites.
+In the case of Kenya, Wekisa et al. (2020) conducted a study titled "Spatial distribution of waste
+collection points and their implications on quality of life in Mombasa County, Kenya," aiming to
+elucidate the relationship between proximity to garbage collection points/landfills and the Quality of
+Life Index. Employing Pearson correlation coefficient analysis, the research revealed a noteworthy
+positive correlation between income levels and proximity to landfills. However, this correlation came
+at a cost: increased exposure to diseases and a decline in air quality were observed as consequences
+of such proximity.
+
+In a similar context, Dr. Simon K. Kimani's research delved into the impact of pollutant exposure on the health of women waste pickers at Dandora Dumpsite in Nairobi, Kenya. Utilizing a questionnaire-
+based data collection method and a cross-sectional study design, the investigation aimed to assess the health status of female landfill workers in Dandora. The findings were alarming, indicating that a
+staggering 90.8% of the female waste pickers had experienced illness within the past six months.
+Further contributing to the understanding of waste management's socio-economic ramifications,
+Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on
+Socioeconomic Lives of Residents of Dandora," focused on households living near the Dandora
+dumpsite. Through questionnaire surveys involving 121 households, the research examined two key
+variables: income from solid waste management and household expenditure. Descriptive and
+correlation analyses unveiled a substantial finding: the total income derived from solid waste
+management contributed a significant 82.88% towards the total household expenditure. Moreover, a
+statistically significant correlation (r=0.389, p=0.01) underscored the interplay between income generated from waste management activities and household financial stability. These collective
+insights underscore the complex trade-offs between income generation and health risks faced by
+individuals engaged in landfill work.
+
+In the context of Ghana, Obiri- Nyarko et al. 2021 collected soil samples from various zones in the
+Kpone landfill site to investigate key variables: the quantity and spatial distribution of heavy metals
+and their effects on health risks and agricultural suitability. The investigation using AAS (Atomic
+Absorption Spectrophotometry) to identify arsenic, copper, zinc, lead, and mercury in landfill soil
+revealed that while low concentrations of these metals may not pose immediate harm to humans,
+prolonged and direct exposure to elevated levels presents significant health risks. Specifically, even at low concentrations, arsenic and lead exhibit adverse effects on both the environment and human
+health. Particularly vulnerable are children, for whom ingestion of substances from these landfills
+constitutes almost all the associated risk (99.31%). Analysis indicates that pathways to carcinogenic
+health hazards primarily involve ingestion and dermal contact, with inhalation being the least
+significant. Notably, the relatively high concentration of arsenic in the soils contributes significantly to elevated cancer risks, reaching 99.9% in adults. In a separate investigation conducted by Lettor (2018), the study examined the health implications of waste management operations at the Tamale landfill. The research encompassed residential areas within a five-hundred-meter radius of the landfill site in Tamale. Sample collection procedures were randomized, and data were gathered through
+interviews, focus groups, and questionnaires. The findings revealed that over 90% of individuals near
+the landfill experienced odours, contrasting with only 2% reported further than five-hundred-meters
+away. Moreover, the study identified improper waste disposal practices leading to contamination of
+groundwater and surface waters. It was evident from the results that inadequate management and
+failure to adhere to international standards expose nearby residents to various diseases and
+contaminants. 
+
+Mensah and Nalumu (2023) investigated the motivations and challenges of informal sector workers in the context of income generation. Employing a mixed-method approach involving interviews and
+questionnaires, the researchers utilized statistical analysis tools such as SPSS (Statistical Package for the Social Sciences), followed by Exploratory Factor Analysis (EFA) and Relative Importance Index
+(RII), to discern patterns and draw conclusions. Their findings suggest that waste pickers may
+prioritize immediate financial gain over their health due to economic necessity, as evidenced by their
+willingness to endure short-term and long-term health risks associated with landfill work. This
+highlights the primacy of survival considerations in shaping the decision-making of informal sector
+workers. In a study conducted by Owusu-Sekyere (2018), the effects of landfills in Kumasi on
+economic development were examined. The research used focus groups and in-depth interviews
+involving stakeholders such as public health departments, employment desks, waste management
+departments, environmental sanitation offices, as well as households and informal workers. The
+findings revealed several positive economic impacts associated with landfills, including benefits
+accruing to waste pickers through the collection of recyclable materials (such as plastics, metals
+including copper, gold, and silver, and glass), farmers benefiting from cultivatable areas, and
+homeowners experiencing appreciation in property values due to the construction of access roads for
+the landfill area. Notably, 90% of respondents reported a positive impact on land value. These
+findings underscore the role of landfills in job creation and their potential contribution to poverty
+alleviation within nearby communities, where monetary considerations often outweigh health risks.
+
+## Data Description
+
+We utilize georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from DHS databases. The dataset is structured at the
+household level, collected via questionnaires administered to household members. Categorical
+variables such as 'Has fallen sick in the past one month' serve as indicators of health status, while
+wealth index data is utilized as a proxy for household income levels.
+To map out where the landfills are and how they've changed over time, we use images from Google
+Earth Pro covering about 10 years, from 2014 to 2024. Landfills that are worked on -  
+
+(i)Kenya- Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite,
+Kayole, Nyeri, Accra, Thika dumpsite,Kiteezi Landfill and Maputo city landfill.
+
+(ii)Ghana- Agbobloshie (Kpone) landfill, Oti landfill, Gbalahi landfill, Sofokrom landfill, Pantang Borla dumpsite, Awutu Senya dumpsite landfill, Nkanfoa landfill, Sherigu Bolgatanga dumpsite, Wa landfill, Mallam landfill.
+
+## Empirical Strategy
+
+In our study, the treatment group comprises households living within a 10 km radius of a landfill,
+while the control group consists of households within a 10 km radius of the city center or main
+market area. One potential bias we've identified stems from variations in landfill types across Ghana
+and Kenya. Some landfills are government-maintained and engineered according to specific protocols,
+while others are informal dumping sites, often termed "illegal," which fail to meet standard
+regulations and have a more detrimental impact on nearby communities.
+
+To address this, we intend to employ panel fixed effects regression analysis using our dataset, which
+comprises observations from various cross-sections over time. Through this analysis, we aim to
+investigate how the income and health of individuals residing near landfills have been impacted over
+time. We expect a positive effect on income levels but anticipate a negative impact on the health of
+the treatment group due to exposure to landfill-related hazards.
 
 
-This paper studies the trade-off that waste pickers face between income and health whilst working in the landfills of Sub- Saharan Africa. Specifically, Ghana and Kenya, where informal e-waste economies have arisen due to mismanagement of engineered landfills, low overall employability levels and other challenges faced in developing countries. These landfills provide a source of income whilst also a health and environmental hazard to those in proximity. Existing quantitative and qualitative data from these countries help determine which variable outperforms the other by using Two…
 
-**Keywords:** landfills, waste pickers, health, income,
+# 2. The data set 
 
-# 1. Introduction
+## Sources 
 
-Across the globe, the phenomena of overconsumption and overproduction have precipitated a significant rise in waste generation, burdening both humanity and the Earth. Concurrently, the escalating reports of carbon dioxide emissions perpetuate the global warming crisis, which continues to afflict civilization yesterday, today, and tomorrow. These detrimental consequences show the extent to which the Earth's ecological boundaries are being pushed (Rockström et al., 2009, p. 32). 
+## Table 1. 
 
-Solid waste originates from a multitude of sources, including raw material extraction, manufacturing, consumption, and waste treatment processes. These activities encompass various sectors, including agriculture, mining, construction, energy production, commerce, industry, and households (United Nations, 2024). Solid waste management stands as a critical global concern, with urban populations projected to generate an estimated 1.42 kilograms of solid waste per capita by 2025, as reported by the World Bank (2012). Among the methods employed to address waste, modern landfills provide engineered facilities designed to meet stringent environmental and regulatory standards, as outlined by the US Environmental Protection Agency (2024). Nevertheless, while landfills undergo meticulous planning to ensure environmental safety and are subject to monitoring for groundwater contamination and air quality, effective management systems are indispensable to sustain these safeguards. Notably, leading waste producers such as the USA, UK, Canada, and Germany play significant roles, with the USA alone producing approximately 811 kilograms of waste per capita annually, as documented in the Global Waste Index (2022). 
-
-In recent years, there has been a growing scholarly interest in the phenomenon of waste colonialism, particularly as nations in the Global South confront a surge in waste imports from Western countries. The practice of developed nations exporting their waste to less developed counterparts is not a recent development; it has persisted for decades, facilitated by lax regulations in the destination countries, and often occurring illegally (Ezeah et al., 2013). Typically, this practice represents the final stage of waste disposal, with the waste either destined for landfill sites or incineration facilities. Despite some Western nations leading in recycling efforts, they paradoxically emerge as major exporters of waste, as highlighted in a report by The Guardian (2021). Germany stands out as the foremost exporter of plastic waste, with recent data indicating exports valued at approximately US$355 million as of 2022 (OEC, 2023). This assertion underscores the significant role played by advanced economies in the global waste trade landscape. 
-
-Inadequately managed landfills pose significant health risks to nearby populations, contributing to elevated rates of congenital anomalies and respiratory diseases (Mattiello et al. 2013). These health threats stem from the release of hazardous gases, including ammonia, sulphides, methane, and carbon dioxide. Given the escalation of global temperatures, the production of these gases is on the rise, with potential longevity exceeding 50 years. Moreover, exposure to these emissions can induce a range of adverse health effects such as coughing, nasal and ocular irritation, throat irritation, nausea, acute asthma, chest pain, and nasal congestion, as outlined by Health (2021). Additionally, the combustion of plastics via open burning releases toxic chemicals like dioxins, as highlighted in a report by Wisconsin Department of Natural Resources (2023). 
-
-It is crucial to note that landfills also serve as a source of income for certain communities, playing a role in poverty alleviation efforts in Sub-Saharan African countries like Ghana and Kenya. This informal sector is often indispensable as individuals engage in activities such as material recovery and recycling, particularly of metals (often through open burning) and plastics, thus creating a valuable resource stream within their communities. This informal economy encompasses various roles, including collectors, middlemen, burners, and others (Morais et al., 2022)... 
-
-# 2. Literature Overview and Existing Evidence
-
-Existing scientific research investigates the relationship between health effects and income opportunities among populations residing near landfills (Fazzo et al., 2023). Previous studies in Kenya and Ghana have explored the health and environmental impacts of landfill proximity, as well as initiatives aimed at formalizing waste picker activities and proposing solid waste management strategies (Oteng-Ababio, 2014; Lissah et al., 2020; Adzawla et al., 2019; Obiri-Nyarko et al., 2021; Kaluli et al., 2011). However, none have specifically addressed the relative strength of the impact between health and income for individuals near these sites. 
-
-In the case of Kenya, Wekisa et al. (2020) conducted a study titled "Spatial distribution of waste collection points and their implications on quality of life in Mombasa County, Kenya," aiming to elucidate the relationship between proximity to garbage collection points/landfills and the Quality of Life Index. Employing Pearson correlation coefficient analysis, the research revealed a noteworthy positive correlation between income levels and proximity to landfills. However, this correlation came at a cost: increased exposure to diseases and a decline in air quality were observed as consequences of such proximity. 
-
-In a similar context, Dr. Simon K. Kimani's research delved into the impact of pollutant exposure on the health of women waste pickers at Dandora Dumpsite in Nairobi, Kenya. Utilizing a questionnaire-based data collection method and a cross-sectional study design, the investigation aimed to assess the health status of female landfill workers in Dandora. The findings were alarming, indicating that a staggering 90.8% of the female waste pickers had experienced illness within the past six months. Further contributing to the understanding of waste management's socio-economic ramifications, Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on Socioeconomic Lives of Residents of Dandora," focused on households living near the Dandora dumpsite. Through questionnaire surveys involving 121 households, the research examined two key variables: income from solid waste management and household expenditure. Descriptive and correlation analyses unveiled a substantial finding: the total income derived from solid waste management contributed a significant 82.88% towards the total household expenditure. Moreover, a statistically significant correlation (r=0.389, p=0.01) underscored the interplay between income generated from waste management activities and household financial stability.
-
-In the context of Ghana, Obiri- Nyarko et al. 2021 collected soil samples from various zones in the Kpone landfill site to investigate key variables: the quantity and spatial distribution of heavy metals and their effects on health risks and agricultural suitability. The investigation used AAS (Atomic Absorption Spectrophotometry) to identify arsenic, copper, zinc, lead, and mercury in landfill soil, revealed that while low concentrations of these metals may not pose immediate harm to humans, prolonged and direct exposure to elevated levels presents significant health risks. Specifically, even at low concentrations, arsenic and lead exhibit adverse effects on both the environment and human health. Particularly vulnerable are children, for whom ingestion of substances from these landfills constitutes almost all the associated risk (99.31%). Analysis indicates that pathways to carcinogenic health hazards primarily involve ingestion and dermal contact, with inhalation being the least significant. Notably, the relatively high concentration of arsenic in the soils contributes significantly to elevated cancer risks, reaching 99.9% in adults. In a separate investigation conducted by Lettor (2018), the study examined the health implications of waste management operations at the Tamale landfill. The research encompassed residential areas within a five-hundred-meter radius of the landfill site in Tamale. Sample collection procedures were randomized, and data were gathered through interviews, focus groups, and questionnaires. The findings revealed that over 90% of individuals near the landfill experienced odours, contrasting with only 2% reported further than five-hundred-meters away. Moreover, the study identified improper waste disposal practices leading to contamination of groundwater and surface waters. It was evident from the results that inadequate management and failure to adhere to international standards expose nearby residents to various diseases and contaminants. 
-
-Mensah and Nalumu (2023) investigated the motivations and challenges of informal sector workers in the context of income generation. Employing a mixed-method approach involving interviews and questionnaires, the researchers utilized statistical analysis tools such as SPSS (Statistical Package for the Social Sciences), followed by Exploratory Factor Analysis (EFA) and Relative Importance Index (RII), to discern patterns and draw conclusions. Their findings suggest that waste pickers may prioritize immediate financial gain over their health due to economic necessity, as evidenced by their willingness to endure short-term and long-term health risks associated with landfill work. This highlights the primacy of survival considerations in shaping the decision-making of informal sector workers. In a study conducted by Owusu-Sekyere (2018), the effects of landfills in Kumasi on economic development were examined. The research used focus groups and in-depth interviews involving stakeholders such as public health departments, employment desks, waste management departments, environmental sanitation offices, as well as households and informal workers. The findings revealed several positive economic impacts associated with landfills, including benefits accruing to waste pickers through the collection of recyclable materials (such as plastics, metals including copper, gold, and silver, and glass), farmers benefiting from cultivatable areas, and homeowners experiencing appreciation in property values due to the construction of access roads for the landfill area. Notably, 90% of respondents reported a positive impact on land value. These findings underscore the role of landfills in job creation and their potential contribution to poverty alleviation within nearby communities, where monetary considerations often outweigh health risks.
+## Descriptive statistics
 
 
+# 3. Econometric approach
+Two Way Fixed Effects Model - Panel data 
 
-# 3. Methodology
+# 4. Results 
 
-## 3.1 Research Design
+# 5. Robustnes checks
 
-## 3.2 Prediction
-
-# 4. Data Set and Collection
-
-## 4.1 Sample Size and Selection
-
-Two Way Fixed Effects Model
-
-# 5. Data Analysis and Results
-
-# 6.Robustness Checks
-
-# 7. Conclusion
-
-# 8. References
+# 6. References
 
 -	Rockström, J., et al. (2009). Planetary boundaries: Exploring the safe operating space for humanity. Ecology and Society, 14(2), 32.
 -	United Nations 2024, https://www.un.org/esa/sustdev/natlinfo/indicators/methodology_sheets/consumption_production/waste_generation.pdf
@@ -86,7 +164,3 @@ Two Way Fixed Effects Model
 -	Mensah and Nalumu (2023)
 -	Owusu- Sekyere (2018)
 
-
-
-
-# 9. Appendix
