@@ -101,29 +101,23 @@ wealth index data is utilized as a proxy for household income levels.
 To map out where the landfills are and how they've changed over time, we use images from Google
 Earth Pro covering about 10 years, from 2014 to 2024. Landfills that are worked on -  
 
-(i)Kenya- Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite,
+(i) Kenya- Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite,
 Kayole, Nyeri, Accra, Thika dumpsite,Kiteezi Landfill and Maputo city landfill.
 
-(ii)Ghana- Agbobloshie (Kpone) landfill, Oti landfill, Gbalahi landfill, Sofokrom landfill, Pantang Borla dumpsite, Awutu Senya dumpsite landfill, Nkanfoa landfill, Sherigu Bolgatanga dumpsite, Wa landfill, Mallam landfill.
+(ii) Ghana- Agbobloshie (Kpone) landfill, Oti landfill, Gbalahi landfill, Sofokrom landfill, Pantang Borla dumpsite, Awutu Senya dumpsite landfill, Nkanfoa landfill, Sherigu Bolgatanga dumpsite, Wa landfill, Mallam landfill.
 
 ## Empirical Strategy
 
-In our study, the treatment group comprises households living within a 10 km radius of a landfill,
-while the control group consists of households within a 10 km radius of the city center or main
-market area. One potential bias we've identified stems from variations in landfill types across Ghana
-and Kenya. Some landfills are government-maintained and engineered according to specific protocols,
-while others are informal dumping sites, often termed "illegal," which fail to meet standard
-regulations and have a more detrimental impact on nearby communities.
+In our study, the treatment group comprises households living within a 10 km radius of a landfill, while the control group consists of households within a 10 km radius of the city center or main market area. One potential bias we've identified stems from variations in landfill types across Ghana and Kenya. Some landfills are government-maintained and engineered according to specific protocols, while others are informal dumping sites, often termed "illegal," which fail to meet standard regulations and have a more detrimental impact on nearby communities.
 
-To address this, we intend to employ panel fixed effects regression analysis using our dataset, which
-comprises observations from various cross-sections over time. Through this analysis, we aim to
-investigate how the income and health of individuals residing near landfills have been impacted over
-time. We expect a positive effect on income levels but anticipate a negative impact on the health of
-the treatment group due to exposure to landfill-related hazards.
+To address this variation, we will employ a Difference-in-Differences (DiD) model with a continuous treatment variable. This type of model is useful in cases where treatment is not simply a matter of being treated or not but can be received to different extents. This approach extends the traditional DiD model, which typically uses a binary treatment indicator, to account for varying treatment intensities. This is important in our context because not all landfills are comparable, and the extent of their impact on surrounding households can differ significantly.
 
+We would like to show that treatment effect on the treated-type parameters can be identified under a generalized parallel trends assumption similar to the binary treatment setup. However, interpreting differences in these parameters across different values of the treatment can be particularly challenging due to selection bias that is not ruled out by the parallel trends assumption. We would ultimately like to provide treatment effect decomposition results, highlighting the parameters associated with popular linear two-way fixed-effect (TWFE) specifications over the time periods.
 
+Using this methodology, we aim to investigate the long-term effects on the income and health of individuals residing near landfills. We expect to find a positive effect on income levels, due to potential economic opportunities associated with landfills, but a negative impact on health, due to exposure to landfill-related hazards.
 
 # 2. The data set 
+
 
 ## Sources 
 
