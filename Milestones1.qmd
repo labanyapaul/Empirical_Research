@@ -36,7 +36,7 @@ We utilize georeferenced data obtained from the Demographic and Health Surveys (
 
 i\) Kenya- Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite, Kayole, Nyeri, Accra, Thika dumpsite,Kiteezi Landfill and Maputo city landfill.
 
-ii\) Ghana- Agbobloshie (Kpone) landfill, Oti landfill, Gbalahi landfill, Sofokrom landfill, Pantang Borla dumpsite, Awutu Senya dumpsite landfill, Nkanfoa landfill, Sherigu Bolgatanga dumpsite, Wa landfill, Mallam landfill.
+ii\) Ghana- Agbobloshie (Kpone) landfill, Oti landfill, Gbalahi landfill, Sofokrom landfill, Pantang Borla dumpsite, Awutu Senya dumpsite landfill, Nkanfoa landfill, Sherigu Bolgatanga dumpsite, Wa landfill, Nsumia dumpsite.
 
 ## *Empirical Strategy*
 
