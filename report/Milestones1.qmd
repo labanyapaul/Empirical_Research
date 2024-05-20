@@ -66,7 +66,7 @@ Google Earth Pro – <https://earth.google.com/intl/earth/versions/>
 
 Variables -
 
-• Wealth variable: “Household wealth index in quintiles”. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys and.
+• Wealth variable: “Household wealth index in quintiles”. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys.
 
 • Health variable: “Absent from work within the past week”. This determines if respondents missed work in the last seven days, indicating potential sickness or health-related issues.
 
