@@ -30,10 +30,27 @@ write.csv(wealthqhh_clean, "wealthqhh_clean.csv", row.names = FALSE)
 wealthqhh_ghana <- wealthqhh_clean %>% filter(COUNTRY == 288)
 print(wealthqhh_ghana)
 
-# Remove the country column frmo the dataframe 
+# Remove the country column from the dataframe 
 
 wealthqhh_ghana <- wealthqhh_ghana %>% select(-COUNTRY)
 print(wealthqhh_ghana)
+
+# Creating 1. histogram for the wealth index overall
+
+ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+  labs(title = "Histogram of Wealth Quintiles", x = "Wealth Quintile", y = "Count") +
+  theme_minimal()
+
+# Creating 2. Histogram. Splitting the histogram into years (2008 and 2014)
+
+ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+  labs(title = "Histogram of Wealth Quintiles by Year", x = "Wealth Quintile", y = "Count") +
+  theme_minimal() +
+  facet_wrap(~ YEAR)
 
 
 
