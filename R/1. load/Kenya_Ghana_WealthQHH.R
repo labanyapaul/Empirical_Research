@@ -37,22 +37,21 @@ print(wealthqhh_ghana)
 
 # Creating 1. histogram for the wealth index overall
 
+
 ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
-  labs(title = "Histogram of Wealth Quintiles", x = "Wealth Quintile", y = "Count") +
+  labs(title = "Wealth Index Quantile for Ghana", x = "Wealth Quintile", y = "Count") +
   theme_minimal()
-
+  
 # Creating 2. Histogram. Splitting the histogram into years (2008 and 2014)
 
-ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
+ ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
-  labs(title = "Histogram of Wealth Quintiles by Year", x = "Wealth Quintile", y = "Count") +
+  labs(title = "Wealth Index Quintiles for Ghana", x = "Wealth Quintile", y = "Count") +
   theme_minimal() +
   facet_wrap(~ YEAR)
-
-
 
 
 
