@@ -6,6 +6,7 @@ library(tidyverse)
 library(tidyr)
 library(dplyr)
 library(ggplot2)
+library(here)
 
 # Reading and importing the csv file
 wealthqhh <- read_csv("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/DHS/Ghana Kenya /Household WealthHQQ/idhs_00003.csv")
@@ -53,5 +54,8 @@ ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
   theme_minimal() +
   facet_wrap(~ YEAR)
 
-
+if (!here("output") |> file.exists()) {
+  here("output") |> dir.create()
+}
+saveRDS(wealthqhh_ghana, "output/wealthqhh_ghana.rds")
 
