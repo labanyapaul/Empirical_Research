@@ -1,0 +1,14 @@
+---
+title: Landfills in Sub-Saharan Africa A Case Study of Ghana and Kenya
+author: Nykol Tudor and Labanya Paul
+
+format: 
+  html: 
+    toc: true
+    toc_depth: 2
+    self-contained: true
+biliography: bibliography.bib
+---
+
+
+# 3. Econometric approach

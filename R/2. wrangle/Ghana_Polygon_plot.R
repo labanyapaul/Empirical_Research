@@ -1,6 +1,7 @@
 # Reading the DHS Wealth Index Quantile Household Questionnaire
 
 library(haven)
+library(reader)
 wealthqhh <- read_csv("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/DHS/Ghana Kenya /Household WealthHQQ/idhs_00003.csv")
 print(wealthqhh)
 
@@ -15,8 +16,8 @@ print(wealthqhh)
 library(sf)
 #> Linking to GEOS 3.6.1, GDAL 2.1.3, PROJ 4.9.3
 
-Nkanfoa_07 <- st_read("/Users/nt/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/Polygon Google Earth/Landfills 2007 - 2015/Nkanfoa 07-11-15/Nkanfoa 10.28.2007.kml")
-#> Reading layer `Nkanfoa 10.28.2007' from data source `/Users/nt/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/Polygon Google Earth/Nkanfoa 10.28.2007.kml' using driver `LIBKML'
+Nkanfoa_07 <- st_read("/Users/nt/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/Polygon Google Earth/Ghana Landfills 2007 - 2015/Nkanfoa 07-11-15/Nkanfoa 10.28.2007.kml")
+#> Reading layer `Nkanfoa 10.28.2007' from data source `/Users/nt/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/Polygon Google Earth/Ghana Landfills 2007 - 2015/Nkanfoa 07-11-15/Nkanfoa 10.28.2007.kml' using driver `LIBKML'
 #> Simple feature collection with 1 feature and 1 field
 #> geometry type:  POLYGON
 #> dimension:      XY

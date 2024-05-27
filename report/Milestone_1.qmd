@@ -14,15 +14,15 @@ biliography: bibliography.bib
 
 ## *Motivation*
 
-The staggering reality of over 15 million individuals inhabiting garbage dump communities globally, though likely an under reported figure, highlights a pressing concern. This number is not static; it's steadily increasing. Alarmingly, a significant portion of this population, conservatively estimated at two-thirds, resides in the sub-Saharan Africa region alone. The well-being of these individuals, teetering on the edge of poverty, demands urgent attention. When we speak of well-being in this context, we refer primarily to two fundamental facets: health and income. We want to understand how living near landfills affects communities. These environments, often synonymous with destitution and neglect. By studying this, we hope to help these communities by understanding and finding ways to make their lives better through future policy making.
+The staggering reality of over 15 million individuals inhabiting garbage dump communities globally, though likely an under reported figure, highlights a pressing concern. This number is not static; it's steadily increasing. Alarmingly, a significant portion of this population, conservatively estimated at two-thirds, resides in the sub-Saharan Africa region alone. The well-being of these individuals, teetering on the edge of poverty, demands urgent attention. When we speak of well-being in this context, we refer primarily to income. We want to understand how living near landfills affects communities. These environments, often synonymous with destitution and neglect. By studying this, we hope to help these communities by understanding and finding ways to make their lives better through future policy making.
 
 ## *Research question*
 
-How does proximity to landfills impact the health and income of people living in Ghana and Kenya?
+How does proximity to landfills impact the income of people living in Ghana and Kenya?
 
 ## *Literature overview*
 
-Existing scientific research investigates the relationship between health effects and income opportunities among populations residing near landfills (Fazzo et al., 2023). Previous studies in Kenya and Ghana have explored the health and environmental impacts of landfill proximity, as well as initiatives aimed at formalizing waste picker activities and proposing solid waste management strategies (Oteng-Ababio, 2014; Lissah et al., 2020; Adzawla et al., 2019; Obiri-Nyarko et al., 2021; Kaluli et al., 2011). However, none have specifically addressed the relative strength of the impact between health and income for individuals near these sites. In the case of Kenya, Wekisa et al. (2020) conducted a study titled "Spatial distribution of waste collection points and their implications on quality of life in Mombasa County, Kenya," aiming to elucidate the relationship between proximity to garbage collection points/landfills and the Quality of Life Index. Employing Pearson correlation coefficient analysis, the research revealed a noteworthy positive correlation between income levels and proximity to landfills. However, this correlation came at a cost: increased exposure to diseases and a decline in air quality were observed as consequences of such proximity.
+Existing scientific research investigates the relationship of income opportunities among populations residing near landfills (Fazzo et al., 2023). Previous studies in Kenya and Ghana have explored the health and environmental impacts of landfill proximity, as well as initiatives aimed at formalizing waste picker activities and proposing solid waste management strategies (Oteng-Ababio, 2014; Lissah et al., 2020; Adzawla et al., 2019; Obiri-Nyarko et al., 2021; Kaluli et al., 2011). However, none have specifically addressed the relative strength of the impact of income for individuals near these sites. In the case of Kenya, Wekisa et al. (2020) conducted a study titled "Spatial distribution of waste collection points and their implications on quality of life in Mombasa County, Kenya," aiming to elucidate the relationship between proximity to garbage collection points/landfills and the Quality of Life Index. Employing Pearson correlation coefficient analysis, the research revealed a noteworthy positive correlation between income levels and proximity to landfills. However, this correlation came at a cost: increased exposure to diseases and a decline in air quality were observed as consequences of such proximity.
 
 In a similar context, Dr. Simon K. Kimani's research delved into the impact of pollutant exposure on the health of women waste pickers at Dandora Dumpsite in Nairobi, Kenya. Utilizing a questionnaire- based data collection method and a cross-sectional study design, the investigation aimed to assess the health status of female landfill workers in Dandora. The findings were alarming, indicating that a staggering 90.8% of the female waste pickers had experienced illness within the past six months. Further contributing to the understanding of waste management's socio-economic ramifications, Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on Socioeconomic Lives of Residents of Dandora," focused on households living near the Dandora dumpsite. Through questionnaire surveys involving 121 households, the research examined two key variables: income from solid waste management and household expenditure. Descriptive and correlation analyses unveiled a substantial finding: the total income derived from solid waste management contributed a significant 82.88% towards the total household expenditure. Moreover, a statistically significant correlation (r=0.389, p=0.01) underscored the interplay between income generated from waste management activities and household financial stability. These collective insights underscore the complex trade-offs between income generation and health risks faced by individuals engaged in landfill work.
 
@@ -32,7 +32,7 @@ Mensah and Nalumu (2023) investigated the motivations and challenges of informal
 
 ## *Data Description*
 
-We utilize georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from DHS databases. The dataset is structured at the household level, collected via questionnaires administered to household members. Categorical variables such as 'Adult had illness recently' serve as indicators of health status, while wealth index data is utilized as a proxy for household income levels. To map out where the landfills are and how they've changed over time, we use images from Google Earth Pro covering about 10 years, from 2014 to 2024. Landfills that are worked on:
+We utilize georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from DHS databases. The dataset is structured at the household level, collected via questionnaires administered to household members. Categorical variable "Wealth Index Quantile Household" serves as a proxy for household income levels. To map out where the landfills are and how they've changed over time, we use images from Google Earth Pro covering 6 years, from 2008 to 2016. Landfills that are worked on:
 
 i\) Kenya- Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite, Kayole, Nyeri, Accra, Thika dumpsite,Kiteezi Landfill and Maputo city landfill.
 
@@ -52,64 +52,8 @@ To address this variation, we will employ a Difference-in-Differences (DiD) mode
 
 We would like to show that treatment effect on the treated-type parameters can be identified under a generalized parallel trends assumption similar to the binary treatment setup. However, interpreting differences in these parameters across different values of the treatment can be particularly challenging due to selection bias that is not ruled out by the parallel trends assumption. We would ultimately like to provide treatment effect decomposition results, highlighting the parameters associated with popular linear two-way fixed-effect (TWFE) specifications over the time periods.
 
-Using this methodology, we aim to investigate the long-term effects on the income and health of individuals residing near landfills. We expect to find a positive effect on income levels, due to potential economic opportunities associated with landfills, but a negative impact on health, due to exposure to landfill-related hazards.
+Using this methodology, we aim to investigate the long-term effects on the income of individuals residing near landfills. We expect to find a positive effect on income levels, due to potential economic opportunities associated with landfills. 
 
-# 2. The data set
-
-## *Sources*
-
-DHS Program – <https://dhsprogram.com/>
-
-DHS IPUMS – <https://www.idhsdata.org/idhs/>
-
-Google Earth Pro – <https://earth.google.com/intl/earth/versions/>
-
-Variables -
-
-• Wealth variable: “Household wealth index in quintiles”. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys.
-
-• Health variable: “Absent from work within the past week”. This determines if respondents missed work in the last seven days, indicating potential sickness or health-related issues.
-
-Sample period –
-
-• We will examine the years 2008 and 2014 due to limited variable data. For landfill data, we will analyze the years 2008 to 2015.
-
-• The data sample may be unreliable due to limited surveys and a short sample period. Landfill data accuracy may also be affected by image quality issues on Google Earth Pro.
-
-## *Table 1.*
-
-## *Descriptive statistics*
-The histogram shows the distribution of wealth index quintiles for Ghana in 2008 and 2014. The wealth index quintiles are divided into five categories: poorest, poorer, middle, richer, and richest. The histogram shows that the majority of households fall into the middle and poorer wealth quintiles, with fewer households in the richest and poorest quintiles.
-
-```{r}
-#| label: fig-histogram-wealthqhh-ghana
-#| fig-cap: Histogram of Wealth Index Quintiles for Ghana, 2008 and 2014
-#| eval: false
-
-wealthqhh_ghana |> 
-  ggplot() +
-  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
-   theme_minimal() +
-  scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
-  labs(
-    title = "Wealth Index Quintiles for Ghana", 
-    x = "Wealth Quintile", 
-    y = "Count") +
-facet_wrap(~ YEAR)
-
-```
-
-
-
-
-
-# 3. Econometric approach
-
-Two Way Fixed Effects Model - Panel data
-
-# 4. Results
-
-# 5. Robustnes checks
 
 # 6. References
 

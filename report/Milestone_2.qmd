@@ -1,0 +1,57 @@
+---
+title: Landfills in Sub-Saharan Africa A Case Study of Ghana and Kenya
+author: Nykol Tudor and Labanya Paul
+
+format: 
+  html: 
+    toc: true
+    toc_depth: 2
+    self-contained: true
+biliography: bibliography.bib
+---
+
+
+# 2. The data set
+
+## *Sources*
+
+DHS Program – <https://dhsprogram.com/>
+
+DHS IPUMS – <https://www.idhsdata.org/idhs/>
+
+Google Earth Pro – <https://earth.google.com/intl/earth/versions/>
+
+Variables -
+
+• Wealth variable: “Household wealth index in quintiles”. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys.
+
+Sample period –
+
+• We will examine the years 2008 and 2014 due to limited variable data. For landfill data, we will analyze the years 2008 to 2014.
+
+• The data sample may be unreliable due to limited surveys and a short sample period. Landfill data accuracy may also be affected by image quality issues on Google Earth Pro.
+
+## *Table 1.*
+
+## *Descriptive statistics*
+The histogram shows the distribution of wealth index quintiles for Ghana in 2008 and 2014. The wealth index quintiles are divided into five categories: poorest, poorer, middle, richer, and richest. The histogram shows that the majority of households fall into the middle and poorer wealth quintiles, with fewer households in the richest and poorest quintiles.
+
+```{r}
+#| label: fig-histogram-wealthqhh-ghana
+#| fig-cap: Histogram of Wealth Index Quintiles for Ghana, 2008 and 2014
+#| eval: false
+
+wealthqhh_ghana |> 
+  ggplot() +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+   theme_minimal() +
+  scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+  labs(
+    title = "Wealth Index Quintiles for Ghana", 
+    x = "Wealth Quintile", 
+    y = "Count") +
+facet_wrap(~ YEAR)
+
+```
+
+
