@@ -79,19 +79,14 @@ Sample period –
 ## *Table 1.*
 
 ## *Descriptive statistics*
-
+The histogram shows the distribution of wealth index quintiles for Ghana in 2008 and 2014. The wealth index quintiles are divided into five categories: poorest, poorer, middle, richer, and richest. The histogram shows that the majority of households fall into the middle and poorer wealth quintiles, with fewer households in the richest and poorest quintiles.
 
 ```{r}
 #| label: fig-histogram-wealthqhh-ghana
 #| fig-cap: Histogram of Wealth Index Quintiles for Ghana, 2008 and 2014
-#| fig-pos: H
-#| fig-standalone: yes
-#| fig-width: 800
-#| fig-height: 600
-#| fig-file: fig-histogram-wealthqhh-ghana.png
-#| fig-cite: Data Source: IPUMS-DHS
-#| fig-note: The histogram shows the distribution of wealth index quintiles for Ghana in 2008 and 2014. The wealth index quintiles are divided into five categories: poorest, poorer, middle, richer, and richest. The histogram shows that the majority of households fall into the middle and poorer wealth quintiles, with fewer households in the richest and poorest quintiles.
-wealthqhh_ghana|> 
+#| eval: false
+
+wealthqhh_ghana |> 
   ggplot() +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
    theme_minimal() +
@@ -101,7 +96,7 @@ wealthqhh_ghana|>
     x = "Wealth Quintile", 
     y = "Count") +
 facet_wrap(~ YEAR)
-)
+
 ```
 
 
