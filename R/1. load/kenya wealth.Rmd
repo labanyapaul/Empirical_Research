@@ -1,0 +1,65 @@
+---
+title: "kenya"
+output: html_document
+date: "2024-05-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+library(haven)
+```
+```{r}
+ library(readr)
+wealth_kenya <- read_csv("C:/Users/laban/Desktop/idhs_00003.csv")
+View(wealth_kenya)
+```
+```{r}
+wealth_kenya  %>% select(WEALTHQHH,YEAR,COUNTRY)
+print(wealth_kenya)
+
+wealth_kenyaclean <- wealth_kenya %>% filter(COUNTRY == 404)
+wealth_kenyaclean<- na.omit(wealth_kenyaclean)
+
+
+ ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+  labs(title = "Wealth Index Quintiles for KENYA", x = "Wealth Quintile", y = "Count") +
+  theme_minimal() +
+  facet_wrap(~YEAR)
+```
+```{r}
+library(archive)
+library(sf)
+library(sp)
+library(dplyr)
+library(ggplot2)
+library(units)
+library(unglue)
+```
+
+```{r}
+kenya <- read_sf("C:\\Users\\laban\\Desktop\\Landfills\\dandora 2006.kml")
+plot(kenya)
+kenya_n<-st_zm(kenya,drop=TRUE,what="ZM")
+
+kenyap<-as(kenya_n,"Spatial")
+plot(kenyap)
+```
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
