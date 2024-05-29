@@ -53,3 +53,6 @@ wealthqhh_ghana |>
 facet_wrap(~ YEAR)
 
 ```
+
+
+
