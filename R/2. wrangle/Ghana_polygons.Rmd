@@ -1,0 +1,26 @@
+---
+title: "Ghana_Polygons"
+author: "Nykol"
+date: "2024-05-29"
+output: html_document
+---
+
+# Polygons of Ghana
+```{r}
+library(archive)
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(units)
+library(unglue)
+```
+------
+```{r}
+kmz_url <- "https://github.com/labanyapaul/Empirical_Research/blob/main/input/Ghana/Landfills/Sherigu_Bolgatanga.kmz"
+  
+kmz_path <- tempfile(fileext = ".kmz")
+download.file(
+  url = kmz_url,
+  destfile = kmz_path,
+  # it's a binary file
+  mode = "wb")

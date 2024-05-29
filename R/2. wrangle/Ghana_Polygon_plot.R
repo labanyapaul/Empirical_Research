@@ -1,17 +1,4 @@
-# Reading the DHS Wealth Index Quantile Household Questionnaire
-
-library(haven)
-library(reader)
-wealthqhh <- read_csv("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/DHS/Ghana Kenya /Household WealthHQQ/idhs_00003.csv")
-print(wealthqhh)
-
-# Selecting only the columns WEALTHQHH and YEAR
-
-library(dplyr)
-wealthqhh <- data.frame(wealthqhh) %>% select(WEALTHQHH, YEAR)
-print(wealthqhh)
-
-
+# Polygons of Ghana
 
 library(sf)
 #> Linking to GEOS 3.6.1, GDAL 2.1.3, PROJ 4.9.3
