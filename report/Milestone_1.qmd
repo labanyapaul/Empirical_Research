@@ -32,7 +32,7 @@ Mensah and Nalumu (2023) investigated the motivations and challenges of informal
 
 ## *Data Description*
 
-We utilize georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from DHS databases. The dataset is structured at the household level, collected via questionnaires administered to household members. Categorical variable "Wealth Index Quantile Household" serves as a proxy for household income levels. To map out where the landfills are and how they've changed over time, we use images from Google Earth Pro covering 6 years, from 2008 to 2016. Landfills that are worked on:
+We utilize georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from DHS databases. The dataset is structured at the household level, collected via questionnaires administered to household members. Our main variables include "Wealth Index Quantile Household" which serves as a proxy for household income levels. Our other variable is proxmity to landfills.To map out where the landfills are and how they've changed over time (in terms of size), we use images from Google Earth Pro covering 6 years, from 2008 to 2014. These variables will help us determine how household income has been affected whilst being in close proximity to landfills, with comparison to the control group (using city data). Landfills that are worked on:
 
 i\) Kenya- Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite, Kayole, Nyeri, Accra, Thika dumpsite,Kiteezi Landfill and Maputo city landfill.
 
@@ -40,11 +40,11 @@ ii\) Ghana- Agbobloshie (Kpone) landfill, Oti landfill, Gbalahi landfill, Sofokr
 
 ## *Empirical Strategy*
 
-Setting: The unit of study consists of households within the Ghana and Kenya region.
+Setting: The unit of study consists of households within the Ghana and Kenya region. The units of study are dispersed around the country, with Kenya landfills consisting of 7 and Ghana consisting of 10. 
 
-Treatment: The treatment group comprises of households living within a 10 km radius of a landfill.
+Treatment: The treatment group comprises of households living within a 10 km radius of a landfill. This group would be exposed to the effects of landfills derived from its proximity, influencing the wealth variable.  
 
-Controls: The control group consists of households within a 10 km radius of the city center or main market area.
+Controls: The control group consists of households within a 10 km radius of the city center or main market area, not exposed to landfill effects. This allows us to compare the treatment group's wealth to the control group's. However, the presence of a patriarch in a household could confound the experiment, as households with a senior male figure might have a different wealth index compared to those without.
 
 Bias and Identification: A potential bias we've identified stems from variations in landfill types across Ghana and Kenya. Some landfills are government-maintained and engineered according to specific protocols, while others are informal dumping sites, often termed "illegal," which fail to meet standard regulations and have a more detrimental impact on nearby communities.
 
