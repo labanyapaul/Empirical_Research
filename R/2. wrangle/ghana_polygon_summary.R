@@ -7,7 +7,8 @@ library(archive)
 library(dplyr)
 library(unglue)
 library(units)
-library(ggplot2) # Ensure ggplot2 is loaded for plotting
+library(ggplot2)
+library(readr)
 
 # Define the directory where your KMZ files are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -132,7 +133,7 @@ all_landfills_polygon <- all_landfills_polygon %>%
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
 
-# save into csv file. 
+# save into csv file and (single data frame)
 write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
 
 # Plot the area of all landfills over the years using a bar plot with facet_wrap

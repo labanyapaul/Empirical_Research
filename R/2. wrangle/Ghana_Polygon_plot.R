@@ -7,6 +7,11 @@ library(archive)
 library(dplyr)
 library(unglue)
 library(units)
+library(readr)
+
+library(knitr)
+library(kableExtra)
+
 
 # Define the directory where your KMZ files are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -125,7 +130,7 @@ all_landfills_polygon <- all_landfills_polygon %>%
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
 
-# save into csv file. 
+# save into csv file and (single data frame)
 write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
 
 
@@ -171,3 +176,54 @@ ggplot(data = agbogbloshie_polygon) +
   coord_flip() +
   labs(y = "Area (ha)", x = "Year", title = "Agbogbloshie Landfill Area Over Time") + 
   theme_minimal()
+
+## 
+
+
+# Filter data for 2008
+landfills_2008 <- all_landfills_polygon %>%
+  filter(year == 2008)
+
+# Calculate summary statistics for 2008
+summary_stats_2008 <- landfills_2008 %>%
+  summarize(
+    Number_of_Observations = n(),
+    Min = min(area_ha),
+    Max = max(area_ha),
+    Mean = mean(area_ha, na.rm = TRUE),
+    Number_of_NAs = sum(is.na(area_ha))
+  )
+
+# Convert to a table
+summary_table_2008 <- kable(summary_stats_2008, 
+                            caption = "Summary Statistics of Landfills in 2008", 
+                            align = "c") %>%
+  kable_styling()
+
+# Print the table for 2008
+print(summary_table_2008)
+
+# Filter data for 2014
+landfills_2014 <- all_landfills_polygon %>%
+  filter(year == 2014)
+
+# Calculate summary statistics for 2014
+summary_stats_2014 <- landfills_2014 %>%
+  summarize(
+    Number_of_Observations = n(),
+    Min = min(area_ha),
+    Max = max(area_ha),
+    Mean = mean(area_ha, na.rm = TRUE),
+    Number_of_NAs = sum(is.na(area_ha))
+  )
+
+# Convert to a table
+summary_table_2014 <- kable(summary_stats_2014, 
+                            caption = "Summary Statistics of Landfills in 2014", 
+                            align = "c") %>%
+  kable_styling()
+
+# Print the table for 2014
+print(summary_table_2014)
+
+
