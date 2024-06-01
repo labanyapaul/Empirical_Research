@@ -88,9 +88,9 @@ print(polygons_sf)
 if ("Name" %in% colnames(polygons_sf)) {
   polygons_sf <- polygons_sf %>%
     unglue_unnest(Name,
-                  patterns = c("{landfill_name}{month}{year}_{polygon_no}",
-                               "{landfill_name}{month}{year}",
-                               "{landfill_name} {month}_{year}"),
+                  patterns = c("{landfill_name}_{year}_{polygon_no}",
+                               "{landfill_name}_{year}",
+                               "{landfill_name} {year}"),
                   remove = FALSE)
 }
 
@@ -100,7 +100,7 @@ summarized_data <- polygons_sf %>%
   st_zm() %>%
   st_transform(crs = "ESRI:54009") %>%
   st_make_valid() %>%
-  group_by(landfill_name, year, month) %>%
+  group_by(landfill_name, year) %>%
   summarize(area = sum(st_area(geometry)), .groups = 'drop')
 
 # Display summarized data
@@ -129,7 +129,7 @@ agbogbloshie_polygon <- agbogbloshie_sf %>%
   st_zm() %>%
   st_transform(crs = "ESRI:54009") %>%
   st_make_valid() %>%
-  group_by(landfill_name, year, month) %>%
+  group_by(landfill_name, year) %>%
   summarize(geometry = st_union(geometry)) %>%
   ungroup() %>%
   st_transform(crs = "epsg:2136") %>%
