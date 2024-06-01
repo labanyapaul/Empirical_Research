@@ -6,6 +6,7 @@ library(maptiles)
 library(archive)
 library(dplyr)
 library(unglue)
+library(units)
 
 # Define the directory where your KMZ files are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -135,6 +136,28 @@ agbogbloshie_polygon <- agbogbloshie_sf %>%
   st_transform(crs = "epsg:2136") %>%
   mutate(area = st_area(geometry))
 
-agbogbloshie_polygon
+print(agbogbloshie_polygon)
+
+# Convert area to hectares for plotting
+agbogbloshie_polygon <- agbogbloshie_polygon %>%
+  mutate(area_ha = as.numeric(area) / 10000)
+
+# Display the summarized polygon data with area
+print(agbogbloshie_polygon)
+
+# Plot the area of Agbogbloshie landfill over the years using a bar plot (hectares)
+ggplot(data = agbogbloshie_polygon) +
+  geom_col(aes(x = as.character(year), y = area_ha)) +
+  coord_flip() +
+  labs(y = "Area (ha)", x = "Year", title = "Agbogbloshie Landfill Area Over Time") + 
+  theme_minimal()
+
+
+#Compare the Agbogbloshie landfill area over time using a bar plot.(m2) 
+ggplot(data = agbogbloshie_polygon) +
+  geom_col(aes(x = as.character(year), y = area)) +
+  coord_flip() +
+  labs(y = "Area (square meters)", x = "Year", title = "Agbogbloshie Landfill Area Over Time") +
+  theme_minimal()
 
 
