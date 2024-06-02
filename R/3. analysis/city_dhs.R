@@ -130,113 +130,71 @@ all_landfills_polygon <- all_landfills_polygon %>%
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
 
-# save into csv file and (single data frame)
-write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
-
-
-## Filter data for Agbogbloshie landfill
-agbogbloshie_sf <- polygons_sf %>% filter(landfill_name == "Agbogbloshie")
-
-# Plot the polygons for Agbogbloshie landfill over the years
-
-ggplot() +
-  geom_sf(data = agbogbloshie_sf) +
-  facet_wrap(~year) +
-  ggtitle("Agbogbloshie Landfill Polygons Over Years") +
-  theme(legend.position = "bottom") +
-  theme_void()
-
-# Filter data for the 'Agbogbloshie' landfill
-agbogbloshie_sf <- polygons_sf %>% 
-  filter(landfill_name == "Agbogbloshie")
-
-# Summarize polygons into one multipolygon
-agbogbloshie_polygon <- agbogbloshie_sf %>%
-  st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
-  st_make_valid() %>%
-  group_by(landfill_name, year) %>%
-  summarize(geometry = st_union(geometry)) %>%
-  ungroup() %>%
-  st_transform(crs = "epsg:2136") %>%
-  mutate(area = st_area(geometry))
-
-print(agbogbloshie_polygon)
-
-# Convert area to hectares for plotting
-agbogbloshie_polygon <- agbogbloshie_polygon %>%
-  mutate(area_ha = as.numeric(area) / 10000)
-
-# Display the summarized polygon data with area
-print(agbogbloshie_polygon)
-st_crs(agbogbloshie_polygon)
-
-# Plot the area of Agbogbloshie landfill over the years using a bar plot (hectares)
-ggplot(data = agbogbloshie_polygon) +
-  geom_col(aes(x = as.character(year), y = area_ha)) +
-  coord_flip() +
-  labs(y = "Area (ha)", x = "Year", title = "Agbogbloshie Landfill Area Over Time") + 
-  theme_minimal()
-
-## 
-
-
-# Filter data for 2008
-landfills_2008 <- all_landfills_polygon %>%
-  filter(year == 2008)
-
-# Calculate summary statistics for 2008
-summary_stats_2008 <- landfills_2008 %>%
-  summarize(
-    Number_of_Observations = n(),
-    Min = min(area_ha),
-    Max = max(area_ha),
-    Mean = mean(area_ha, na.rm = TRUE),
-    Number_of_NAs = sum(is.na(area_ha))
-  )
-
-# Convert to a table
-summary_table_2008 <- kable(summary_stats_2008, 
-                            caption = "Summary Statistics of Landfills in 2008", 
-                            align = "c") %>%
-  kable_styling()
-
-# Print the table for 2008
-print(summary_table_2008)
-
-# Filter data for 2014
-landfills_2014 <- all_landfills_polygon %>%
-  filter(year == 2014)
-
-# Calculate summary statistics for 2014
-summary_stats_2014 <- landfills_2014 %>%
-  summarize(
-    Number_of_Observations = n(),
-    Min = min(area_ha),
-    Max = max(area_ha),
-    Mean = mean(area_ha, na.rm = TRUE),
-    Number_of_NAs = sum(is.na(area_ha))
-  )
-
-# Convert to a table
-summary_table_2014 <- kable(summary_stats_2014, 
-                            caption = "Summary Statistics of Landfills in 2014", 
-                            align = "c") %>%
-  kable_styling()
-
-# Print the table for 2014
-print(summary_table_2014)
-
-# check and extract the CRS information
 st_crs(all_landfills_polygon)
 
-crs_info <- st_crs(all_landfills_polygon)
 
-crs_df <- data.frame(
-  epsg = crs_info$epsg,
-  proj4string = crs_info$proj4string,
-  wkt = crs_info$wkt
-)
-write.csv(crs_df, "crs_info.csv", row.names = FALSE)
+#landfills_df <- read.csv("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/3. analysis/all_landfills_polygon.csv")
 
+# Load the city data from the gpkg file
+city_data <- st_read("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/world_2015_20000.gpkg")
+
+#st_crs(landfills_df)
+
+#all_landfills_polygon <- all_landfills_polygon |> 
+#  st_transform(crs = "epsg:2136") 
+
+city_data <- city_data |> 
+  st_transform(crs = "epsg:2136") 
+
+st_crs(city_data)
+st_crs(all_landfills_polygon)
+
+# intersections
+intersections <- st_intersects(city_data, all_landfills_polygon)
+
+# Filter cities intersecting with the landfills
+intersecting_cities <- city_data[which(lengths(intersections) > 0), ]
+
+# Print
+print(intersecting_cities)
+write.csv(intersecting_cities, "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/2. wrangle/Ghana_landifll_city_intersects.csv")
+
+
+dhs_gps_2008 <- st_read("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/GHGE5AFL_2008/GHGE5AFL.shp")
+print(dhs_gps_2008)
+
+dhs_gps_2008 <- dhs_gps_2008 |> 
+  st_transform(crs = "epsg:2136") |>
+  mutate(area = st_area(geometry)) 
+
+  st_crs(dhs_gps_2008)
+
+dhs_gps_2014 <- st_read("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/GHGE71FL_2014/GHGE71FL.shp")
+print(dhs_gps_2014)
+
+dhs_gps_2014 <- dhs_gps_2014 |> 
+  st_transform(crs = "epsg:2136") |>
+  mutate(area = st_area(geometry)) 
+
+st_crs(dhs_gps_2014)
+
+
+
+# intersections
+city_dhs_gps_2008<- st_intersects(intersecting_cities, dhs_gps_2008)
+print(city_dhs_gps_2008)
+
+city_dhs_gps_2014<- st_intersects(intersecting_cities, dhs_gps_2014)
+print(city_dhs_gps_2014)
+print(intersecting_cities["cty_name"])
+
+# Filter cities: 1. Accra 
+accra_data <- intersecting_cities %>%
+  filter(cty_name == "Accra")
+
+ggplot() +
+  geom_sf(data = accra_data) +
+  #facet_wrap(~cty_name) +
+  theme_void()+
+  ggspatial::annotation_scale()
 
