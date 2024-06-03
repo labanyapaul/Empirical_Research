@@ -208,49 +208,43 @@ print(intersecting_cities["cty_name"])
 #save city_dhs_gps_2014 as csv, for plotting city landfill (2014 extent)
 write.csv(city_dhs_gps_2014, "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/2. wrangle/city_dhs_gps_2014.csv")
 
+
 # Filter cities: 1. Accra 
 accra_data <- intersecting_cities %>%
   filter(cty_name == "Accra")
 print(accra_data)
 
+
+# Calculate centroid of Accra polygon
+accra_center <- accra_data %>%
+  st_centroid() 
+
+# Plot Accra data with city center point
+ggplot() +
+  geom_sf(data = accra_data) + 
+  geom_sf(data = accra_center, color = "black", size = 3) + 
+  theme_void() +
+  ggspatial::annotation_scale() +
+  ggtitle("Spatial Data for Accra with City Center Point")
+
+
+
+
 #Plotting for Accra#
-ggplot() +
-  geom_sf(data = accra_center) +
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Accra")
-
-
-accra_data <- intersecting_cities %>%
-  filter(cty_name == "Accra")
-print(accra_data)
-
-# Extract the city center coordinates and convert to sf
-accra_center <- accra_data %>%
-  select(center_lon, center_lat) %>%
-  st_as_sf(coords = c("center_lon", "center_lat"), crs = st_crs(accra_data))
-
-# Plotting for Accra
-ggplot() +
-  geom_sf(data = accra_data) + 
-  geom_sf(data = accra_center, color = "red", size = 3) +
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Accra with City Center")
+#ggplot() +
+ # geom_sf(data = accra_data) +
+  #theme_void() +
+#  ggspatial::annotation_scale() +
+ # ggtitle("Spatial Data for Accra")
 
 
 # Extract the city center coordinates and convert to sf
-accra_center <- accra_data %>%
-  select(center_lon, center_lat) %>%
-  st_as_sf(coords = c("center_lon", "center_lat"), crs = 2136)
+#accra_center <- accra_data %>%
+  #select("center_lon", "center_lat") %>%
+  
 
-# Plotting for Accra
-ggplot() +
-  geom_sf(data = accra_data) + 
-  geom_point(data = accra_center, aes(x = center_lon, y = center_lat), color = "red", size = 3) +
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Accra with City Center")
+
+
 
 
 
