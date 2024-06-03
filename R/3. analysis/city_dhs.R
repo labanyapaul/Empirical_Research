@@ -1,4 +1,4 @@
-# Ghana scatter plot of polygons landfills. 
+# Ghana cities intersect with landfill, then intersect with dhs gps data. 
 
 library(sf)
 library(tidyverse)
@@ -8,12 +8,16 @@ library(dplyr)
 library(unglue)
 library(units)
 library(readr)
+library(ggplot2)
+library(ggspatial)
 
 library(knitr)
 library(kableExtra)
 
 
-# Define the directory where your KMZ files are stored
+
+
+# Define the directory where your KMZ files <are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
 
 # Ensure the directory exists
@@ -157,9 +161,9 @@ intersecting_cities <- city_data[which(lengths(intersections) > 0), ]
 
 # Print
 print(intersecting_cities)
-write.csv(intersecting_cities, "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/2. wrangle/Ghana_landifll_city_intersects.csv")
+write.csv(intersecting_cities, "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/2. wrangle/Ghana_landfill_city_intersects.csv")
 
-
+### GPS data
 dhs_gps_2008 <- st_read("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/GHGE5AFL_2008/GHGE5AFL.shp")
 print(dhs_gps_2008)
 
@@ -178,23 +182,77 @@ dhs_gps_2014 <- dhs_gps_2014 |>
 
 st_crs(dhs_gps_2014)
 
+# Check CRS 
 
+crs_intersecting_cities <- st_crs(intersecting_cities)
+print(crs_intersecting_cities)
 
-# intersections
+crs_accra_data <- st_crs(intersecting_cities)
+print(crs_accra_data)
+
+crs_gps08 <- st_crs(dhs_gps_2008)
+print(crs_gps08)
+
+crs_gps14 <- st_crs(dhs_gps_2014)
+print(crs_gps14)
+# All have the same CRS of epsg: 2136
+
+# intersections of dhs gps data with the cities intersecting with the landfills for year 2008/ 2014 (which have been combined with city data and gps data). 
 city_dhs_gps_2008<- st_intersects(intersecting_cities, dhs_gps_2008)
 print(city_dhs_gps_2008)
 
 city_dhs_gps_2014<- st_intersects(intersecting_cities, dhs_gps_2014)
 print(city_dhs_gps_2014)
 print(intersecting_cities["cty_name"])
+# only 3 cities intersect with landfill data. 
+#save city_dhs_gps_2014 as csv, for plotting city landfill (2014 extent)
+write.csv(city_dhs_gps_2014, "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/2. wrangle/city_dhs_gps_2014.csv")
 
 # Filter cities: 1. Accra 
 accra_data <- intersecting_cities %>%
   filter(cty_name == "Accra")
+print(accra_data)
 
+#Plotting for Accra#
 ggplot() +
-  geom_sf(data = accra_data) +
-  #facet_wrap(~cty_name) +
-  theme_void()+
-  ggspatial::annotation_scale()
+  geom_sf(data = accra_center) +
+  theme_void() +
+  ggspatial::annotation_scale() +
+  ggtitle("Spatial Data for Accra")
+
+
+accra_data <- intersecting_cities %>%
+  filter(cty_name == "Accra")
+print(accra_data)
+
+# Extract the city center coordinates and convert to sf
+accra_center <- accra_data %>%
+  select(center_lon, center_lat) %>%
+  st_as_sf(coords = c("center_lon", "center_lat"), crs = st_crs(accra_data))
+
+# Plotting for Accra
+ggplot() +
+  geom_sf(data = accra_data) + 
+  geom_sf(data = accra_center, color = "red", size = 3) +
+  theme_void() +
+  ggspatial::annotation_scale() +
+  ggtitle("Spatial Data for Accra with City Center")
+
+
+# Extract the city center coordinates and convert to sf
+accra_center <- accra_data %>%
+  select(center_lon, center_lat) %>%
+  st_as_sf(coords = c("center_lon", "center_lat"), crs = 2136)
+
+# Plotting for Accra
+ggplot() +
+  geom_sf(data = accra_data) + 
+  geom_point(data = accra_center, aes(x = center_lon, y = center_lat), color = "red", size = 3) +
+  theme_void() +
+  ggspatial::annotation_scale() +
+  ggtitle("Spatial Data for Accra with City Center")
+
+
+
+  
 
