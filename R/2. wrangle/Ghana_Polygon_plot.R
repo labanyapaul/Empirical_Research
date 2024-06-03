@@ -46,7 +46,7 @@ sf_list <- lapply(kmz_files, read_kmz_to_sf)
 
 # Combine all sf objects into a single sf data frame
 combined_sf <- bind_rows(sf_list)
-
+print(combined_sf)
 # Extract year, month, and landfill name from filenames
 combined_sf <- combined_sf %>%
   mutate(
@@ -138,7 +138,7 @@ write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
 agbogbloshie_sf <- polygons_sf %>% filter(landfill_name == "Agbogbloshie")
 
 # Plot the polygons for Agbogbloshie landfill over the years
-
+print(agbogbloshie_sf)
 ggplot() +
   geom_sf(data = agbogbloshie_sf) +
   facet_wrap(~year) +
