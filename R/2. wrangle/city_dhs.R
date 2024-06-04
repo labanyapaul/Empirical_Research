@@ -434,6 +434,7 @@ buffer = st_difference(outBig,outSmall)
 print(buffer)
 print(out)
 
+
 # intersections
 intersections <- st_intersects(dhs_gps_2014, buffer)
 # Filter cities intersecting with the landfills
