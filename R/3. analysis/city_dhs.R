@@ -432,7 +432,7 @@ outSmall <- st_buffer(accra_center, 5000)
 
 buffer = st_difference(outBig,outSmall)
 print(buffer)
-print(out)
+print(outBig, outSmall,)
 
 # intersections
 intersections <- st_intersects(dhs_gps_2014, buffer)
@@ -453,7 +453,29 @@ ggplot() +
   theme_void() +
   ggspatial::annotation_scale() +
   ggtitle("Spatial Data for Accra with Clusters")
-
+  
+## Treatment/ Control group
+  
+#Buffer around landfill agbogbloshie
+buffer = st_buffer(agbogbloshie_2014, 5000)
 
   
+  ggplot() +
+    geom_sf(data = accra_data) + 
+    geom_sf(data = agbogbloshie_2014, fill = "blue", alpha = 0.5) + 
+    geom_sf(data = outBig, color = "black", size = 0.5) + 
+    geom_sf(data = outSmall, color = "black", size = 0.5) + 
+    geom_sf(data = buffer, fill = "blue", alpha = 0.5) + 
+    geom_sf(data = dhs_gps_2014, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
+    geom_sf(data = accra_center, color = "black", size = 0.5) + 
+    geom_sf(data = intersecting_buffer_dhs, color = "yellow", size = 0.5, shape = 21, fill = "yellow", alpha = 0.7)
+  theme_void() +
+    ggspatial::annotation_scale() +
+    ggtitle("Spatial Data for Accra with Clusters")
+  
+  
+
+  
+
+
 
