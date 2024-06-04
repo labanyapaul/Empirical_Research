@@ -1,3 +1,14 @@
+---
+title: "kenya scatter"
+output: html_document
+date: "2024-06-03"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
@@ -108,11 +119,15 @@ dandora_sf <- polygons_sf %>% filter(landfill_name == "dandora")
 
 
 ggplot() +
-  geom_sf(data = dandora_sf) +
+geom_sf(data = dandora_sf) +
   facet_wrap(~year) +
-  ggtitle("Dandora Landfill Polygons Over Years") +
+    ggtitle("Dandora Landfill Polygons Over Years") +
   theme(legend.position = "bottom") +
   theme_void() 
+
+```
+
+```{r}
 # Summarize polygon data
 Summarized_kenya <- polygons_sf %>%
   st_zm() %>%
@@ -124,248 +139,126 @@ Summarized_kenya <- polygons_sf %>%
 # Display summarized data
 print("Summarized_kenya")
 
-# Summarize polygons into one multipolygon and calculate the area for all landfills
-all_landfills_polygon <- Summarized_kenya %>%
-  st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
-  st_make_valid() %>%
-  group_by(landfill_name, year) %>%
-  summarize(geometry = st_union(geometry)) %>%
-  ungroup() %>%
-  st_transform(crs = "epsg:2136") %>%
-  mutate(area = st_area(geometry))
+```
 
-
-# Display the area of all landfills over the years
-print(all_landfills_polygon)
-
-
-#Loading the city data
-
+```{r}
+# Load necessary libraries
+library(sf)
+library(dplyr)
 
 gpkg_file <- "C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\world_2015_20000.gpkg"
 
 # Read the GPKG file
 cities_data <- st_read(gpkg_file)
+ 
 
-#
-cities_data <- cities_data |>
-  st_transform(crs = "epsg:2136") 
-
-st_crs(cities_data) |>
-st_crs(all_landfills_polygon)
-
-#intersection
-intersections <- st_intersects(cities_data, all_landfills_polygon)
-
-#filter cities intersecting with the landfills
-intersecting_cities_kenya <- cities_data[which(lengths(intersections) > 0), ]
-
-#print
-print(intersecting_cities_kenya)
-
-### GPS data
-gps_Kenya2008 <- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\GPS 2008")
-print(gps_Kenya2008)
-
-gps_Kenya2008 <- gps_Kenya2008 |> 
-  st_transform(crs = "epsg:2136") |>
-  mutate(area = st_area(geometry)) 
-
-st_crs(gps_Kenya2008)
-
-gps_Kenya2014 <- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\GPS 2014")
-print(gps_Kenya2014)
-
-gps_Kenya2014 <-gps_Kenya2014 |> 
-  st_transform(crs = "epsg:2136") |>
-  mutate(area = st_area(geometry)) 
-
-st_crs(gps_Kenya2014)
-
-#Check CRS
-
-crs_intersecting_cities <- st_crs(intersecting_cities_kenya)
-print(crs_intersecting_cities)
+# Check the CRS of the city data
+cities_crs <- st_crs(cities_data)
+print(cities_crs)
 
 
 
-crs_gpsK08 <- st_crs(gps_Kenya2008)
-print(crs_gpsK08)
-
-crs_gpsK14 <- st_crs(gps_Kenya2014)
-print(crs_gpsK14)
-
-# intersections of dhs gps data with the cities intersecting with the landfills for year 2008/ 2014 (which have been combined with city data and gps data). 
-Kenya_dhs_gps_2008<- st_intersects(intersecting_cities_kenya, gps_Kenya2008)
-print(Kenya_dhs_gps_2008)
-
-Kenya_dhs_gps_2014<- st_intersects(intersecting_cities_kenya, gps_Kenya2014)
-print(Kenya_dhs_gps_2014)
-print(intersecting_cities_kenya["cty_name"])
-
-# Filter cities: 1. Nairobi 
-Nairobi_data <- intersecting_cities_kenya %>%
-filter(cty_name == "Nairobi")
-print(Nairobi_data)
 
 
-# Calculate centroid of Nairobi polygon
-Nairobi_center <- Nairobi_data %>%
-  st_centroid() 
+# Filter for the cities of interest
+cities_of_interest <- c("Dandora", "Kisumu", "Nakaru", "Mombasa", "Nairobi")
+Cities_kenya <- cities_data %>%
+  filter(cty_name %in% cities_of_interest)
 
-# Plot Nairobi data with city center point
-ggplot() +
-  geom_sf(data = Nairobi_data) + 
-  geom_sf(data = Nairobi_center, color = "black", size = 3) + 
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Nairobi with City Center Point")
+# Check the CRS of your summarized_kenya data
+landfills_crs <- st_crs(Summarized_kenya)
+print(landfills_crs)
 
-# Filter cities: 2. Mombasa
-Mombasa_data <- intersecting_cities_kenya %>%
-filter(cty_name == "Mombasa")
-print(Mombasa_data)
+# Set the CRS of cities_data to match summarized_kenya
+st_crs(cities_data) <- landfills_crs
 
-# Calculate centroid of Mombasa polygon
-Mombasa_center <- Mombasa_data %>%
-  st_centroid()
+cities_crs <- st_crs(cities_data)
+# Ensure the city data and landfill data have the same CRS
+if (!st_crs(Cities_kenya) == st_crs(Summarized_kenya)) {
+  Cities_kenya <- st_transform(Cities_kenya, st_crs(Summarized_kenya))
+}
 
-# Plot Mombasa data with city center point
-ggplot() +
-  geom_sf(data = Mombasa_data) + 
-  geom_sf(data = Mombasa_center, color = "black", size = 3) + 
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Mombasa with City Center Point")
+# Ensure the geometries are valid
+Cities_kenya <- st_make_valid(Cities_kenya)
+Summarized_kenya <- st_make_valid(Summarized_kenya)
+
+# Use st_intersects to find intersections
+intersections <- st_intersects(Cities_kenya, Summarized_kenya)
+
+# Print the results
+print(intersections)
+
+# Extract the intersecting cities and landfills
+intersecting_data <- Cities_kenya[unlist(intersections), ]
+
+# Print the intersecting data
+print(intersecting_data)
 
 
 
-# Filter cities: 3. Kisumu
-Kisumu_data <- intersecting_cities_kenya %>%
-filter(cty_name == "Kisumu")
-print(Kisumu_data)
-
-# Calculate centroid of Kisumu polygon
-
-Kisumu_center <- Kisumu_data %>%
-  st_centroid()
-
-# Plot Kisumu data with city center point
-
-ggplot() +
-  geom_sf(data = Kisumu_data) + 
-  geom_sf(data = Kisumu_center, color = "black", size = 3) + 
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Kisumu with City Center Point")
-
-# Add dandora polygon into the map (2014 extent)
-
-dandora_2014 <- dandora_sf %>%
-  filter(year == 2014)
-
-ggplot() +
-  geom_sf(data = Nairobi_data) + 
-  geom_sf(data = dandora_2014, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = Nairobi_center, color = "black", size = 3) + 
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Nairobi with City Center Point and Dandora Polygon (2014)")
-
-# Add dandora polygon into the map (2008 extent)
-
-dandora_2008 <- dandora_sf %>%
-  filter(year == 2008)
-ggplot() +
-  geom_sf(data = Nairobi_data) + 
-  geom_sf(data = dandora_2008, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = Nairobi_center, color = "black", size = 3) + 
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Nairobi with City Center Point and Dandora Polygon (2008)")
-
-# Adding the dhs_gps_2014 data to the map
-
-gps_Kenya_Nairobi<- gps_Kenya2014%>%
-  filter(ADM1NAME == "Nairobi")
-
-# dropping R (outliers too far)
-gps_Kenya_Nairobi <- gps_Kenya_Nairobi%>%
-  filter(URBAN_RURA == "U")
-
-# Create the plot
-ggplot() +
-  geom_sf(data = Nairobi_data) + 
-  geom_sf(data = dandora_2014, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = Nairobi_center, color = "black", size = 0.5) + 
- # geom_sf(data = gps_Kenya_Nairobi, aes(x = "LONGNUM", y = "LATNUM"), color = "red", size = 2, alpha = 0.7) +
-  geom_sf(data = gps_Kenya_Nairobi, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Nairobi with Clusters")
-
-#Bringing it together for Nairobi
+```
 
 
-# Calculate the distance from the city center to the landfill
-dandora_2014 <- st_transform(dandora_2014, st_crs(Nairobi_center))
-cityNairobi_tolandfill = st_distance(Nairobi_center, dandora_2014)
-print(cityNairobi_tolandfill)
+```{r}
+# Filter data for a specific landfill (e.g., Kisumu)
+Kisumu_sf <- polygons_sf %>% filter(landfill_name == "kisumu")
 
-outBig <- st_buffer(Nairobi_center, cityNairobi_tolandfill +2000)
-outSmall <- st_buffer(Nairobi_center, 5000)
-
-buffer = st_difference(outBig,outSmall)
-
-
-# intersections
-intersections_Nairobi <- st_intersects(gps_Kenya_Nairobi, buffer)
-# Filter cities intersecting with the landfills
-intersecting_Nairobi<- gps_Kenya_Nairobi[which(lengths(intersections) > 0), ]
-
-print(intersecting_Nairobi)
-
-ggplot() +
-  geom_sf(data = Nairobi_data) + 
-  geom_sf(data = dandora_2014, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = outBig, color = "black", size = 0.5) + 
-  geom_sf(data = outSmall, color = "black", size = 0.5) + 
-  geom_sf(data = buffer, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = gps_Kenya_Nairobi, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
-  geom_sf(data = Nairobi_center, color = "black", size = 0.5) + 
-  geom_sf(data = intersecting_Nairobi, color = "yellow", size = 0.5, shape = 21, fill = "yellow", alpha = 0.7)
-theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Nairobi with Clusters")
-
-# For Mombasa
-#Filter data for Zigira
-zigira_sf <- polygons_sf %>% filter(landfill_name == "zigira")
-
-# Plot the polygons for Zigira landfill over the years
+# Plot the polygons for Kisumu landfill over the years
 
 
 ggplot() +
-  geom_sf(data = zigira_sf) +
+geom_sf(data = dandora_sf) +
   facet_wrap(~year) +
-  ggtitle("Zigira Landfill Polygons Over Years") +
+    ggtitle("Kisumu Landfill Polygons Over Years") +
   theme(legend.position = "bottom") +
   theme_void() 
 
-# Add zigira polygon into the map (2014 extent)
+```
+## R Markdown
 
-zigira_2014 <- zigira_sf %>%
-  filter(year == 2014)
-
-ggplot() +
-  geom_sf(data = Mombasa_data) + 
-  geom_sf(data = zigira_2014, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = Mombasa_center, color = "black", size = 3) + 
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Mombasa with City Center Point and Zigira Polygon (2014)")
+```{r}
 
 
+library(sf)
+library(dplyr)
+library(ggplot2)
+
+# Load GPS data shapefiles for 2008 and 2014
+gps_data_2008 <- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\GPS 2008")
+gps_data_2014 <- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\GPS 2014")
+
+Kisumu_sf <- Kisumu_sf %>%
+  ms_simplify() %>%
+  st_make_valid()
+
+# Ensure GPS data is valid
+gps_data_2008 <- st_make_valid(gps_data_2008)
+gps_data_2014 <- st_make_valid(gps_data_2014)
+
+# Perform spatial join with Dandora polygons for each year
+Kisumu_2008 <- st_join(gps_data_2008, Kisumu_sf, join = st_intersects)
+Kisumu_2014 <- st_join(gps_data_2014, Kisumu_sf, join = st_intersects)
 
 
+
+
+
+```
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
