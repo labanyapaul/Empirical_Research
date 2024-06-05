@@ -505,7 +505,7 @@ control_group_poly <- st_difference(outBig,buffer)
 control_group_poly_int<- st_intersects(intersecting_buffer_dhs, control_group_poly)
 control_group <- intersecting_buffer_dhs[which(lengths(control_group_poly_int) > 0), ]
 
-
+# CORRECT PLOT showing Treatment and Control group for Accra city (Agbogbloshie landfill)
 ggplot() +
   geom_sf(data = accra_data) + 
   geom_sf(data = agbogbloshie_2014, fill = "blue", alpha = 0.5) + 
@@ -529,7 +529,67 @@ print(treatment_agbogbloshie14)
 control_agbogbloshie14 <-control_group
 print(control_agbogbloshie14)
 
+# combine dhs gps data together with the dhs wealth survey data
+
+#combine treatment_agbogbloshie14 with wealthqhh_ghana (filter for 2014). 
+ghana_wealthqhh <- read.csv("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/output/idhs_00003.csv")
+print(ghana_wealthqhh)
 
 
+# Filter for the year 2014 and select columns (common variables) for merging
+ghana_wealthqhh_2014 <- ghana_wealthqhh %>%
+  filter(YEAR == 2014) %>%
+  filter(COUNTRY == 288) %>%
+  select(YEAR, DHSID, COUNTRY,WEALTHQHH)
+
+print(ghana_wealthqhh_2014)
+
+ghana_wealthqhh_2014 <- ghana_wealthqhh_2014 %>%
+  select(-COUNTRY)
+
+print(ghana_wealthqhh_2014)
+
+#check column names
+print(colnames(treatment_agbogbloshie14))
+print(colnames(ghana_wealthqhh_2014))
+
+# Merge the two data sets: the treatment_agbogbloshie14 with the ghana_wealthqhh_2014 data
+treatment_agbogbloshie14_survey <- treatment_agbogbloshie14 %>%
+  left_join(ghana_wealthqhh_2014, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR")) 
+
+print(treatment_agbogbloshie14_survey)
+
+#plot the treatment group
+
+ggplot(data = treatment_agbogbloshie14_survey, aes(x = DHSID, y = WEALTHQHH)) +
+  geom_line(color = "blue") +
+  theme_minimal() +
+  labs(title = "Trend of WealthQHH over Time",
+       x = "DHSID",
+       y = "WEALTHQHH")
+
+#combine control_agbogbloshie14 with ghana_wealthqhh_2014. 
+control_agbogbloshie14_survey <- control_agbogbloshie14 %>%
+  left_join(ghana_wealthqhh_2014, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR"))
+
+print(control_agbogbloshie14_survey)
+print(treatment_agbogbloshie14_survey)
 
 
+# Histogram of wealth index quantile for Ghana
+
+ggplot() +
+  geom_bar(data = treatment_agbogbloshie14_survey, aes(x = factor(WEALTHQHH), fill = "Treatment"), color = "black", alpha = 0.5, position = "dodge") +
+  geom_bar(data = control_agbogbloshie14_survey, aes(x = factor(WEALTHQHH), fill = "Control"), color = "black", alpha = 0.5, position = "dodge") +
+  scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+  labs(title = "Wealth Index Quantile for Ghana",
+       x = "Wealth Quintile",
+       y = "Count") +
+  scale_fill_manual(values = c("blue", "red")) +
+  theme_minimal()
+
+
+if (!here("output") |> file.exists()) {
+  here("output") |> dir.create()
+}
+saveRDS(treatment_agbogbloshie14_survey, "output/treatment_agbogbloshie14_survey.rds")

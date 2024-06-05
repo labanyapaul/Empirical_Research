@@ -22,9 +22,6 @@ print(wealthqhh)
 wealthqhh_clean <- na.omit(wealthqhh)
 print(wealthqhh_clean)
 
-# Export this file as CSV. for labanya 
-
-write.csv(wealthqhh_clean, "wealthqhh_clean.csv", row.names = FALSE)
 
 # filter the data so I can just focus on Ghana data. 
 
@@ -35,6 +32,9 @@ print(wealthqhh_ghana)
 
 wealthqhh_ghana <- wealthqhh_ghana %>% select(-COUNTRY)
 print(wealthqhh_ghana)
+# save wealthqhh_ghana as a file to use in future scripts. 
+write_csv(wealthqhh_ghana, "output/wealthqhh_ghana.csv")
+
 
 # Creating 1. histogram for the wealth index overall
 
