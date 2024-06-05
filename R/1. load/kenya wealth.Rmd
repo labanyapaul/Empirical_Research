@@ -24,8 +24,7 @@ wealth_kenya  %>% select(WEALTHQHH,YEAR,COUNTRY)
 print(wealth_kenya)
 
 wealth_kenyaclean <- wealth_kenya %>% filter(COUNTRY == 404)
-wealth_kenyaclean<- na.omit(wealth_kenyaclean)
-
+print(wealth_kenyaclean)
 
  ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
@@ -34,32 +33,422 @@ wealth_kenyaclean<- na.omit(wealth_kenyaclean)
   theme_minimal() +
   facet_wrap(~YEAR)
 ```
+
 ```{r}
-library(archive)
+
+```
+
+
+```{r}
 library(sf)
-library(sp)
+library(tidyverse)
+library(maptiles)
+library(archive)
+library(dplyr)
+library(unglue)
+
+# Define the directory where your KMZ files are stored
+kmz_dir <- "C://Users//laban//Downloads//Empirical_Research//input//Kenya//Landfills"
+
+# Ensure the directory exists
+if (!dir.exists(kmz_dir)) {
+  stop("The directory does not exist. Please check the path.")
+}
+
+# List all KMZ files in the directory
+kmz_files <- list.files(path = kmz_dir, pattern = "\\.kmz$", full.names = TRUE)
+if (length(kmz_files) == 0) {
+  stop("No KMZ files found in the specified directory. Please check the file extensions and path.")
+}
+
+# Print KMZ files to verify
+print("KMZ files found:")
+print(kmz_files)
+
+# Function to unzip KMZ to KML and read as sf object
+read_kmz_to_sf <- function(kmz_file) {
+  kml_path <- tempfile()
+  archive_extract(archive = kmz_file, dir = kml_path)
+  kml_files <- list.files(kml_path, pattern = "\\.kml$", full.names = TRUE)
+  sf_object <- st_read(kml_files[1], quiet = FALSE) # Assuming the first KML file is the one you need
+  sf_object$filename <- basename(kmz_file)  # Add filename as a new column
+  return(sf_object)
+}
+
+# Read all KMZ files into sf objects
+sf_list <- lapply(kmz_files, read_kmz_to_sf)
+
+# Combine all sf objects into a single sf data frame
+combined_sf <- bind_rows(sf_list)
+
+# Extract year, month, and landfill name from filenames
+combined_sf <- combined_sf %>%
+  mutate(
+    year = str_extract(filename, "\\d{4}"),
+    month = str_extract(filename, "(?<=\\d{4})_(\\w+)"),
+    landfill_name = str_remove(filename, "_\\d{4}.*")
+  )
+
+# Clean up landfill names
+combined_sf$landfill_name <- case_match(
+  combined_sf$landfill_name,
+  "Dandora" ~ "Dandora",
+  "Kibera" ~ "Kibera",
+  # Add more landfill name corrections as needed
+  .default = combined_sf$landfill_name
+)
+
+# Convert year to numeric
+combined_sf$year <- as.numeric(combined_sf$year)
+
+print("Combined sf data:")
+
+
+# Inspect the geometry types
+geometry_types <- st_geometry_type(combined_sf)
+print("Geometry types in combined_sf:")
+print(geometry_types)
+
+# Split into points and polygons based on actual geometry types
+unique_geometry_types <- unique(geometry_types)
+print("Unique geometry types:")
+print(unique_geometry_types)
+
+points_sf <- combined_sf %>% filter(st_geometry_type(geometry) %in% c("POINT", "MULTIPOINT"))
+polygons_sf <- combined_sf %>% filter(st_geometry_type(geometry) %in% c("POLYGON", "MULTIPOLYGON"))
+
+# Check if points and polygons data frames have observations
+print("Points sf:")
+print(points_sf)
+
+print("Polygons sf:")
+print(polygons_sf)
+
+# If you have a 'Name' column in polygons_sf, unglue and clean polygon data
+if ("Name" %in% colnames(polygons_sf)) {
+  polygons_sf <- polygons_sf %>%
+    unglue_unnest(Name,
+                  patterns = c("{landfill_name}_{month}_{year}_{polygon_no}",
+                               "{landfill_name}_{month}_{year}",
+                               "{landfill_name} {month}_{year}"),
+                  remove = FALSE)
+}
+
+polygons_sf <- polygons_sf %>%
+  st_make_valid() %>%
+  st_transform(crs = 4326)  # Using WGS 84 for visualization
+
+# Filter data for a specific landfill (e.g., Dandora)
+dandora_sf <- polygons_sf %>% filter(landfill_name == "dandora")
+
+# Plot the polygons for Dandora landfill over the years
+
+
+ggplot() +
+geom_sf(data = dandora_sf) +
+  facet_wrap(~year) +
+    ggtitle("Dandora Landfill Polygons Over Years") +
+  theme(legend.position = "bottom") +
+  theme_void() 
+```
+```{r}
+zigira_sf <- polygons_sf %>% filter(landfill_name == "zigira")
+
+# Plot the polygons for Dandora landfill over the years
+
+
+ggplot() +
+geom_sf(data = zigira_sf) +
+  facet_wrap(~year) +
+    ggtitle("Zigira Landfill Polygons Over Years") +
+  theme(legend.position = "bottom") +
+  theme_void() 
+```
+
+
+
+```{r}
+
+# Summarize polygon data
+summarized_data <- polygons_sf %>%
+  st_zm() %>%
+  st_transform(crs = "ESRI:54009") %>%
+  st_make_valid() %>%
+  group_by(landfill_name, year, month) %>%
+  summarize(area = sum(st_area(geometry)), .groups = 'drop')
+
+# Display summarized data
+print("Summarized data:")
+print(summarized_data)
+```
+
+```{r}
+library(sf)
+options("SHAPE_RESTORE_SHX" = "YES")
+gps_data <- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\extracted\\KEGE52FL.shp")
+print(gps_data)
+
+```
+```{r}
+# Load necessary libraries
+library(sf)
+library(rmapshaper)
+gps_data<- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\GPS 2008")
+# Simplify and repair geometries of Dandora polygons
+dandora_sf <- dandora_sf %>%
+  ms_simplify() %>%
+  st_make_valid()
+
+
+# Check validity of Dandora polygons
+is_valid_dandora <- st_is_valid(dandora_sf)
+
+# Print summary of validity check
+print("Dandora Polygons Validity:")
+print(table(is_valid_dandora))
+
+# Identify invalid geometries
+invalid_dandora <- dandora_sf[!is_valid_dandora, ]
+print(invalid_dandora)
+
+# Attempt to repair invalid geometries
+dandora_sf <- st_make_valid(dandora_sf)
+
+# Check validity again
+is_valid_dandora <- st_is_valid(dandora_sf)
+print(table(is_valid_dandora))
+
+# If there are still invalid geometries, consider removing them
+if (!all(is_valid_dandora)) {
+  dandora_sf <- dandora_sf[is_valid_dandora, ]
+}
+
+# Check the validity one more time
+is_valid_dandora <- st_is_valid(dandora_sf)
+print(table(is_valid_dandora))
+
+# Ensure GPS data is valid
+is_valid_gps <- st_is_valid(gps_data)
+print(table(is_valid_gps))
+
+if (!all(is_valid_gps)) {
+  gps_data <- st_make_valid(gps_data)
+}
+
+# Perform the spatial join again
+dandora_individuals <- st_join(gps_data, dandora_sf, join = st_intersects)
+c <- st_intersection(gps_data, dandora_sf)
+```
+```{r}
+# Load necessary libraries
+library(sf)
 library(dplyr)
 library(ggplot2)
-library(units)
-library(unglue)
+
+# Load GPS data shapefiles for 2008 and 2014
+gps_data_2008 <- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\GPS 2008")
+gps_data_2014 <- st_read("C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\Kenya\\GPS 2014")
+
+dandora_sf <- dandora_sf %>%
+  ms_simplify() %>%
+  st_make_valid()
+
+# Ensure GPS data is valid
+gps_data_2008 <- st_make_valid(gps_data_2008)
+gps_data_2014 <- st_make_valid(gps_data_2014)
+
+# Perform spatial join with Dandora polygons for each year
+dandora_individuals_2008 <- st_join(gps_data_2008, dandora_sf, join = st_intersects)
+dandora_individuals_2014 <- st_join(gps_data_2014, dandora_sf, join = st_intersects)
+
+
+```
+```{r}
+# Define the path to your GPKG file
+gpkg_file <- "C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\world_2015_20000.gpkg"
+
+# Read the GPKG file
+cities_data <- st_read(gpkg_file)
+ 
+
+# List all layers in the GPKG file
+layers_info <- st_layers(gpkg_file)
+
+# Print the layers information
+print(layers_info)
+
+
+```
+```{r}
+
+
+# Define the path to your GPKG file
+gpkg_file <- "C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\world_2015_20000.gpkg"
+
+
+# Read the specific layer containing the city data
+cities_data <- st_read(gpkg_file, layer = "world_2015_20000")
+
+# Check the CRS of the city data
+cities_crs <- st_crs(cities_data)
+print(cities_crs)
+
+# Define the bounding box for Kenya with the same CRS as the city data
+kenya_bbox <- st_bbox(cities_data) # This ensures we use the same CRS
+
+# Adjust the bounding box coordinates to cover Kenya's geographical area
+kenya_bbox <- st_bbox(c(xmin = 33.909, ymin = -4.677, xmax = 41.899, ymax = 4.62), crs = cities_crs)
+
+# Filter the city data to only include data within the bounding box of Kenya
+cities_data_kenya <- st_crop(cities_data, kenya_bbox)
+
+# Ensure the data is valid
+cities_data_kenya <- st_make_valid(cities_data_kenya)
+
+# Print the filtered city data for Kenya
+print(cities_data_kenya)
+
+
+
+
+
 ```
 
 ```{r}
-kenya <- read_sf("C:\\Users\\laban\\Desktop\\Landfills\\dandora 2006.kml")
-plot(kenya)
-kenya_n<-st_zm(kenya,drop=TRUE,what="ZM")
+# Load necessary libraries
+library(tidyverse)
+library(sf)
+library(maptiles)
+library(archive)
+library(unglue)
 
-kenyap<-as(kenya_n,"Spatial")
-plot(kenyap)
+# Define the directory where your KMZ files are stored
+kmz_dir <- "C://Users//laban//Downloads//Empirical_Research//input//Kenya//Landfills"
+
+# Ensure the directory exists
+if (!dir.exists(kmz_dir)) {
+  stop("The directory does not exist. Please check the path.")
+}
+
+# List all KMZ files in the directory
+kmz_files <- list.files(path = kmz_dir, pattern = "\\.kmz$", full.names = TRUE)
+if (length(kmz_files) == 0) {
+  stop("No KMZ files found in the specified directory. Please check the file extensions and path.")
+}
+
+# Function to unzip KMZ to KML and read as sf object
+read_kmz_to_sf <- function(kmz_file) {
+  kml_path <- tempfile()
+  archive_extract(archive = kmz_file, dir = kml_path)
+  kml_files <- list.files(kml_path, pattern = "\\.kml$", full.names = TRUE)
+  sf_object <- st_read(kml_files[1], quiet = FALSE) # Assuming the first KML file is the one you need
+  sf_object$filename <- basename(kmz_file)  # Add filename as a new column
+  return(sf_object)
+}
+
+# Read all KMZ files into sf objects
+sf_list <- lapply(kmz_files, read_kmz_to_sf)
+
+# Combine all sf objects into a single sf data frame
+combined_sf <- bind_rows(sf_list)
+
+# Extract year, month, and landfill name from filenames
+combined_sf <- combined_sf %>%
+  mutate(
+    year = str_extract(filename, "\\d{4}"),
+    month = str_extract(filename, "(?<=\\d{4})_(\\w+)"),
+    landfill_name = str_remove(filename, "_\\d{4}.*")
+  )
+
+# Clean up landfill names
+combined_sf$landfill_name <- case_match(
+  combined_sf$landfill_name,
+  "Dandora" ~ "Dandora",
+  "Kibera" ~ "Kibera",
+  .default = combined_sf$landfill_name
+)
+
+# Convert year to numeric
+combined_sf$year <- as.numeric(combined_sf$year)
+
+# Split into points and polygons based on actual geometry types
+geometry_types <- st_geometry_type(combined_sf)
+unique_geometry_types <- unique(geometry_types)
+
+points_sf <- combined_sf %>% filter(st_geometry_type(geometry) %in% c("POINT", "MULTIPOINT"))
+polygons_sf <- combined_sf %>% filter(st_geometry_type(geometry) %in% c("POLYGON", "MULTIPOLYGON"))
+
+# If you have a 'Name' column in polygons_sf, unglue and clean polygon data
+if ("Name" %in% colnames(polygons_sf)) {
+  polygons_sf <- polygons_sf %>%
+    unglue_unnest(Name,
+                  patterns = c("{landfill_name}_{month}_{year}_{polygon_no}",
+                               "{landfill_name}_{month}_{year}",
+                               "{landfill_name} {month}_{year}"),
+                  remove = FALSE)
+}
+
+polygons_sf <- polygons_sf %>%
+  st_make_valid() %>%
+  st_transform(crs = 4326)  # Using WGS 84 for visualization
+
+# Filter data for a specific landfill (e.g., Dandora)
+dandora_sf <- polygons_sf %>% filter(landfill_name == "Dandora")
+
+# Plot the polygons for Dandora landfill over the years
+
+
+# Summarize polygon data
+Summarized_kenya <- polygons_sf %>%
+  st_zm() %>%
+  st_transform(crs = "ESRI:54009") %>%
+  st_make_valid() %>%
+  group_by(landfill_name, year, month) %>%
+  summarize(area = sum(st_area(geometry)), .groups = 'drop')
+
+# Display summarized data
+print(Summarized_kenya)
+
+# Load city data
+gpkg_file <- "C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\world_2015_20000.gpkg"
+cities_data <- st_read(gpkg_file)
+
+# Check the CRS of the city data
+cities_crs <- st_crs(cities_data)
+print(cities_crs)
+
+# Filter for the cities of interest
+cities_of_interest <- c("Dandora", "Kisumu", "Mombasa")
+Cities_kenya <- cities_data %>%
+  filter(cty_name %in% cities_of_interest)
+
+# Ensure the city data and landfill data have the same CRS
+if (!st_crs(Cities_kenya) == st_crs(Summarized_kenya)) {
+  Cities_kenya <- st_transform(Cities_kenya, st_crs(Summarized_kenya))
+}
+
+# Ensure the geometries are valid
+Cities_kenya <- st_make_valid(Cities_kenya)
+Summarized_kenya <- st_make_valid(Summarized_kenya)
+
+# Use st_intersects to find intersections
+intersections <- st_intersects(Cities_kenya, Summarized_kenya)
+
+# Extract the intersecting cities and landfills
+intersecting_data <- Cities_kenya[unlist(intersections), ]
+
+# Print the intersecting data
+print(intersecting_data)
+
+# Plotting the intersecting cities and landfills
+ggplot() +
+  geom_sf(data = Summarized_kenya, color = "black", fill = NA) +
+  geom_sf(data = Cities_kenya, color = "red", fill = NA) +
+  ggtitle("Intersecting Cities and Landfills") +
+  theme_void()
+
 ```
 
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
+```{r}
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
