@@ -20,6 +20,7 @@ library(dplyr)
 library(ggplot2)
 library(units)
 library(unglue)
+library(here)
 ```
 ```{r}
  library(readr)
@@ -44,12 +45,15 @@ ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
 
 
 ```{r}
-kenya <- read_sf("C:\\Users\\laban\\Desktop\\Landfills\\dandora 2006.kml")
-plot(kenya)
-kenya_n<-st_zm(kenya,drop=TRUE,what="ZM")
+kenya <- here("output/Kenya/Landfills/dandoraa.kml") |> 
+  read_sf() |> 
+  mutate(year = gsub("dandora ", "", Name, ignore.case = TRUE) |> as.integer())
 
-kenyap<-as(kenya_n,"Spatial")
-plot(kenyap)
+ggplot() +
+  geom_sf(data = kenya, fill = "green", color = "black") +
+  labs(title = "Dandora Landfill in Nairobi, Kenya") +
+  facet_wrap(~ year) +
+  theme_minimal()
 ```
 
 
