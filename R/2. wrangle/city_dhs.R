@@ -10,12 +10,8 @@ library(units)
 library(readr)
 library(ggplot2)
 library(ggspatial)
-
 library(knitr)
-library(kableExtra)
-
-
-
+library(geos)
 
 # Define the directory where your KMZ files <are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -204,11 +200,12 @@ print(city_dhs_gps_2008)
 city_dhs_gps_2014<- st_intersects(intersecting_cities, dhs_gps_2014)
 print(city_dhs_gps_2014)
 print(intersecting_cities["cty_name"])
-# only 3 cities intersect with landfill data. 
+## only 3 cities intersect with landfill data. 
+
 #save city_dhs_gps_2014 as csv, for plotting city landfill (2014 extent)
 write.csv(city_dhs_gps_2014, "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/2. wrangle/city_dhs_gps_2014.csv")
 
-
+#Filter for cities that intersect 
 # Filter cities: 1. Accra 
 accra_data <- intersecting_cities %>%
   filter(cty_name == "Accra")
@@ -229,19 +226,6 @@ ggplot() +
 
 #### 
 # Ghana scatter plot of polygons landfills. 
-
-library(sf)
-library(tidyverse)
-library(maptiles)
-library(archive)
-library(dplyr)
-library(unglue)
-library(units)
-library(readr)
-
-library(knitr)
-library(kableExtra)
-
 
 # Define the directory where your KMZ files are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -427,34 +411,123 @@ ggplot() +
 city_to_landfill = st_distance(accra_center, agbogbloshie_2014)
 print(city_to_landfill)
 
-outBig <- st_buffer(accra_center, city_to_landfill +2000)
-outSmall <- st_buffer(accra_center, 5000)
+outBig <- st_buffer(accra_center, 32000)
+
+outSmall <- st_buffer(accra_center, 10000)
+
+dhs_gps_2014_city <- st_intersects(dhs_gps_2014, accra_data)
+dhs_gps_2014_city_points <- dhs_gps_2014[which(lengths(dhs_gps_2014_city) > 0), ]
 
 buffer = st_difference(outBig,outSmall)
 print(buffer)
-print(out)
+buffer_city<- st_intersects(buffer, accra_data)
+intersecting_buffer_city <- buffer[which(lengths(buffer_city) > 0), ]
 
-
-# intersections
-intersections <- st_intersects(dhs_gps_2014, buffer)
-# Filter cities intersecting with the landfills
-intersecting_buffer_dhs <- dhs_gps_2014[which(lengths(intersections) > 0), ]
+intersections <- st_intersects(dhs_gps_2014_city_points, intersecting_buffer_city)
+intersecting_buffer_dhs <- dhs_gps_2014_city_points[which(lengths(intersections) > 0), ]
 
 print(intersecting_buffer_dhs)
 
+
+ggplot() +
+  geom_sf(data = accra_data) +
+  geom_sf(data = agbogbloshie_2014, fill = "blue", alpha = 0.5) + 
+  #geom_sf(data = outBig, color = "black", size = 0.5) + 
+  #geom_sf(data = outSmall, color = "black", size = 0.5) + 
+  geom_sf(data = intersecting_buffer_city, fill = "blue", alpha = 0.1) + 
+  geom_sf(data = dhs_gps_2014_city_points, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
+  geom_sf(data = accra_center, color = "black", size = 0.5) + 
+  geom_sf(data = intersecting_buffer_dhs, color = "yellow", size = 0.5, shape = 21, fill = "yellow", alpha = 0.7) +
+  
+  theme_void() +
+  ggspatial::annotation_scale() +
+  ggtitle("Spatial Data for Accra with Clusters")
+  
+  
+## Treatment/ Control group
+  
+#Buffer around landfill agbogbloshie
+buffer <- st_buffer(agbogbloshie_2014, 10000)
+
+#determine clusters left in the buffer, and intersect once more. 
+
+outBig_dif <- st_difference(outBig, buffer)
+
+# intersections
+intersections_buffer <- intersecting_buffer_city[st_intersects(intersecting_buffer_city, outBig_dif, sparse = FALSE), ]
+
 ggplot() +
   geom_sf(data = accra_data) + 
-  geom_sf(data = agbogbloshie_2014, fill = "blue", alpha = 0.5) + 
+  
   geom_sf(data = outBig, color = "black", size = 0.5) + 
   geom_sf(data = outSmall, color = "black", size = 0.5) + 
   geom_sf(data = buffer, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = dhs_gps_2014, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
+  geom_sf(data = dhs_gps_2014_city_points, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
   geom_sf(data = accra_center, color = "black", size = 0.5) + 
-  geom_sf(data = intersecting_buffer_dhs, color = "yellow", size = 0.5, shape = 21, fill = "yellow", alpha = 0.7)
+  geom_sf(data = agbogbloshie_2014, fill = "blue", alpha = 0.5) + 
+  #geom_sf(data = intersections_buffer, color = "yellow", size = 0.5, shape = 21, fill = "yellow", alpha = 0.7) +
+  #geom_sf(data = outBig_dif, fill = "green", alpha = 0.1) +
   theme_void() +
   ggspatial::annotation_scale() +
   ggtitle("Spatial Data for Accra with Clusters")
 
 
+
+####
+
   
+ggplot() +
+    geom_sf(data = accra_data) + 
+    geom_sf(data = agbogbloshie_2014, fill = "blue", alpha = 0.5) + 
+    geom_sf(data = outBig, color = "black", size = 0.5,alpha = 0) + 
+    geom_sf(data = outSmall, color = "black", size = 0.5,alpha = 0) + 
+    geom_sf(data = buffer, fill = "blue", alpha = 0.5) + 
+    geom_sf(data = dhs_gps_2014_city_points, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
+    geom_sf(data = accra_center, color = "black", size = 0.5) + 
+    geom_sf(data = intersecting_buffer_dhs, color = "yellow", size = 0.5, shape = 21, fill = "yellow", alpha = 0.7)
+  theme_void() +
+    ggspatial::annotation_scale() +
+    ggtitle("Spatial Data for Accra with Clusters")
+
+#what we have 
+intersecting_buffer_dhs  
+#  
+landfill_dhs_outBig <- st_intersects(intersecting_buffer_dhs, buffer)
+landfill_dhs_outBig_points <- intersecting_buffer_dhs[which(lengths(landfill_dhs_outBig) > 0), ]
+
+print(landfill_dhs_outBig_points)
+
+buffer_city<- st_intersects(buffer, accra_data)
+intersecting_buffer_city <- buffer[which(lengths(buffer_city) > 0), ]
+
+
+control_group_poly <- st_difference(outBig,buffer)
+control_group_poly_int<- st_intersects(intersecting_buffer_dhs, control_group_poly)
+control_group <- intersecting_buffer_dhs[which(lengths(control_group_poly_int) > 0), ]
+
+
+ggplot() +
+  geom_sf(data = accra_data) + 
+  geom_sf(data = agbogbloshie_2014, fill = "blue", alpha = 0.5) + 
+  geom_sf(data = outBig, color = "black", size = 0.5,alpha = 0) + 
+  geom_sf(data = outSmall, color = "black", size = 0.5,alpha = 0) + 
+  geom_sf(data = buffer, fill = "yellow", alpha = 0.1) + 
+  geom_sf(data = control_group, color = "blue", size = 0.5, fill = "blue", alpha = 0.5) +
+  #geom_sf(data = dhs_gps_2014_city_points, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
+  geom_sf(data = accra_center, color = "black", size = 0.5) + 
+  geom_sf(data = landfill_dhs_outBig_points, color = "green", size = 0.5, fill = "green", alpha = 0.5)
+  theme_void() +
+  ggspatial::annotation_scale() +
+  ggtitle("Spatial Data for Accra with Clusters")
+  
+  
+#save to respective names
+
+treatment_agbogbloshie14 <- landfill_dhs_outBig_points
+print(treatment_agbogbloshie14)
+
+control_agbogbloshie14 <-control_group
+print(control_agbogbloshie14)
+
+#merge 
 

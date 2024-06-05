@@ -1,14 +1,4 @@
----
-title: "kenya"
-output: html_document
-date: "2024-05-24"
----
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-```{r}
 library(tidyverse)
 library(ggplot2)
 library(dplyr)
@@ -21,28 +11,26 @@ library(ggplot2)
 library(units)
 library(unglue)
 library(here)
-```
-```{r}
- library(readr)
+
+library(readr)
 wealth_kenya <- read_csv("C:/Users/laban/Desktop/idhs_00003.csv")
 View(wealth_kenya)
-```
-```{r}
+
 wealth_kenya  %>% select(WEALTHQHH,YEAR,COUNTRY)
 
 wealth_kenyaclean <- wealth_kenya %>% filter(COUNTRY == 404)
 <<<<<<< HEAD
 print(wealth_kenyaclean)
 
- ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
-=======
-wealth_kenyaclean<- na.omit(wealth_kenyaclean)
+ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
+  =======
+  wealth_kenyaclean<- na.omit(wealth_kenyaclean)
 ```
 
 ```{r}
 ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
->>>>>>> 389f52137cf05cf5ba134f97484440dc4b0f1295
-  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  >>>>>>> 389f52137cf05cf5ba134f97484440dc4b0f1295
+geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
   labs(title = "Wealth Index Quintiles for KENYA", x = "Wealth Quintile", y = "Count") +
   theme_minimal() +
@@ -161,9 +149,9 @@ dandora_sf <- polygons_sf %>% filter(landfill_name == "dandora")
 
 
 ggplot() +
-geom_sf(data = dandora_sf) +
+  geom_sf(data = dandora_sf) +
   facet_wrap(~year) +
-    ggtitle("Dandora Landfill Polygons Over Years") +
+  ggtitle("Dandora Landfill Polygons Over Years") +
   theme(legend.position = "bottom") +
   theme_void() 
 ```
@@ -174,9 +162,9 @@ zigira_sf <- polygons_sf %>% filter(landfill_name == "zigira")
 
 
 ggplot() +
-geom_sf(data = zigira_sf) +
+  geom_sf(data = zigira_sf) +
   facet_wrap(~year) +
-    ggtitle("Zigira Landfill Polygons Over Years") +
+  ggtitle("Zigira Landfill Polygons Over Years") +
   theme(legend.position = "bottom") +
   theme_void() 
 ```
@@ -285,7 +273,7 @@ gpkg_file <- "C:\\Users\\laban\\Downloads\\Empirical_Research\\input\\world_2015
 
 # Read the GPKG file
 cities_data <- st_read(gpkg_file)
- 
+
 
 # List all layers in the GPKG file
 layers_info <- st_layers(gpkg_file)
@@ -469,8 +457,8 @@ ggplot() +
 ```{r}
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 =======
-
-```{r}
+  
+  ```{r}
 kenya <- here("output/Kenya/Landfills/dandoraa.kml") |> 
   read_sf() |> 
   mutate(year = gsub("dandora ", "", Name, ignore.case = TRUE) |> as.integer())
