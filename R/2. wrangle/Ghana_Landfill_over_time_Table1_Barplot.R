@@ -197,7 +197,7 @@ summary_stats_2008 <- landfills_2008 %>%
 
 # Convert to a table
 summary_table_2008 <- kable(summary_stats_2008, 
-                            caption = "Summary Statistics of Landfills in 2008", 
+                            caption = "Table 1. Summary Statistics of Ghana Landfills in 2008", 
                             align = "c") %>%
   kable_styling()
 
@@ -220,7 +220,7 @@ summary_stats_2014 <- landfills_2014 %>%
 
 # Convert to a table
 summary_table_2014 <- kable(summary_stats_2014, 
-                            caption = "Summary Statistics of Landfills in 2014", 
+                            caption = "Table 2. Summary Statistics of Ghana Landfills in 2014", 
                             align = "c") %>%
   kable_styling()
 
