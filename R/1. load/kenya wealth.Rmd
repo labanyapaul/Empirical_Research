@@ -13,6 +13,14 @@ library(tidyverse)
 library(ggplot2)
 library(dplyr)
 library(haven)
+library(archive)
+library(sf)
+library(sp)
+library(dplyr)
+library(ggplot2)
+library(units)
+library(unglue)
+library(here)
 ```
 ```{r}
  library(readr)
@@ -21,12 +29,19 @@ View(wealth_kenya)
 ```
 ```{r}
 wealth_kenya  %>% select(WEALTHQHH,YEAR,COUNTRY)
-print(wealth_kenya)
 
 wealth_kenyaclean <- wealth_kenya %>% filter(COUNTRY == 404)
+<<<<<<< HEAD
 print(wealth_kenyaclean)
 
  ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
+=======
+wealth_kenyaclean<- na.omit(wealth_kenyaclean)
+```
+
+```{r}
+ggplot(wealth_kenyaclean, aes(x = WEALTHQHH)) +
+>>>>>>> 389f52137cf05cf5ba134f97484440dc4b0f1295
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
   labs(title = "Wealth Index Quintiles for KENYA", x = "Wealth Quintile", y = "Count") +
@@ -34,6 +49,7 @@ print(wealth_kenyaclean)
   facet_wrap(~YEAR)
 ```
 
+<<<<<<< HEAD
 ```{r}
 
 ```
@@ -452,3 +468,17 @@ ggplot() +
 
 ```{r}
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+=======
+
+```{r}
+kenya <- here("output/Kenya/Landfills/dandoraa.kml") |> 
+  read_sf() |> 
+  mutate(year = gsub("dandora ", "", Name, ignore.case = TRUE) |> as.integer())
+
+ggplot() +
+  geom_sf(data = kenya, fill = "green", color = "black") +
+  labs(title = "Dandora Landfill in Nairobi, Kenya") +
+  facet_wrap(~ year) +
+  theme_minimal()
+```
+>>>>>>> 389f52137cf05cf5ba134f97484440dc4b0f1295

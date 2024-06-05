@@ -14,23 +14,27 @@ biliography: bibliography.bib
 
 ## *Sources*
 
-DHS Program – <https://dhsprogram.com/>
+DHS Program – <https://dhsprogram.com/>, 16.05.2024.
 
-DHS IPUMS – <https://www.idhsdata.org/idhs/>
+DHS IPUMS – <https://www.idhsdata.org/idhs/>, 16.05.2024.
 
-Google Earth Pro – <https://earth.google.com/intl/earth/versions/>
+Google Earth Pro – <https://earth.google.com/intl/earth/versions/>, 10.05.2024
 
 Variables -
 
-• Wealth variable: “Household wealth index in quintiles”. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys.
+• Wealth variable: “Household wealth index in quintiles”. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys. It consists of labels to depict wealth categories: 1- poorest, 2- poorer, 3- middle, 4- richer, and 5- richest. There is also 8- missing, and 9- NIU (not in universe) labels but these are not included after data wrangling. 
+
+* Landfill variable: This is shown through the size of the landfills throughout the years 
 
 Sample period –
 
-• We will examine the years 2008 and 2014 due to limited variable data. For landfill data, we will analyze the years 2008 to 2014.
+• We will examine the years 2008 and 2014, for the wealth variable. The total units of study consists of 282,836 units, with Kenya at 192,355 and Ghana at 90,481. For landfill data, we will satellite imagery between the years 2008 to 2014.
 
-• The data sample may be unreliable due to limited surveys and a short sample period. Landfill data accuracy may also be affected by image quality issues on Google Earth Pro.
+• The wealth data sample may be unreliable due to limited surveys and a short sample period. Landfill data accuracy may also be affected by image quality issues on Google Earth Pro.
 
 ## *Table 1.*
+
+
 
 ## *Descriptive statistics*
 
