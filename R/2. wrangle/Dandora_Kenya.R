@@ -278,7 +278,7 @@ cityKN_to_landfill <- st_distance(Nairobi_center, dandora_2014)
 
 print(cityKN_to_landfill)
 
-outBig <- st_buffer(Nairobi_center, 32000)
+outBig <- st_buffer(Nairobi_center, 32200)
 
 outSmall <- st_buffer(Nairobi_center, 10000)
 
@@ -432,56 +432,22 @@ ggplot() +
   ggtitle("Spatial Data for Kisumu with Clusters")
 
 
-crs_Kisumu <- st_crs(Kisumu_2014)
+
+
 
 # Check CRS of both objects
-
 crs_Kisumu_centre <- st_crs(Kisumu_center)
+print(crs_Kisumu_centre)
 
-# If the CRS are different, transform Kisumu_2014 to the CRS of Kisumu_center
+Kisumu_2014 <- st_transform(Kisumu_2014, crs_Kisumu_centre)
 
-if (crs_Kisumu != crs_Kisumu) {
-  Kisumu_2014 <- st_transform(Kisumu_2014, crs_Kisumu)
-}
+crs_Kisumu <- st_crs(Kisumu_2014)
+print(crs_Kisumu)
+ 
 
 # Calculate the distance
 
 cityKM_to_landfill <- st_distance(Kisumu_center, Kisumu_2014)
 
 print(cityKM_to_landfill)
-
-outBigM <- st_buffer(Kisumu_center, 32000)
-
-outSmallM <- st_buffer(Kisumu_center, 10000)
-
-dhs_gps_2014_cityM <- st_intersects(dhs_gps_2014, Kisumu_data)
-print(dhs_gps_2014_cityM)
-
-bufferM = st_difference(outBigM,outSmallM)
-print(bufferM)
-buffer_cityM<- st_intersects(bufferM, Kisumu_data)
-intersecting_buffer_cityM <- bufferM[which(lengths(buffer_cityM) > 0), ]
-
-intersections <- st_intersects(dhs_gps_2014_cityM, intersecting_buffer_cityM)
-
-intersecting_buffer_dhsM <- dhs_gps_2014_cityM[which(lengths(intersections) > 0), ]
-
-print(intersecting_buffer_dhsM)
-
-ggplot() +
-  geom_sf(data = Kisumu_data) +
-  geom_sf(data = Kisumu_2014, fill = "blue", alpha = 0.5) + 
-  geom_sf(data = outBigM, color = "black", size = 0.5) + 
-  geom_sf(data = outSmallM, color = "black", size = 0.5) + 
-  geom_sf(data = intersecting_buffer_cityM, fill = "blue", alpha = 0.1) + 
-  geom_sf(data = dhs_gps_2014_cityM, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
-  geom_sf(data = Kisumu_center, color = "black", size = 0.5) + 
-  geom_sf(data = intersecting_buffer_dhsM, color = "yellow", size = 0.5, shape = 21, fill = "yellow", alpha = 0.7) +
-  
-  theme_void() +
-  ggspatial::annotation_scale() +
-  ggtitle("Spatial Data for Kisumu with Clusters")
-
-
-
 
