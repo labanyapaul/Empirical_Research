@@ -280,7 +280,7 @@ ggplot() +
 city_to_landfill = st_distance(kumasi_center, oti_2014)
 print(city_to_landfill)
 
-outBig <- st_buffer(kumasi_center, 32000)
+outBig <- st_buffer(kumasi_center, city_to_landfill+6000)
 
 outSmall <- st_buffer(kumasi_center, 10000)
 

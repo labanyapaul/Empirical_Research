@@ -411,7 +411,7 @@ ggplot() +
 city_to_landfill = st_distance(accra_center, agbogbloshie_2014)
 print(city_to_landfill)
 
-outBig <- st_buffer(accra_center, 32000)
+outBig <- st_buffer(accra_center, city_to_landfill+6000)
 
 outSmall <- st_buffer(accra_center, 10000)
 
@@ -589,3 +589,4 @@ if (!here("output") |> file.exists()) {
   here("output") |> dir.create()
 }
 saveRDS(treatment_agbogbloshie14_survey, "output/treatment_agbogbloshie14_survey.rds")
+

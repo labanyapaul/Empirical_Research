@@ -263,9 +263,9 @@ ggplot() +
 city_to_landfill = st_distance(bolgatanga_center, oti_2014)
 print(city_to_landfill)
 
-outBig <- st_buffer(bolgatanga_center, 32000)
+outBig <- st_buffer(bolgatanga_center, city_to_landfill)
 
-outSmall <- st_buffer(bolgatanga_center, 10000)
+outSmall <- st_buffer(bolgatanga_center, 1000)
 
 dhs_gps_2014_city <- st_intersects(dhs_gps_2014, bolgatanga_data)
 dhs_gps_2014_city_points <- dhs_gps_2014[which(lengths(dhs_gps_2014_city) > 0), ]
@@ -331,7 +331,7 @@ ggplot() +
   #geom_sf(data = dhs_gps_2014_city_points, color = "red", size = 0.5, shape = 21, fill = "red", alpha = 0.7) +
   geom_sf(data = bolgatanga_center, color = "black", size = 0.5) + 
   geom_sf(data = landfill_dhs_outBig_points, color = "green", size = 0.5, fill = "green", alpha = 0.5)
-theme_void() +
+  theme_void() +
   ggspatial::annotation_scale() +
   ggtitle("Spatial Data for bolgatanga with Clusters")
 
