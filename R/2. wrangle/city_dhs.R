@@ -345,7 +345,8 @@ all_landfills_polygon <- all_landfills_polygon %>%
 print(all_landfills_polygon)
 
 ## Filter data for Agbogbloshie landfill
-agbogbloshie_sf <- polygons_sf %>% filter(landfill_name == "Agbogbloshie")
+agbogbloshie_sf <- all_landfills_polygon %>% 
+  filter(landfill_name == "Agbogbloshie")
 
 # Plot the polygons for Agbogbloshie landfill over the years
 print(agbogbloshie_sf)
@@ -355,10 +356,6 @@ ggplot() +
   ggtitle("Agbogbloshie Landfill Polygons Over Years") +
   theme(legend.position = "bottom") +
   theme_void()
-
-# Filter data for the 'Agbogbloshie' landfill
-agbogbloshie_sf <- polygons_sf %>% 
-  filter(landfill_name == "Agbogbloshie")
 
 # Summarize polygons into one multipolygon
 agbogbloshie_polygon <- agbogbloshie_sf %>%
