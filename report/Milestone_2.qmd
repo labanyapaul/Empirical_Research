@@ -55,3 +55,5 @@ wealthqhh_ghana |>
 facet_wrap(~ YEAR)
 
 ```
+
+![](images/dandora_landfill_area.png)
