@@ -1,4 +1,4 @@
-# Ghana scatter plot of polygons landfills. 
+# Ghana summary tables of polygons landfills. 
 
 library(sf)
 library(tidyverse)
@@ -8,12 +8,13 @@ library(dplyr)
 library(unglue)
 library(units)
 library(readr)
-
+library(ggplot2)
+library(ggspatial)
 library(knitr)
-library(kableExtra)
+library(geos)
+library(here)
 
-
-# Define the directory where your KMZ files are stored
+# Define the directory where your KMZ files <are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
 
 # Ensure the directory exists
@@ -46,7 +47,7 @@ sf_list <- lapply(kmz_files, read_kmz_to_sf)
 
 # Combine all sf objects into a single sf data frame
 combined_sf <- bind_rows(sf_list)
-print(combined_sf)
+
 # Extract year, month, and landfill name from filenames
 combined_sf <- combined_sf %>%
   mutate(
@@ -85,7 +86,6 @@ polygons_sf <- combined_sf %>% filter(st_geometry_type(geometry) %in% c("POLYGON
 # Check if points and polygons data frames have observations
 print("Points sf:")
 print(points_sf)
-
 print("Polygons sf:")
 print(polygons_sf)
 
@@ -103,7 +103,7 @@ if ("Name" %in% colnames(polygons_sf)) {
 # Summarize polygon data
 summarized_data <- polygons_sf %>%
   st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
+  st_transform(crs = "epsg:2136") %>%
   st_make_valid() %>%
   group_by(landfill_name, year) %>%
   summarize(area = sum(st_area(geometry)), .groups = 'drop')
@@ -115,7 +115,7 @@ print(summarized_data)
 # Summarize polygons into one multipolygon and calculate the area for all landfills
 all_landfills_polygon <- summarized_data %>%
   st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
+  st_transform(crs = "epsg:2136") %>%
   st_make_valid() %>%
   group_by(landfill_name, year) %>%
   summarize(geometry = st_union(geometry)) %>%
@@ -130,10 +130,15 @@ all_landfills_polygon <- all_landfills_polygon %>%
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
 
-# save into csv file and (single data frame)
+# check the CRS information
+st_crs(all_landfills_polygon)
+
+crs_info <- st_crs(all_landfills_polygon)
+
+# save into csv file
 write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
 
-
+################################################################################
 ## Filter data for Agbogbloshie landfill
 agbogbloshie_sf <- polygons_sf %>% filter(landfill_name == "Agbogbloshie")
 
@@ -153,7 +158,7 @@ agbogbloshie_sf <- polygons_sf %>%
 # Summarize polygons into one multipolygon
 agbogbloshie_polygon <- agbogbloshie_sf %>%
   st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
+  st_transform(crs = "epsg:2136") %>%
   st_make_valid() %>%
   group_by(landfill_name, year) %>%
   summarize(geometry = st_union(geometry)) %>%

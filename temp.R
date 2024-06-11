@@ -11,6 +11,7 @@ library(ggplot2)
 library(ggspatial)
 library(knitr)
 library(geos)
+library(here)
 
 # Define the directory where your KMZ files <are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -101,7 +102,7 @@ if ("Name" %in% colnames(polygons_sf)) {
 # Summarize polygon data
 summarized_data <- polygons_sf %>%
   st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
+  st_transform(crs = "epsg:2136") %>%
   st_make_valid() %>%
   group_by(landfill_name, year) %>%
   summarize(area = sum(st_area(geometry)), .groups = 'drop')
@@ -113,7 +114,7 @@ print(summarized_data)
 # Summarize polygons into one multipolygon and calculate the area for all landfills
 all_landfills_polygon <- summarized_data %>%
   st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
+  st_transform(crs = "epsg:2136") %>%
   st_make_valid() %>%
   group_by(landfill_name, year) %>%
   summarize(geometry = st_union(geometry)) %>%
@@ -129,8 +130,11 @@ all_landfills_polygon <- all_landfills_polygon %>%
 print(all_landfills_polygon)
 st_crs(all_landfills_polygon)
 
+# save into csv file for future uses 
+write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
+
 # Load the city data from the gpkg file
-city_data <- st_read("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/world_2015_20000.gpkg")
+city_data <- st_read(here::here("input/world_2015_20000.gpkg"))
 
 city_data <- city_data |> 
   st_transform(crs = "epsg:2136") 
@@ -143,13 +147,10 @@ intersections <- st_intersects(city_data, all_landfills_polygon)
 
 # Filter cities intersecting with the landfills
 intersecting_cities <- city_data[which(lengths(intersections) > 0), ]
-
-# Print
 print(intersecting_cities)
-write.csv(intersecting_cities, "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/R/2. wrangle/Ghana_landfill_city_intersects.csv")
 
 ### GPS data
-dhs_gps_2008 <- st_read("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/GHGE5AFL_2008/GHGE5AFL.shp")
+dhs_gps_2008 <- st_read(here::here("input/GHGE5AFL_2008/GHGE5AFL.shp"))
 print(dhs_gps_2008)
 
 dhs_gps_2008 <- dhs_gps_2008 |> 
@@ -158,7 +159,8 @@ dhs_gps_2008 <- dhs_gps_2008 |>
 
 st_crs(dhs_gps_2008)
 
-dhs_gps_2014 <- st_read("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/GHGE71FL_2014/GHGE71FL.shp")
+dhs_gps_2014 <- st_read(here::here("input/GHGE71FL_2014/GHGE71FL.shp"))
+
 print(dhs_gps_2014)
 
 dhs_gps_2014 <- dhs_gps_2014 |> 
@@ -197,16 +199,22 @@ print(intersecting_cities["cty_name"])
 #############################################
 #INPUT Filter for cities and year
 #############################################
+# What supervisor said to do: 
+#Use package purr 
 # City options are: Accra, Kumasi, Bolgatanga
-cities <- c("Kumasi", "Accra")
+#cities <- c("Kumasi", "Accra")
 # Year options are: 2014, 2008
-years <- c(2008, 2014)
+#years <- c(2008, 2014)
 
-pwalk(.p = list(cities, years, inner_distances, outer_distances),
-      .f = run_wrangling)
+#pwalk(.p = list(cities, years, inner_distances, outer_distances),
+ #     .f = run_wrangling)
 
-## put it in here()
-wealthindexqhh <- read.csv(here::here("output/idhs_00003.csv")
+# City options are: Accra, Kumasi, Bolgatanga
+city <- "Bolgatanga" 
+# Year options are: 2014, 2008
+year <-2014
+
+wealthindexqhh <- read.csv(here::here("output/idhs_00003.csv"))
 ############################################
 
 if (year ==2014){
@@ -224,7 +232,7 @@ if(city == "Accra"){
   year_selected <- year
   dhs_gps_year_filter_name_city <- "Greater Accra"
   big_buffer_additional <- 8000
-  samll_buffer <- 10000
+ small_buffer <- 10000
   landfill_buffer <- 15000
   output_file_name <- "output/treatment_agbogbloshie14_survey.rds"
   COUNTRY_value <- 288
@@ -235,7 +243,7 @@ if(city == "Accra"){
   year_selected <- year
   dhs_gps_year_filter_name_city <- "Ashanti"
   big_buffer_additional <- 6000
-  samll_buffer <- 10000
+ small_buffer <- 10000
   landfill_buffer <- 20000
   
   output_file_name <- "output/treatment_oti_14_survey.rds"
@@ -248,7 +256,7 @@ if(city == "Accra"){
   year_selected <- year
   dhs_gps_year_filter_name_city <- "Upper East"
   big_buffer_additional <- 3650
-  samll_buffer <- 1000
+ small_buffer <- 1000
   landfill_buffer <- 3100
   output_file_name <- "output/treatment_Sherigu_Bolgatanga_14_survey.rds"
   COUNTRY_value <- 288
@@ -259,15 +267,14 @@ if(city == "Accra"){
 }
 
 
-
 city_data <- intersecting_cities %>%
   filter(cty_name == city_selected)
 print(city_data)
 
-# Calculate centroid of Accra polygon
+# Calculate centroid of polygon
 city_center <- city_data %>%
   st_centroid() 
-# Plot Accra data with city center point
+# Plot city center point
 plot_title <- paste("Spatial Data for",city_selected,"with City Center Point")
 ggplot() +
   geom_sf(data = city_data) + 
@@ -278,7 +285,6 @@ ggplot() +
   ggtitle(plot_title)
 
 ## Filter data for landfill
-
 
 landfill_sf <- all_landfills_polygon %>% filter(landfill_name == landfill_selected)
 
@@ -292,14 +298,25 @@ ggplot() +
   theme(legend.position = "bottom") +
   theme_void()
 
-# Filter data for the 'Agbogbloshie' landfill
+# Plot barplot of landfill area over the years
+
+plot_title <- paste(landfill_selected,"Landfill Area Over Time")
+ggplot(data = landfill_sf) +
+  geom_col(aes(x = as.character(year), y = area_ha)) +
+  coord_flip() +
+  labs(y = "Area (ha)", x = "Year") + 
+  ggtitle(plot_title) +
+  theme_minimal()
+
+
+# Filter data for the landfill
 landfill_sf <- polygons_sf %>% 
   filter(landfill_name == landfill_selected)
 
 # Summarize polygons into one multipolygon
 landfill_polygon <- landfill_sf %>%
   st_zm() %>%
-  st_transform(crs = "ESRI:54009") %>%
+  st_transform(crs = "epsg:2136") %>%
   st_make_valid() %>%
   group_by(landfill_name, year) %>%
   summarize(geometry = st_union(geometry)) %>%
@@ -311,9 +328,7 @@ print(landfill_polygon)
 
 ##########
 
-# Add landfill polygon into the map (2014 extent)
-
-
+# Add landfill polygon into the map 
 
 landfill_year <- landfill_polygon %>%
   filter(year == year_selected)
@@ -359,7 +374,7 @@ print(city_to_landfill)
 
 outBig <- st_buffer(city_center, city_to_landfill+big_buffer_additional)
 
-outSmall <- st_buffer(city_center, samll_buffer)
+outSmall <- st_buffer(city_center,small_buffer)
 
 dhs_gps_year_city <- st_intersects(dhs_gps_year, city_data)
 dhs_gps_year_city_points <- dhs_gps_year[which(lengths(dhs_gps_year_city) > 0), ]
@@ -478,9 +493,13 @@ print(control_city)
 ################################################################################
 # Combine dhs gps data together with the dhs wealth survey data
 ################################################################################
-print(ghana_wealthqhh)
 
 # Filter for the year 2014 or 2008 and select columns (common variables) for merging
+
+#drop NAs 
+ghana_wealthqhh <- na.omit(wealthindexqhh)
+print(ghana_wealthqhh)
+
 ghana_wealthqhh <- wealthindexqhh %>%
   filter(YEAR == year_selected) %>%
   filter(COUNTRY == 288) %>%
@@ -492,6 +511,7 @@ ghana_wealthqhh <- ghana_wealthqhh %>%
   select(-COUNTRY)
 
 print(ghana_wealthqhh)
+
 
 #check column names
 print(colnames(treatment_landfill))
@@ -505,7 +525,7 @@ print(treatment_landfill_variable)
 
 
 
-# Combine control goup with Wealthqhh data 
+# Combine control group with Wealthqhh data 
 control_city_variable <- control_city %>%
   left_join(ghana_wealthqhh, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR"))
 
@@ -531,3 +551,4 @@ ggplot() +
 #   here("output") |> dir.create()
 # }
 # saveRDS(
+
