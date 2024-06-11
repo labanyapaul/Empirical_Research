@@ -1,5 +1,4 @@
-# Ghana summary tables of polygons landfills. 
-
+# Ghana summary table years 2008, 2014. 
 library(sf)
 library(tidyverse)
 library(maptiles)
@@ -13,6 +12,7 @@ library(ggspatial)
 library(knitr)
 library(geos)
 library(here)
+library(kableExtra)
 
 # Define the directory where your KMZ files <are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -130,61 +130,7 @@ all_landfills_polygon <- all_landfills_polygon %>%
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
 
-# check the CRS information
-st_crs(all_landfills_polygon)
-
-crs_info <- st_crs(all_landfills_polygon)
-
-# save into csv file
-write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
-
-################################################################################
-## Filter data for Agbogbloshie landfill
-agbogbloshie_sf <- polygons_sf %>% filter(landfill_name == "Agbogbloshie")
-
-# Plot the polygons for Agbogbloshie landfill over the years
-print(agbogbloshie_sf)
-ggplot() +
-  geom_sf(data = agbogbloshie_sf) +
-  facet_wrap(~year) +
-  ggtitle("Agbogbloshie Landfill Polygons Over Years") +
-  theme(legend.position = "bottom") +
-  theme_void()
-
-# Filter data for the 'Agbogbloshie' landfill
-agbogbloshie_sf <- polygons_sf %>% 
-  filter(landfill_name == "Agbogbloshie")
-
-# Summarize polygons into one multipolygon
-agbogbloshie_polygon <- agbogbloshie_sf %>%
-  st_zm() %>%
-  st_transform(crs = "epsg:2136") %>%
-  st_make_valid() %>%
-  group_by(landfill_name, year) %>%
-  summarize(geometry = st_union(geometry)) %>%
-  ungroup() %>%
-  st_transform(crs = "epsg:2136") %>%
-  mutate(area = st_area(geometry))
-
-print(agbogbloshie_polygon)
-
-# Convert area to hectares for plotting
-agbogbloshie_polygon <- agbogbloshie_polygon %>%
-  mutate(area_ha = as.numeric(area) / 10000)
-
-# Display the summarized polygon data with area
-print(agbogbloshie_polygon)
-st_crs(agbogbloshie_polygon)
-
-# Plot the area of Agbogbloshie landfill over the years using a bar plot (hectares)
-ggplot(data = agbogbloshie_polygon) +
-  geom_col(aes(x = as.character(year), y = area_ha)) +
-  coord_flip() +
-  labs(y = "Area (ha)", x = "Year", title = "Agbogbloshie Landfill Area Over Time") + 
-  theme_minimal()
-
-## 
-
+#############################################################
 
 # Filter data for 2008
 landfills_2008 <- all_landfills_polygon %>%
@@ -232,16 +178,11 @@ summary_table_2014 <- kable(summary_stats_2014,
 # Print the table for 2014
 print(summary_table_2014)
 
-# check and extract the CRS information
-st_crs(all_landfills_polygon)
+#crs_df <- data.frame(
+ # epsg = crs_info$epsg,
+  #proj4string = crs_info$proj4string,
+  #wkt = crs_info$wkt
+#)
+#write.csv(crs_df, "crs_info.csv", row.names = FALSE)
 
-crs_info <- st_crs(all_landfills_polygon)
-
-crs_df <- data.frame(
-  epsg = crs_info$epsg,
-  proj4string = crs_info$proj4string,
-  wkt = crs_info$wkt
-)
-write.csv(crs_df, "crs_info.csv", row.names = FALSE)
-
-
+#ggsave(plot)

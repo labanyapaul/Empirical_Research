@@ -130,8 +130,8 @@ all_landfills_polygon <- all_landfills_polygon %>%
 print(all_landfills_polygon)
 st_crs(all_landfills_polygon)
 
-# save into csv file for future uses 
-write.csv(all_landfills_polygon, "all_landfills_polygon.csv")
+#save as csv file
+write.csv(all_landfills_polygon, "output/all_landfills_polygon.csv", row.names = FALSE)
 
 # Load the city data from the gpkg file
 city_data <- st_read(here::here("input/world_2015_20000.gpkg"))
