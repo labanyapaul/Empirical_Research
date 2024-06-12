@@ -5,3 +5,8 @@
 
 output/*
 input/world_2015_2000.gpkg
+echo .DS_Store >> .gitignore
+
+
+
+
