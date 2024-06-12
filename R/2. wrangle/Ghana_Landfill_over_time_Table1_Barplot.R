@@ -13,6 +13,7 @@ library(knitr)
 library(geos)
 library(here)
 library(kableExtra)
+library(gt)
 
 # Define the directory where your KMZ files <are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -132,9 +133,10 @@ print(all_landfills_polygon)
 
 #############################################################
 
-# Filter data for 2008
+# Filter data for 2008, 3 landfills that intersect and have dhs data
 landfills_2008 <- all_landfills_polygon %>%
-  filter(year == 2008)
+  filter(year == 2008, landfill_name %in% c("Agbogbloshie", "Sherigu_Bolgatanga", "Oti")) %>%
+  select(-geometry)
 
 # Calculate summary statistics for 2008
 summary_stats_2008 <- landfills_2008 %>%
@@ -155,9 +157,49 @@ summary_table_2008 <- kable(summary_stats_2008,
 # Print the table for 2008
 print(summary_table_2008)
 
+
+# save table
+
+tab_1 <- 
+  gt(summary_stats_2008) %>%
+  tab_header(
+    title = "Table 1. Summary Statistics of Ghana Landfills in 2008"
+  ) %>%
+  fmt_number(
+    columns = vars(Min, Max, Mean),
+    decimals = 2
+  ) %>%
+  fmt_number(
+    columns = vars(Number_of_Observations, Number_of_NAs),
+    decimals = 0
+  ) %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body()
+  ) %>%
+  tab_spanner(
+    label = "Area (ha)",
+    columns = vars(Min, Max, Mean)
+  ) %>%
+  tab_spanner(
+    label = "Count",
+    columns = vars(Number_of_Observations, Number_of_NAs)
+  ) %>%
+  tab_footnote(
+    footnote = "Note: Area is in hectares (ha).",
+    locations = cells_title(groups = "title"))
+  #%>%
+  # tab_source_note(
+  #   source_note = "Source: PUT THIS ON TOP"
+  # )
+
+tab_1
+
+
+
 # Filter data for 2014
 landfills_2014 <- all_landfills_polygon %>%
-  filter(year == 2014)
+  filter(year == 2014, landfill_name %in% c("Agbogbloshie", "Sherigu_Bolgatanga", "Oti"))
 
 # Calculate summary statistics for 2014
 summary_stats_2014 <- landfills_2014 %>%
@@ -177,6 +219,12 @@ summary_table_2014 <- kable(summary_stats_2014,
 
 # Print the table for 2014
 print(summary_table_2014)
+
+
+#save table for 2008 and 2014 
+#gtsave(summary_table_2008, filename = "summary_table_2008.png", device = "png", width = 6, height = 4, units = "in", dpi = 300)
+#gtsave(summary_table_2014, filename = "summary_table_2014.png", device = "png", width = 6, height = 4, units = "in", dpi = 300)
+
 
 #crs_df <- data.frame(
  # epsg = crs_info$epsg,
