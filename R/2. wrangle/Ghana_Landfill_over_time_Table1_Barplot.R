@@ -14,6 +14,7 @@ library(geos)
 library(here)
 library(kableExtra)
 library(gt)
+library(stargazer) 
 
 # Define the directory where your KMZ files <are stored
 kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
@@ -136,101 +137,105 @@ print(all_landfills_polygon)
 # Filter data for 2008, 3 landfills that intersect and have dhs data
 landfills_2008 <- all_landfills_polygon %>%
   filter(year == 2008, landfill_name %in% c("Agbogbloshie", "Sherigu_Bolgatanga", "Oti")) %>%
-  select(-geometry)
+  sf::st_drop_geometry(landfills_2008)
 
-# Calculate summary statistics for 2008
+print(landfills_2008)
+
 summary_stats_2008 <- landfills_2008 %>%
   summarize(
-    Number_of_Observations = n(),
-    Min = min(area_ha),
-    Max = max(area_ha),
+    Observations = n(),
+    Min = min(area_ha, na.rm = TRUE),
+    Max = max(area_ha, na.rm = TRUE),
     Mean = mean(area_ha, na.rm = TRUE),
-    Number_of_NAs = sum(is.na(area_ha))
+    NAs = sum(is.na(area_ha))
   )
 
-# Convert to a table
-summary_table_2008 <- kable(summary_stats_2008, 
-                            caption = "Table 1. Summary Statistics of Ghana Landfills in 2008", 
-                            align = "c") %>%
-  kable_styling()
-
-# Print the table for 2008
-print(summary_table_2008)
-
-
-# save table
-
-tab_1 <- 
-  gt(summary_stats_2008) %>%
+# gt table
+summary_table_2008 <- summary_stats_2008 %>%
+  gt() %>%
   tab_header(
     title = "Table 1. Summary Statistics of Ghana Landfills in 2008"
   ) %>%
-  fmt_number(
-    columns = vars(Min, Max, Mean),
-    decimals = 2
+  tab_footnote(
+    footnote = "Note: Area is in hectares (ha).",
+    locations = cells_title(groups = "title")
   ) %>%
-  fmt_number(
-    columns = vars(Number_of_Observations, Number_of_NAs),
-    decimals = 0
+  cols_align(
+    align = "center",
+    columns = everything()
   ) %>%
   tab_style(
-    style = cell_text(weight = "bold"),
+    style = list(
+      cell_borders(
+        sides = "all",
+        color = "black",
+        weight = px(1)
+      ),
+      cell_text(
+        weight = "bold"
+      )
+    ),
     locations = cells_body()
   ) %>%
-  tab_spanner(
-    label = "Area (ha)",
-    columns = vars(Min, Max, Mean)
-  ) %>%
-  tab_spanner(
-    label = "Count",
-    columns = vars(Number_of_Observations, Number_of_NAs)
+  tab_options(
+    table.font.size = "small"
+  ) %>% 
+  opt_footnote_marks(marks = "standard")
+
+# Print the table
+summary_table_2008
+
+# Filter data for 2014
+
+landfills_2014 <- all_landfills_polygon %>%
+  filter(year == 2014, landfill_name %in% c("Agbogbloshie", "Sherigu_Bolgatanga", "Oti")) %>%
+  sf::st_drop_geometry(landfills_2008)
+
+print(landfills_2014)
+
+summary_stats_2014 <- landfills_2014 %>%
+  summarize(
+    Observations = n(),
+    Min = min(area_ha, na.rm = TRUE),
+    Max = max(area_ha, na.rm = TRUE),
+    Mean = mean(area_ha, na.rm = TRUE),
+    NAs = sum(is.na(area_ha))
+  )
+
+# gt table
+
+summary_table_2014 <- summary_stats_2014 %>%
+  gt() %>%
+  tab_header(
+    title = "Table 2. Summary Statistics of Ghana Landfills in 2014"
   ) %>%
   tab_footnote(
     footnote = "Note: Area is in hectares (ha).",
-    locations = cells_title(groups = "title"))
-  #%>%
-  # tab_source_note(
-  #   source_note = "Source: PUT THIS ON TOP"
-  # )
-
-tab_1
-
-
-
-# Filter data for 2014
-landfills_2014 <- all_landfills_polygon %>%
-  filter(year == 2014, landfill_name %in% c("Agbogbloshie", "Sherigu_Bolgatanga", "Oti"))
-
-# Calculate summary statistics for 2014
-summary_stats_2014 <- landfills_2014 %>%
-  summarize(
-    Number_of_Observations = n(),
-    Min = min(area_ha),
-    Max = max(area_ha),
-    Mean = mean(area_ha, na.rm = TRUE),
-    Number_of_NAs = sum(is.na(area_ha))
-  )
-
-# Convert to a table
-summary_table_2014 <- kable(summary_stats_2014, 
-                            caption = "Table 2. Summary Statistics of Ghana Landfills in 2014", 
-                            align = "c") %>%
-  kable_styling()
-
-# Print the table for 2014
-print(summary_table_2014)
+    locations = cells_title(groups = "title")
+  ) %>%
+  cols_align(
+    align = "center",
+    columns = everything()
+  ) %>%
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "all",
+        color = "black",
+        weight = px(1)
+      ),
+      cell_text(
+        weight = "bold"
+      )
+    ),
+    locations = cells_body()
+  ) %>%
+  tab_options(
+    table.font.size = "small"
+  ) %>% 
+  opt_footnote_marks(marks = "standard")
 
 
-#save table for 2008 and 2014 
-#gtsave(summary_table_2008, filename = "summary_table_2008.png", device = "png", width = 6, height = 4, units = "in", dpi = 300)
-#gtsave(summary_table_2014, filename = "summary_table_2014.png", device = "png", width = 6, height = 4, units = "in", dpi = 300)
+# Print the table
+summary_table_2014
 
-
-#crs_df <- data.frame(
- # epsg = crs_info$epsg,
-  #proj4string = crs_info$proj4string,
-  #wkt = crs_info$wkt
-#)
-#write.csv(crs_df, "crs_info.csv", row.names = FALSE)
-
-#ggsave(plot)
