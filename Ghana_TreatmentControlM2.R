@@ -533,12 +533,16 @@ run_analysis <- function(city, year){
     left_join(ghana_wealthqhh, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR"))
   
   
-  print("to be written out contorl")
+  print("to be written out control")
   print(control_city_variable)
   print("to be written out treatment")
   print(treatment_landfill_variable)
-  write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", col.names = !file.exists("./control_landfill_data.csv"), append = T)
-  write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
+
+    write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
+    write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
+    
+
+  
   #################################################################################
   
   
@@ -579,8 +583,20 @@ run_analysis <- function(city, year){
   #________________________________________________________________________________
 } 
 
-close( file( "./control_landfill_data.csv", open="w" ) )
-close( file( "./treatment_landfill_data.csv", open="w" ) )
+
+control_file <- "./control_landfill_data.csv"
+treatment_file <- "./treatment_landfill_data.csv"
+#Check its existence
+if (file.exists(control_file)) {
+  #Delete file if it exists
+  file.remove(control_file)
+}
+#Check its existence
+if (file.exists(treatment_file)) {
+  #Delete file if it exists
+  file.remove(treatment_file)
+}
+
 
 run_analysis("Accra" , 2008)
 
