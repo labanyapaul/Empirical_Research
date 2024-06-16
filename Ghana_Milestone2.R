@@ -130,8 +130,12 @@ all_landfills_polygon <- all_landfills_polygon %>%
 print(all_landfills_polygon)
 st_crs(all_landfills_polygon)
 
+temp_all_landfills_polygon  <- all_landfills_polygon %>%
+  sf::st_drop_geometry(temp_all_landfills_polygon)
+write.csv(temp_all_landfills_polygon,"./all_landfills_polygon_nogeometry.csv", row.names = FALSE)
+
 #save as csv file
-write.csv(all_landfills_polygon, "output/all_landfills_polygon.csv", row.names = FALSE)
+#write.csv(all_landfills_polygon, "output/all_landfills_polygon.csv", row.names = FALSE)
 
 # Load the city data from the gpkg file
 city_data <- st_read(here::here("input/world_2015_20000.gpkg"))
@@ -528,8 +532,15 @@ run_analysis <- function(city, year){
   control_city_variable <- control_city %>%
     left_join(ghana_wealthqhh, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR"))
   
+  
+  print("to be written out contorl")
   print(control_city_variable)
+  print("to be written out treatment")
   print(treatment_landfill_variable)
+  write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", col.names = !file.exists("./control_landfill_data.csv"), append = T)
+  write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
+  #################################################################################
+  
   
   
   # Histogram of wealth index quantile for landfills 
@@ -568,6 +579,8 @@ run_analysis <- function(city, year){
   #________________________________________________________________________________
 } 
 
+close( file( "./control_landfill_data.csv", open="w" ) )
+close( file( "./treatment_landfill_data.csv", open="w" ) )
 
 run_analysis("Accra" , 2008)
 
