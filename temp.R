@@ -330,7 +330,7 @@ run_analysis <- function(city, year){
   landfill_year <- landfill_polygon %>%
     filter(year == year_selected)
   
-  plot_title <- paste("Spatial Data for",city_selected,"with City Center Point and Agbogbloshie Polygon (",year_selected,")")
+  plot_title <- paste("Spatial Data for",city_selected,"with City Center Point and", landfill_selected, year_selected)
   
   p<- ggplot()  +
     geom_sf(data = city_data) + 
@@ -532,19 +532,39 @@ run_analysis <- function(city, year){
   print(treatment_landfill_variable)
   
   
-  # Histogram of wealth index quantile for Accra, Ghana (Agbogbloshie landfill 2014 extent)
+  # Histogram of wealth index quantile for landfills 
   
-  plot_title <- paste("Wealth Index Quantile for Ghana",city_selected,year_selected)
-  p<- ggplot()  +
-    geom_bar(data = treatment_landfill_variable, aes(x = factor(WEALTHQHH), fill = "Treatment"), color = "black", alpha = 0.5, position = "dodge") +
-    geom_bar(data = control_city_variable, aes(x = factor(WEALTHQHH), fill = "Control"), color = "black", alpha = 0.5, position = "dodge") +
+  # plot_title <- paste("Wealth Index Quantile for Ghana",city_selected,year_selected)
+  # p<- ggplot()  +
+  #   geom_bar(data = treatment_landfill_variable, aes(x = factor(WEALTHQHH), fill = "Treatment"), color = "black", alpha = 0.5, position = "dodge") +
+  #   geom_bar(data = control_city_variable, aes(x = factor(WEALTHQHH), fill = "Control"), color = "black", alpha = 0.5, position = "dodge") +
+  #   scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+  #   labs(title = plot_title,
+  #        x = "Wealth Quintile",
+  #        y = "Count") +
+  #   scale_fill_manual(values = c("blue", "red")) +
+  #   theme_minimal()
+  # print(p)
+  
+  plot_title <- paste("Wealth Index Quantile for Ghana", city_selected, year_selected)
+  
+  # Combine the datasets and add a 'Group' column to differentiate between Treatment and Control
+  treatment_landfill_variable$Group <- "Treatment"
+  control_city_variable$Group <- "Control"
+  combined_data <- rbind(treatment_landfill_variable, control_city_variable)
+  
+  p <- ggplot(combined_data, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) + 
+    geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
     scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
     labs(title = plot_title,
          x = "Wealth Quintile",
          y = "Count") +
-    scale_fill_manual(values = c("blue", "red")) +
+    scale_fill_manual(values = c("Treatment" = "green", "Control" = "blue")) +
     theme_minimal()
+  
   print(p)
+  
+  
   #________________________________________________________________________________
 } 
 
@@ -556,7 +576,8 @@ run_analysis("Accra" , 2014)
 run_analysis("Kumasi" , 2008)
 run_analysis("Kumasi" , 2014)
 
-run_analysis("Bolgatanga" , 2008)
-run_analysis("Bolgatanga" , 2014)
+#Dropping Bolgatanga city (Sherigu Bolgatanga landfill) as there are no control dhs clusters in 2008. 
+#run_analysis("Bolgatanga" , 2008)
+#run_analysis("Bolgatanga" , 2014)
 
 
