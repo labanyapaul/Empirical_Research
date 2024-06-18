@@ -606,7 +606,7 @@ if (file.exists(combined_treatmentcontrol_file )) {
 run_analysis("Accra" , 2008)
 
 run_analysis("Accra" , 2014)
-
+ 
 run_analysis("Kumasi" , 2008)
 run_analysis("Kumasi" , 2014)
 
