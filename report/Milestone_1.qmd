@@ -7,7 +7,7 @@ format:
     toc: true
     toc_depth: 2
     self-contained: true
-biliography: bibliography.bib
+bibliography: references.bib
 ---
 
 # 1. Research Proposal
@@ -40,9 +40,9 @@ ii\) Ghana- Agbobloshie (Kpone) landfill, Oti landfill, Gbalahi landfill, Sofokr
 
 ## *Empirical Strategy*
 
-Setting: The unit of study consists of households within the Ghana and Kenya region. The units of study are dispersed around the country, with Kenya landfills consisting of 7 and Ghana consisting of 10. 
+Setting: The unit of study consists of households within the Ghana and Kenya region. The units of study are dispersed around the country, with Kenya landfills consisting of 7 and Ghana consisting of 10.
 
-Treatment: The treatment group comprises of households living within a 10 km radius of a landfill. This group would be exposed to the effects of landfills derived from its proximity, influencing the wealth variable.  
+Treatment: The treatment group comprises of households living within a 10 km radius of a landfill. This group would be exposed to the effects of landfills derived from its proximity, influencing the wealth variable.
 
 Controls: The control group consists of households within a 10 km radius of the city center or main market area, not exposed to landfill effects. This allows us to compare the treatment group's wealth to the control group's. However, the presence of a patriarch in a household could confound the experiment, as households with a senior male figure might have a different wealth index compared to those without.
 
@@ -52,8 +52,9 @@ To address this variation, we will employ a Difference-in-Differences (DiD) mode
 
 We would like to show that treatment effect on the treated-type parameters can be identified under a generalized parallel trends assumption similar to the binary treatment setup. However, interpreting differences in these parameters across different values of the treatment can be particularly challenging due to selection bias that is not ruled out by the parallel trends assumption. We would ultimately like to provide treatment effect decomposition results, highlighting the parameters associated with popular linear two-way fixed-effect (TWFE) specifications over the time periods.
 
-Using this methodology, we aim to investigate the long-term effects on the income of individuals residing near landfills. We expect to find a positive effect on income levels, due to potential economic opportunities associated with landfills. 
+Using this methodology, we aim to investigate the long-term effects on the income of individuals residing near landfills. We expect to find a positive effect on income levels, due to potential economic opportunities associated with landfills.
 
+Some packages: [@archive; @base]
 
 # 6. References
 

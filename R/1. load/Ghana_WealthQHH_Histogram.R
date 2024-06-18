@@ -9,32 +9,29 @@ library(ggplot2)
 library(here)
 
 # Reading and importing the csv file
-wealthqhh <- read_csv("~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Ghana/DHS/Ghana Kenya /Household WealthHQQ/idhs_00003.csv")
-print(wealthqhh)
+wealthindexqhh <- read.csv(here::here("output/idhs_00003.csv"))
+print(wealthindexqhh)
 
-# Selecting only the columns WEALTHQHH and YEAR
+# Selecting only the columns WEALTHQHH and YEAR, COUNTRY
 
-wealthqhh <- data.frame(wealthqhh) %>% select(WEALTHQHH, YEAR, COUNTRY)
-print(wealthqhh)
+wealthindexqhh <- data.frame(wealthindexqhh) %>% select(WEALTHQHH, YEAR, COUNTRY)
+print(wealthindexqhh)
 
 # Then, dropping the NA values
 
-wealthqhh_clean <- na.omit(wealthqhh)
-print(wealthqhh_clean)
+ghwealthqhh_clean <- na.omit(wealthindexqhh)
+print(ghwealthqhh_clean)
 
 
 # filter the data so I can just focus on Ghana data. 
 
-wealthqhh_ghana <- wealthqhh_clean %>% filter(COUNTRY == 288)
-print(wealthqhh_ghana)
+ghana_wealthqhh <- ghwealthqhh_clean %>% filter(COUNTRY == 288)
+print(ghana_wealthqhh)
 
 # Remove the country column from the dataframe 
 
-wealthqhh_ghana <- wealthqhh_ghana %>% select(-COUNTRY)
+wealthqhh_ghana <- ghana_wealthqhh %>% select(-COUNTRY)
 print(wealthqhh_ghana)
-# save wealthqhh_ghana as a file to use in future scripts. 
-write_csv(wealthqhh_ghana, "output/wealthqhh_ghana.csv")
-
 
 # Creating 1. histogram for the wealth index overall
 
@@ -54,6 +51,7 @@ ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
   theme_minimal() +
   facet_wrap(~ YEAR)
 
+ ############################################
 if (!here("output") |> file.exists()) {
   here("output") |> dir.create()
 }
