@@ -538,14 +538,13 @@ run_analysis <- function(city, year){
   print("to be written out treatment")
   print(treatment_landfill_variable)
   
-     write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
-     write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
+     #write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
+     #write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
 
 
   
   #################################################################################
-  
-  
+
   
   # Histogram of wealth index quantile for landfills 
   
@@ -568,19 +567,22 @@ run_analysis <- function(city, year){
   control_city_variable$Group <- "Control"
   combined_treatmentcontrol <- rbind(treatment_landfill_variable, control_city_variable)
   
-  p <- ggplot(combined_treatmentcontrol, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) + 
-    geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
-    scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
-    labs(title = plot_title,
-         x = "Wealth Quintile",
-         y = "Count") +
-    scale_fill_manual(values = c("Treatment" = "green", "Control" = "blue")) +
-    theme_minimal()
-  
-  print(p)
 
+    p <- ggplot(combined_treatmentcontrol, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) +
+      geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
+      
+   #   scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+      labs(title = plot_title,
+           x = "Wealth Quintile",
+           y = "Count",
+           caption = "1: Poorest 2: Poor 3: Middle 4: Rich 5: Richest") +
+      scale_fill_manual(values = c("Treatment" = "green", "Control" = "blue")) +
+     theme_minimal()
+    
+    print(p)
+  
 #saving the combined data for regression
-write.table(combined_treatmentcontrol, "./combined_treatmentcontrol.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_treatmentcontrol.csv"), append = T)
+#write.table(combined_treatmentcontrol, "./combined_treatmentcontrol.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_treatmentcontrol.csv"), append = T)
 
   #________________________________________________________________________________
 } 
