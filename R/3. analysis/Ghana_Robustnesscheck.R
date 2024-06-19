@@ -1,4 +1,4 @@
-# Robustness check - adding further control (Patriach)
+# Robustness check - adding further controls 
 
 #loading the data from DHS Ipums (HHEADSEXHH)
 library(readr)
@@ -18,8 +18,12 @@ View(combined_treatmentcontrol)
 
 #merging bot datasets into 1 dataframe. 
 
-robust_ghana <- merge(idhs_00007_ghana, combined_treatmentcontrol, by = "DHSID")
-View(robust_ghana)
+HHead_ghana <- merge(idhs_00007_ghana, combined_treatmentcontrol, by = "DHSID")
+View(HHead_ghana)
 
 #stored in output
-write.table(robust_ghana, "./robust_ghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./robust_ghana.csv"), append = T)
+write.table(HHead_ghana, "./HHead_ghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./HHead_ghana.csv"), append = T)
+
+################################################################################
+#
+################################################################################
