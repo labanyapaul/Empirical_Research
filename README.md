@@ -2,6 +2,7 @@ This is to show where some of the data has been saved and to follow along on imp
 
 * Landfill Polygons
 - As we did not have enough information in some landfills due to missing satellite imagery/ missing years. We have taken the year before and replicated it for the year after (missing imagery), and for the other years which are also missing. 
+- For Ghana, out of the 10 landfills collected, we have only 3 that intersected with the DHS data. However, out of those 3 only 2 had full information. For 1 specific landfill there was no control group for 2008, hence it had to be dropped. 
 
 # Input 
 - Landfill data (.kmz files) are saved under /Ghana or Kenya/Landfills. 
@@ -10,9 +11,10 @@ This is to show where some of the data has been saved and to follow along on imp
 
 # Output 
 Some sensitive data has been saved here for Ghana, such as:
-- city data under idhs_00003.csv. 
-- control_landfill_data.csv (This is the end result in milestone 2, to identify the wealth variable of our control group)
-- treatment_landfill_data.csv (This is the end result in milestone 2, to identify the wealth variable of our treatment group)
+- Ghana dhs ipums data under idhs_00003.csv. 
+- combined_treatmentcontrol.csv (This is the end result in milestone 2, to identify the wealth variable of our control and treatment group)
+- Ghana dhs ipums new data for robustness check (Sex of household head) is saved under output/idhs_00007.csv
+- Merged dataframe of combined_treatmentcontrol.csv and idhs_00007.csv is saved under output/robust_ghana.csv
 
 Other data which is uploaded to the repository: 
 - all landfills_polygon_nogeometry.csv (This is derived from milestone 2, it shows the growth of the landfills)

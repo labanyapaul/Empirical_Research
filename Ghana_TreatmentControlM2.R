@@ -14,7 +14,7 @@ library(geos)
 library(here)
 
 # Define the directory where your KMZ files <are stored
-kmz_dir <- "~/Documents/TUD/TUD 2024 S2/Empirical Research Task/Empirical_Research/input/Ghana/Landfills"
+kmz_dir <- here::here("input/Ghana/Landfills")
 
 # Ensure the directory exists
 if (!dir.exists(kmz_dir)) {
@@ -537,9 +537,17 @@ run_analysis <- function(city, year){
   print(control_city_variable)
   print("to be written out treatment")
   print(treatment_landfill_variable)
+  
+  # #combining both data sets into 1 data frame
+  # treatmentlandfill_controlcity_variable<- rbind(treatment_landfill_variable, control_city_variable)
+  # 
+  # print(treatmentlandfill_controlcity_variable)
+  # write.table(treatmentlandfill_controlcity_variable, "./treatmentlandfill_controlcity_variable.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatmentlandfill_controlcity_variable.csv"), append = T)
+  # 
+  # 
 
-    write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
-    write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
+    # write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
+    # write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
     
 
   
@@ -566,9 +574,9 @@ run_analysis <- function(city, year){
   # Combine the datasets and add a 'Group' column to differentiate between Treatment and Control
   treatment_landfill_variable$Group <- "Treatment"
   control_city_variable$Group <- "Control"
-  combined_data <- rbind(treatment_landfill_variable, control_city_variable)
+  combined_treatmentcontrol <- rbind(treatment_landfill_variable, control_city_variable)
   
-  p <- ggplot(combined_data, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) + 
+  p <- ggplot(combined_treatmentcontrol, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) + 
     geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
     scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
     labs(title = plot_title,
@@ -579,29 +587,26 @@ run_analysis <- function(city, year){
   
   print(p)
   
+#saving the combined data for regression. 
+write.table(combined_treatmentcontrol, "./combined_treatmentcontrol.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_treatmentcontrol.csv"), append = T)
   
   #________________________________________________________________________________
 } 
 
 
-control_file <- "./control_landfill_data.csv"
-treatment_file <- "./treatment_landfill_data.csv"
+
+combined_treatmentcontrol_file <- "./combined_treatmentcontrol.csv"
 #Check its existence
-if (file.exists(control_file)) {
+if (file.exists(combined_treatmentcontrol_file )) {
   #Delete file if it exists
-  file.remove(control_file)
-}
-#Check its existence
-if (file.exists(treatment_file)) {
-  #Delete file if it exists
-  file.remove(treatment_file)
+  file.remove(combined_treatmentcontrol_file )
 }
 
 
 run_analysis("Accra" , 2008)
 
 run_analysis("Accra" , 2014)
-
+ 
 run_analysis("Kumasi" , 2008)
 run_analysis("Kumasi" , 2014)
 
