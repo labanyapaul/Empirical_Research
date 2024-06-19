@@ -493,9 +493,13 @@ plot_title <- paste("Wealth Index Quantile for Kenya", landfill_selected, year_s
 # Combine the datasets and add a 'Group' column to differentiate between Treatment and Control
 treatment_landfill_variable$Group <- "Treatment"
 control_city_variable$Group <- "Control"
-combined_data <- rbind(treatment_landfill_variable, control_city_variable)
+combined_dataDandora <- rbind(treatment_landfill_variable, control_city_variable)
 
-p <- ggplot(combined_data, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) + 
+#Save combined_dataDandora as csv file
+write.csv(combined_dataDandora, "output/combined_dataDandora.csv", row.names = FALSE)
+
+
+p <- ggplot(combined_dataDandora, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) + 
   geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
   scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
   labs(title = plot_title,
