@@ -132,11 +132,11 @@ st_crs(all_landfills_polygon)
 
 temp_all_landfills_polygon  <- all_landfills_polygon %>%
   sf::st_drop_geometry(temp_all_landfills_polygon)
-write.csv(temp_all_landfills_polygon,"./all_landfills_polygon_nogeometry.csv", row.names = FALSE)
+#write.csv(temp_all_landfills_polygon,"./all_landfills_polygon_nogeometry.csv", row.names = FALSE)
 
 #save as csv file
 #write.csv(all_landfills_polygon, "output/all_landfills_polygon.csv", row.names = FALSE)
-
+ 
 # Load the city data from the gpkg file
 city_data <- st_read(here::here("input/world_2015_20000.gpkg"))
 
@@ -538,17 +538,9 @@ run_analysis <- function(city, year){
   print("to be written out treatment")
   print(treatment_landfill_variable)
   
-  # #combining both data sets into 1 data frame
-  # treatmentlandfill_controlcity_variable<- rbind(treatment_landfill_variable, control_city_variable)
-  # 
-  # print(treatmentlandfill_controlcity_variable)
-  # write.table(treatmentlandfill_controlcity_variable, "./treatmentlandfill_controlcity_variable.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatmentlandfill_controlcity_variable.csv"), append = T)
-  # 
-  # 
+     write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
+     write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
 
-    # write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
-    # write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
-    
 
   
   #################################################################################
@@ -586,10 +578,10 @@ run_analysis <- function(city, year){
     theme_minimal()
   
   print(p)
-  
-#saving the combined data for regression. 
+
+#saving the combined data for regression
 write.table(combined_treatmentcontrol, "./combined_treatmentcontrol.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_treatmentcontrol.csv"), append = T)
-  
+
   #________________________________________________________________________________
 } 
 
@@ -613,5 +605,8 @@ run_analysis("Kumasi" , 2014)
 #Dropping Bolgatanga city (Sherigu Bolgatanga landfill) as there are no control dhs clusters in 2008. 
 #run_analysis("Bolgatanga" , 2008)
 #run_analysis("Bolgatanga" , 2014)
+
+
+    
 
 
