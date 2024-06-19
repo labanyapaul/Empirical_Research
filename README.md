@@ -11,8 +11,10 @@ This is to show where some of the data has been saved and to follow along on imp
 
 # Output 
 Some sensitive data has been saved here for Ghana, such as:
-- city data under idhs_00003.csv. 
+- Ghana dhs ipums data under idhs_00003.csv. 
 - combined_treatmentcontrol.csv (This is the end result in milestone 2, to identify the wealth variable of our control and treatment group)
+- Ghana dhs ipums new data for robustness check (Sex of household head) is saved under output/idhs_00007.csv
+- Merged dataframe of combined_treatmentcontrol.csv and idhs_00007.csv is saved under output/robust_ghana.csv
 
 Other data which is uploaded to the repository: 
 - all landfills_polygon_nogeometry.csv (This is derived from milestone 2, it shows the growth of the landfills)
