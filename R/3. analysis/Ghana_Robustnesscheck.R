@@ -19,7 +19,7 @@ View(combined_treatmentcontrol)
 #merging bot datasets into 1 dataframe. 
 
 HHead_ghana <- merge(idhs_00007_ghana, combined_treatmentcontrol, by = "DHSID")
-View(HHead_ghana)
+View(HHead_ghana) 
 
 #stored in output
 write.table(HHead_ghana, "./HHead_ghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./HHead_ghana.csv"), append = T)

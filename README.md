@@ -19,4 +19,4 @@ Some sensitive data has been saved here for Ghana, such as:
 Other data which is uploaded to the repository: 
 - all landfills_polygon_nogeometry.csv (This is derived from milestone 2, it shows the growth of the landfills)
 
-# 
+#  
