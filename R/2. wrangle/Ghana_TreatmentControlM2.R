@@ -582,7 +582,7 @@ run_analysis <- function(city, year){
     print(p)
   
 #saving the combined data for regression
-#write.table(combined_treatmentcontrol, "./combined_treatmentcontrol.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_treatmentcontrol.csv"), append = T)
+write.table(combined_treatmentcontrol, "./combined_treatmentcontrol.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_treatmentcontrol.csv"), append = T)
 
   #________________________________________________________________________________
 } 
