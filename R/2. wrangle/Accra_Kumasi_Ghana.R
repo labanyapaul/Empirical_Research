@@ -154,11 +154,11 @@ intersecting_cities <- city_data[which(lengths(intersections) > 0), ]
 print(intersecting_cities)
 
 ### GPS data
-<<<<<<< HEAD:R/2. wrangle/Accra_Kumasi_Ghana.R
+
 dhs_gps_2008 <- st_read(here::here("input/Ghana/GHGE5AFL_2008/GHGE5AFL.shp"))
-=======
-dhs_gps_2008 <- st_read(here::here("input//Ghana//GHGE5AFL_2008//GHGE5AFL.shp"))
->>>>>>> 9e4b9e6effa6b8c116153be6a0ea1c418f27ab04:R/2. wrangle/Ghana_TreatmentControlM2.R
+
+dhs_gps_2008 <- st_read(here::here("input/Ghana/GHGE5AFL_2008/GHGE5AFL.shp"))
+
 print(dhs_gps_2008)
 
 dhs_gps_2008 <- dhs_gps_2008 |> 
@@ -167,11 +167,10 @@ dhs_gps_2008 <- dhs_gps_2008 |>
 
 st_crs(dhs_gps_2008)
 
-<<<<<<< HEAD:R/2. wrangle/Accra_Kumasi_Ghana.R
+
 dhs_gps_2014 <- st_read(here::here("input/Ghana/GHGE71FL_2014/GHGE71FL.shp"))
-=======
-dhs_gps_2014 <- st_read(here::here("input//Ghana//GHGE71FL_2014//GHGE71FL.shp"))
->>>>>>> 9e4b9e6effa6b8c116153be6a0ea1c418f27ab04:R/2. wrangle/Ghana_TreatmentControlM2.R
+
+dhs_gps_2014 <- st_read(here::here("input/Ghana/GHGE71FL_2014/GHGE71FL.shp"))
 
 print(dhs_gps_2014)
 
