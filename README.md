@@ -2,10 +2,18 @@ This is to show where some of the data has been saved and to follow along on imp
 
 * Landfill Polygons
 - As we did not have enough information in some landfills due to missing satellite imagery/ missing years. We have taken the year before and replicated it for the year after (missing imagery), and for the other years which are also missing. 
-- For Ghana, out of the 10 landfills collected, we have only 3 that intersected with the DHS data. However, out of those 3 only 2 had full information. For 1 specific landfill there was no control group for 2008, hence it had to be dropped. 
 
 * Unit measurements are in foot -> The CRS used EPSG: 2136 measurement unit is 'Gold Coast foot'. 
 
+
+# Intersecting cities 
+
+  GHANA: 
+- Out of the 10 landfills collected, we have only 3 that intersected with the DHS data. However, out of those 3 only 2 had full information. For 1 specific landfill there was no control group for 2008, hence it had to be dropped. Therefore the 2 cities we analyse are Accra and Kumasi, landfills Agbogbloshie and Oti.
+
+  KENYA: 
+- Out of the 7 landfills collected, we have only 3 that intersected with the DHS data. However, there was 2 cities. 2 landfills resided in Nairobi (Kireba and Dandora), and 1 landfill in Mombasa (Mawemi).
+- However, there was only relevant data for 2014 (dhs clusters). 
 
 # Input 
 - City data is saved under /input/world_2015_20000.gpkg
