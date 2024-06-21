@@ -124,7 +124,7 @@ all_landfills_polygon <- summarized_data %>%
 
 # Ensure the area is in numeric format for plotting
 all_landfills_polygon <- all_landfills_polygon %>%
-  mutate(area_ha = as.numeric(area) / 10000) # Convert area to hectares
+  mutate(area_sqft = as.numeric(area) * 10.7639) # Convert area to feet 
 
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
@@ -132,11 +132,18 @@ st_crs(all_landfills_polygon)
 
 temp_all_landfills_polygon  <- all_landfills_polygon %>%
   sf::st_drop_geometry(temp_all_landfills_polygon)
-#write.csv(temp_all_landfills_polygon,"./all_landfills_polygon_nogeometry.csv", row.names = FALSE)
 
-#save as csv file
-#write.csv(all_landfills_polygon, "output/all_landfills_polygon.csv", row.names = FALSE)
- 
+view(temp_all_landfills_polygon)
+
+Ghana_all_landfills_polygon_nogeometry <- temp_all_landfills_polygon
+
+#save to /output
+
+output_dir <- here::here("output")
+
+output_file <- file.path(output_dir, "Ghana_all_landfills_polygon_nogeometry.csv")
+write.table(Ghana_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
+
 # Load the city data from the gpkg file
 city_data <- st_read(here::here("input//world_2015_20000.gpkg"))
 
@@ -155,7 +162,6 @@ print(intersecting_cities)
 
 ### GPS data
 
-dhs_gps_2008 <- st_read(here::here("input/Ghana/GHGE5AFL_2008/GHGE5AFL.shp"))
 
 dhs_gps_2008 <- st_read(here::here("input/Ghana/GHGE5AFL_2008/GHGE5AFL.shp"))
 
@@ -167,8 +173,6 @@ dhs_gps_2008 <- dhs_gps_2008 |>
 
 st_crs(dhs_gps_2008)
 
-
-dhs_gps_2014 <- st_read(here::here("input/Ghana/GHGE71FL_2014/GHGE71FL.shp"))
 
 dhs_gps_2014 <- st_read(here::here("input/Ghana/GHGE71FL_2014/GHGE71FL.shp"))
 
@@ -210,16 +214,6 @@ print(intersecting_cities["cty_name"])
 #############################################
 #INPUT Filter for cities and year
 #############################################
-# What supervisor said to do: 
-#Use package purr 
-# City options are: Accra, Kumasi, Bolgatanga
-#cities <- c("Kumasi", "Accra")
-# Year options are: 2014, 2008
-#years <- c(2008, 2014)
-
-#pwalk(.p = list(cities, years, inner_distances, outer_distances),
- #     .f = run_wrangling)
-
 
 
 wealthindexqhh <- read.csv(here::here("output/idhs_00003.csv"))
@@ -504,14 +498,14 @@ run_analysis <- function(city, year){
   # Combine dhs gps data together with the dhs wealth survey data
   ################################################################################
   
-  # Filter for the year 2014 or 2008 and select columns (common variables) for merging
+  # Filter for the year 2014 and 2008 and select columns (common variables) for merging
   
   #drop NAs 
   ghana_wealthqhh <- na.omit(wealthindexqhh)
   print(ghana_wealthqhh)
   
   ghana_wealthqhh <- wealthindexqhh %>%
-    filter(YEAR == year_selected) %>%
+    filter(YEAR %in% c(2008, 2014)) %>%
     filter(COUNTRY == 288) %>%
     select(YEAR, DHSID, COUNTRY,WEALTHQHH)
   
@@ -532,7 +526,6 @@ run_analysis <- function(city, year){
     left_join(ghana_wealthqhh, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR")) 
   
   print(treatment_landfill_variable)
-  
   
   
   # Combine control group with Wealthqhh data 
@@ -587,7 +580,12 @@ run_analysis <- function(city, year){
     print(p)
   
 #saving the combined data for regression
-write.table(combined_dataGhana, "./combined_dataghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_dataghana.csv"), append = T)
+    
+output_dir <- here::here("output")
+
+output_file <- file.path(output_dir, "combined_dataghana.csv")
+write.table(combined_dataGhana, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
+#write.table(combined_dataGhana, "./combined_dataghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_dataghana.csv"), append = T)
 
   #________________________________________________________________________________
 } 
