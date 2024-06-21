@@ -22,6 +22,9 @@ View(combined_dataMombasa)
 
 combined_dataKenya <- rbind(combined_dataKibera, combined_dataDandora, combined_dataMombasa)
 
+#Save combined_dataKenya as csv file
+
+write_csv(combined_dataKenya, "output/combined_dataKenya.csv")
 # View the combined dataframe
 View(combined_dataKenya)
 

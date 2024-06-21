@@ -1,4 +1,5 @@
-# Robustness check - adding further controls 
+#Part 1: Running fixed effects with control variable if the Head of the household is a Male
+#We do the Part 1 including the Time dummy and the Interaction term(Year_Treatment).
 
 #loading the data from DHS Ipums (HHEADSEXHH)
 library(dplyr)
@@ -52,6 +53,9 @@ model_GhanaTimeDcontrol <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatmen
 
 summary(model_GhanaTimeDcontrol)
 
+#Part 2: Running fixed effects dropping the Time dummy and the Interaction term(Year_Treatment).
+#We do the Part 2 to make it comparable with Kenya.(As in Kenya we do not have 2008 data,hence no Time dummy)
+#
 
 #Filter the Ghana_datacontrol  for 2014 only
 
