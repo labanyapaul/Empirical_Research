@@ -5,7 +5,7 @@ library(plm)
 library(readr)
 
 
-combined_dataGhana <- read_csv("output/combined_dataGhana.csv")
+combined_dataGhana <- read_csv("output//combined_dataGhana.csv")
 View(combined_dataGhana)
 
 combined_dataGhana$Year <- as.factor(combined_dataGhana$DHSYEAR)
@@ -25,7 +25,24 @@ combined_dataGhana$Year_Treatment <- combined_dataGhana$Year_2014 * combined_dat
 combined_dataGhana <- pdata.frame(combined_dataGhana, index = c("ADM1NAME", "DHSYEAR"))
 
 # Run the fixed effects model
-model <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatment, data = combined_dataGhana, model = "within")
+model_GhanaTimeD <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatment, data = combined_dataGhana, model = "within")
 
 # Summarize the results
-summary(model)
+summary(model_GhanaTimeD)
+
+
+#Filter for just 2014 for the combined_treatmentcontrol data
+
+combined_dataGhana_2014 <- combined_dataGhana[combined_dataGhana$Year_2014 == 1,]
+
+
+#Run the regression for just 2014(to make it comparable with Kenya)
+
+# Ensure the data is in the right format for plm
+combined_dataGhana_2014<- pdata.frame(combined_dataGhana_2014, index = c("ADM1NAME"))
+
+# Run the fixed effects model
+model_Ghana <- plm(WEALTHQHH ~ Treatment, data = combined_dataGhana_2014, model = "within")
+
+summary(model_Ghana)
+
