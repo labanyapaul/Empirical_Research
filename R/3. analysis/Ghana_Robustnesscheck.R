@@ -22,12 +22,46 @@ View(combined_dataGhana)
 
 #merging bot datasets into 1 dataframe. 
 
-HHead_ghana <- merge(idhs_00007_ghana, combined_dataGhana, by = "DHSID")
-View(HHead_ghana) 
+Ghana_datacontrol <- merge(idhs_00007_ghana, combined_dataGhana, by = "DHSID")
+View(Ghana_datacontrol) 
 
 #stored in output
 #write.table(HHead_ghana, "./HHead_ghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./HHead_ghana.csv"), append = T)
 
-################################################################################
-#
-################################################################################
+# Convert to factors
+Ghana_datacontrol$Year <- as.factor(Ghana_datacontrol$DHSYEAR)
+Ghana_datacontrol$Group <- as.factor(Ghana_datacontrol$Group)
+
+# Create dummy variables for Year and Group
+Ghana_datacontrol$Year_2014 <- ifelse(Ghana_datacontrol$DHSYEAR == 2014, 1, 0)
+Ghana_datacontrol$Treatment <- ifelse(Ghana_datacontrol$Group == "Treatment", 1, 0)
+
+# Create interaction term
+Ghana_datacontrol$Year_Treatment <- Ghana_datacontrol$Year_2014 * Ghana_datacontrol$Treatment
+
+# Create dummy variables for HHEADSEXHH
+Ghana_datacontrol$HHEADSEXHH_male <- ifelse(Ghana_datacontrol$HHEADSEXHH == 1, 1, 0)
+Ghana_datacontrol$HHEADSEXHH_female <- ifelse(Ghana_datacontrol$HHEADSEXHH == 2, 1, 0)
+Ghana_datacontrol$HHEADSEXHH_transgender <- ifelse(Ghana_datacontrol$HHEADSEXHH == 3, 1, 0)
+
+# Ensure the data is in the right format for plm
+Ghana_datacontrol <- pdata.frame(Ghana_datacontrol, index = c("ADM1NAME", "DHSYEAR"))
+
+# Run the fixed effects model
+model_GhanaTimeDcontrol <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatment  + HHEADSEXHH_male, data = Ghana_datacontrol, model = "within")
+
+summary(model_GhanaTimeDcontrol)
+
+
+#Filter the Ghana_datacontrol  for 2014 only
+
+Ghana_datacontrol_2014 <- Ghana_datacontrol[Ghana_datacontrol$Year_2014 == 1,]
+
+# Ensure the data is in the right format for plm
+
+Ghana_datacontrol_2014 <- pdata.frame(Ghana_datacontrol_2014, index = c("ADM1NAME"))
+
+# Run the fixed effects model with control HHEADSEXHH_male
+model_Ghanacontrol <- plm(WEALTHQHH ~ Treatment + HHEADSEXHH_male, data = Ghana_datacontrol_2014, model = "within")
+
+summary(model_Ghanacontrol)
