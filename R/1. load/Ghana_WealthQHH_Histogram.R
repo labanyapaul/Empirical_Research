@@ -50,6 +50,9 @@ ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
   labs(title = "Wealth Index Quintiles for Ghana", x = "Wealth Quintile", y = "Count") +
   theme_minimal() +
   facet_wrap(~ YEAR)
+ 
+# Saving the data
+ ggsave("report/images/wealthqhh_ghana_hist.png")
 
  ############################################
 if (!here("output") |> file.exists()) {
