@@ -124,7 +124,7 @@ all_landfills_polygon <- summarized_data %>%
 
 # Ensure the area is in numeric format for plotting
 all_landfills_polygon <- all_landfills_polygon %>%
-  mutate(area_sqft = as.numeric(area) * 10.7639) # Convert area to feet 
+  mutate(area_ha = as.numeric(area) / 10000) # Convert area to hectares
 
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)

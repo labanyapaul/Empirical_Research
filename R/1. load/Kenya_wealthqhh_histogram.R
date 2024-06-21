@@ -7,6 +7,7 @@ library(tidyr)
 library(dplyr)
 library(ggplot2)
 library(here)
+library(readr)
 
 # Reading and importing the csv file
 wealthindexqhh <- read.csv(here::here("output/idhs_00003.csv"))
@@ -19,47 +20,41 @@ print(wealthindexqhh)
 
 # Then, dropping the NA values
 
-ghwealthqhh_clean <- na.omit(wealthindexqhh)
-print(ghwealthqhh_clean)
+kewealthqhh_clean <- na.omit(wealthindexqhh)
+print(kewealthqhh_clean)
 
 
 # filter the data so I can just focus on Ghana data. 
 
-ghana_wealthqhh <- ghwealthqhh_clean %>% filter(COUNTRY == 288)
-print(ghana_wealthqhh)
+kenya_wealthqhh <- kewealthqhh_clean  %>% filter(COUNTRY == 404)
+print(kenya_wealthqhh)
 
 # Remove the country column from the dataframe 
 
-wealthqhh_ghana <- ghana_wealthqhh %>% select(-COUNTRY)
-print(wealthqhh_ghana)
+wealthqhh_kenya <- kenya_wealthqhh %>% select(-COUNTRY)
+print(wealthqhh_kenya)
 
 # Creating 1. histogram for the wealth index overall
 
 
-ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
+ggplot(wealthqhh_kenya, aes(x = WEALTHQHH)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
-  labs(title = "Wealth Index Quantile for Ghana", x = "Wealth Quintile", y = "Count") +
+  labs(title = "Wealth Index Quantile for Kenya", x = "Wealth Quintile", y = "Count") +
   theme_minimal()
 
-ggsave("report/images/wealthqhh_overallghana_hist.png")
+ggsave("report/images/wealthqhh_overallkenya_hist.png")
 
-  
 # Creating 2. Histogram. Splitting the histogram into years (2008 and 2014)
 
- ggplot(wealthqhh_ghana, aes(x = WEALTHQHH)) +
+ggplot(wealthqhh_kenya, aes(x = WEALTHQHH)) +
   geom_histogram(binwidth = 1, fill = "blue", color = "black") +
   scale_x_continuous(breaks = 1:5, labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
-  labs(title = "Wealth Index Quintiles for Ghana", x = "Wealth Quintile", y = "Count") +
+  labs(title = "Wealth Index Quintiles for Kenya", x = "Wealth Quintile", y = "Count") +
   theme_minimal() +
   facet_wrap(~ YEAR)
- 
-# Saving the data
- ggsave("report/images/wealthqhh_ghana_hist.png")
 
- ############################################
-if (!here("output") |> file.exists()) {
-  here("output") |> dir.create()
-}
-saveRDS(wealthqhh_ghana, "output/wealthqhh_ghana.rds")
+# Saving the data
+ggsave("report/images/wealthqhh_kenya_hist0814.png")
+
 
