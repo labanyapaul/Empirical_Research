@@ -17,12 +17,12 @@ View(idhs_00007_ghana)
 # Loading the combibed treatment control data for Ghana
 
 library(readr)
-combined_treatmentcontrol <- read_csv("output/combined_treatmentcontrol.csv", show_col_types = FALSE)
-View(combined_treatmentcontrol)
+combined_dataGhana <- read_csv("output/combined_dataGhana.csv", show_col_types = FALSE)
+View(combined_dataGhana)
 
 #merging bot datasets into 1 dataframe. 
 
-HHead_ghana <- merge(idhs_00007_ghana, combined_treatmentcontrol, by = "DHSID")
+HHead_ghana <- merge(idhs_00007_ghana, combined_dataGhana, by = "DHSID")
 View(HHead_ghana) 
 
 #stored in output

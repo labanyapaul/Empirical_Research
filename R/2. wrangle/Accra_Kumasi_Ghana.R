@@ -154,7 +154,7 @@ intersecting_cities <- city_data[which(lengths(intersections) > 0), ]
 print(intersecting_cities)
 
 ### GPS data
-dhs_gps_2008 <- st_read(here::here("input/GHGE5AFL_2008/GHGE5AFL.shp"))
+dhs_gps_2008 <- st_read(here::here("input/Ghana/GHGE5AFL_2008/GHGE5AFL.shp"))
 print(dhs_gps_2008)
 
 dhs_gps_2008 <- dhs_gps_2008 |> 
@@ -163,7 +163,7 @@ dhs_gps_2008 <- dhs_gps_2008 |>
 
 st_crs(dhs_gps_2008)
 
-dhs_gps_2014 <- st_read(here::here("input/GHGE71FL_2014/GHGE71FL.shp"))
+dhs_gps_2014 <- st_read(here::here("input/Ghana/GHGE71FL_2014/GHGE71FL.shp"))
 
 print(dhs_gps_2014)
 
@@ -508,7 +508,7 @@ run_analysis <- function(city, year){
     filter(COUNTRY == 288) %>%
     select(YEAR, DHSID, COUNTRY,WEALTHQHH)
   
-  print(ghana_wealthqhh)
+  view(ghana_wealthqhh)
   
   ghana_wealthqhh <- ghana_wealthqhh %>%
     select(-COUNTRY)
@@ -533,10 +533,8 @@ run_analysis <- function(city, year){
     left_join(ghana_wealthqhh, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR"))
   
   
-  print("to be written out control")
   print(control_city_variable)
-  print("to be written out treatment")
-  print(treatment_landfill_variable)
+
   
      #write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
      #write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
@@ -565,10 +563,10 @@ run_analysis <- function(city, year){
   # Combine the datasets and add a 'Group' column to differentiate between Treatment and Control
   treatment_landfill_variable$Group <- "Treatment"
   control_city_variable$Group <- "Control"
-  combined_treatmentcontrol <- rbind(treatment_landfill_variable, control_city_variable)
+  combined_dataGhana <- rbind(treatment_landfill_variable, control_city_variable)
   
 
-    p <- ggplot(combined_treatmentcontrol, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) +
+    p <- ggplot(combined_dataGhana, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) +
       geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
       
    #   scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
@@ -582,18 +580,18 @@ run_analysis <- function(city, year){
     print(p)
   
 #saving the combined data for regression
-write.table(combined_treatmentcontrol, "./combined_treatmentcontrol.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_treatmentcontrol.csv"), append = T)
+write.table(combined_dataGhana, "./combined_dataghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_dataghana.csv"), append = T)
 
   #________________________________________________________________________________
 } 
 
 
 
-combined_treatmentcontrol_file <- "./combined_treatmentcontrol.csv"
+combined_dataGhana_file <- "./combined_dataghana.csv"
 #Check its existence
-if (file.exists(combined_treatmentcontrol_file )) {
+if (file.exists(combined_dataGhana_file)) {
   #Delete file if it exists
-  file.remove(combined_treatmentcontrol_file )
+  file.remove(combined_dataGhana_file)
 }
 
 

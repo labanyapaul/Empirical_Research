@@ -5,27 +5,27 @@ library(plm)
 library(readr)
 
 
-combined_treatmentcontrol <- read_csv("output/combined_treatmentcontrol.csv")
-View(combined_treatmentcontrol)
+combined_dataGhana <- read_csv("output/combined_dataGhana.csv")
+View(combined_dataGhana)
 
-combined_treatmentcontrol$Year <- as.factor(combined_treatmentcontrol$DHSYEAR)
-combined_treatmentcontrol$Group <- as.factor(combined_treatmentcontrol$Group)
+combined_dataGhana$Year <- as.factor(combined_dataGhana$DHSYEAR)
+combined_dataGhana$Group <- as.factor(combined_dataGhana$Group)
 
 # Create dummy variable for Year
-combined_treatmentcontrol$Year_2014 <- ifelse(combined_treatmentcontrol$DHSYEAR == 2014, 1, 0)
+combined_dataGhana$Year_2014 <- ifelse(combined_dataGhana$DHSYEAR == 2014, 1, 0)
 
 # Create dummy variable for Group
-combined_treatmentcontrol$Treatment <- ifelse(combined_treatmentcontrol$Group == "Treatment", 1, 0)
+combined_dataGhana$Treatment <- ifelse(combined_dataGhana$Group == "Treatment", 1, 0)
 
 #Interaction term
-combined_treatmentcontrol$Year_Treatment <- combined_treatmentcontrol$Year_2014 * combined_treatmentcontrol$Treatment
+combined_dataGhana$Year_Treatment <- combined_dataGhana$Year_2014 * combined_dataGhana$Treatment
 
 # Run the regression
 # Ensure the data is in the right format for plm
-combined_treatmentcontrol <- pdata.frame(combined_treatmentcontrol, index = c("ADM1NAME", "DHSYEAR"))
+combined_dataGhana <- pdata.frame(combined_dataGhana, index = c("ADM1NAME", "DHSYEAR"))
 
 # Run the fixed effects model
-model <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatment, data = combined_treatmentcontrol, model = "within")
+model <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatment, data = combined_dataGhana, model = "within")
 
 # Summarize the results
 summary(model)

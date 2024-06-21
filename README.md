@@ -7,16 +7,16 @@ This is to show where some of the data has been saved and to follow along on imp
 # Input 
 - Landfill data (.kmz files) are saved under /Ghana or Kenya/Landfills. 
 - City data is saved under /input/world_2015_20000.gpkg
-- GPS files are saved under /input/GHGE71FL_2014 and GHGE5AFL_2008. Within these files we have used the corresponding .shp files and intersected with the landfill polygon data. (Ghana can be found under all_landfills_polygon.csv in the 2. wrangle folder.)
+- GPS files are saved under /input/Ghana/GHGE71FL_2014 and GHGE5AFL_2008. Within these files we have used the corresponding .shp files and intersected with the landfill polygon data. (Ghana can be found under all_landfills_polygon.csv in the 2. wrangle folder.)
 
 # Output 
 Some sensitive data has been saved here for Ghana, such as:
 - Ghana dhs ipums data under idhs_00003.csv. 
-- combined_treatmentcontrol.csv (This is the end result in milestone 2, to identify the wealth variable of our control and treatment group)
+- combined_dataGhana.csv (This is the end result in milestone 2, to identify the wealth variable of our control and treatment group)
 - Ghana dhs ipums new data for robustness check (Sex of household head) is saved under output/idhs_00007.csv
-- Merged dataframe of combined_treatmentcontrol.csv and idhs_00007.csv is saved under output/HHead_ghana.csv
+- Merged dataframe of combined_dataGhana.csv and idhs_00007.csv is saved under output/HHead_ghana.csv
 
 Other data which is uploaded to the repository: 
-- all landfills_polygon_nogeometry.csv (This is derived from milestone 2, it shows the growth of the landfills)
+- all landfills_polygon.csv (This is derived from milestone 2, it shows the growth of the landfills)
 
 #  
