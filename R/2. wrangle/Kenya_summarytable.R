@@ -12,6 +12,8 @@ library(ggspatial)
 library(knitr)
 library(geos)
 library(here)
+library(kableExtra)
+library(gt)
 
 # Define the directory where your KMZ files <are stored
 kmz_dir <- here::here("input/Kenya/Landfills")
