@@ -145,7 +145,7 @@ output_file <- file.path(output_dir, "Ghana_all_landfills_polygon_nogeometry.csv
 write.table(Ghana_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
 
 # Load the city data from the gpkg file
-city_data <- st_read(here::here("input//world_2015_20000.gpkg"))
+city_data <- st_read(here::here("input/world_2015_20000.gpkg"))
 
 city_data <- city_data |> 
   st_transform(crs = "epsg:2136") 
@@ -566,7 +566,7 @@ run_analysis <- function(city, year){
   combined_dataGhana <- rbind(treatment_landfill_variable, control_city_variable)
   
 
-    p <- ggplot(combined_dataGhana, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) +
+    p <- ggplot(combined_dataGhana, aes(x = factor(WEALTHQHH), y = after_stat(count), fill = Group)) +
       geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
       
    #   scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
@@ -585,7 +585,6 @@ output_dir <- here::here("output")
 
 output_file <- file.path(output_dir, "combined_dataghana.csv")
 write.table(combined_dataGhana, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
-#write.table(combined_dataGhana, "./combined_dataghana.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./combined_dataghana.csv"), append = T)
 
   #________________________________________________________________________________
 } 

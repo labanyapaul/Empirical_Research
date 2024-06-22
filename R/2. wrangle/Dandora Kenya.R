@@ -130,10 +130,10 @@ print(all_landfills_polygon)
 st_crs(all_landfills_polygon)
 
 #save as csv file
-write.csv(all_landfills_polygon, "output/all_landfills_polygon.csv", row.names = FALSE)
+#write.csv(all_landfills_polygon, "output/all_landfills_polygon.csv", row.names = FALSE)
 
 # Load the city data from the gpkg file
-city_data <- st_read(here::here("input//world_2015_20000.gpkg"))
+city_data <- st_read(here::here("input/world_2015_20000.gpkg"))
 
 city_data <- city_data |> 
   st_transform(crs = "epsg:2136") 
@@ -149,7 +149,7 @@ intersecting_cities <- city_data[which(lengths(intersections) > 0), ]
 print(intersecting_cities)
 
 ### GPS data
-dhs_gps_2008 <- st_read(here::here("input\\Kenya\\GPS 2008"))
+dhs_gps_2008 <- st_read(here::here("input/Kenya/GPS 2008"))
 print(dhs_gps_2008)
 
 dhs_gps_2008 <- dhs_gps_2008 |> 
@@ -158,7 +158,7 @@ dhs_gps_2008 <- dhs_gps_2008 |>
 
 st_crs(dhs_gps_2008)
 
-dhs_gps_2014 <- st_read(here::here("input\\Kenya\\GPS 2014"))
+dhs_gps_2014 <- st_read(here::here("input/Kenya/GPS 2014"))
 
 print(dhs_gps_2014)
 
@@ -211,9 +211,9 @@ city_selected <- "Nairobi"
 landfill_selected <- "dandora"
 year_selected <- year
 dhs_gps_year_filter_name_city <- "Nairobi"
-big_buffer_additional <- 1000
+big_buffer_additional <- 6000
 small_buffer <- 10000
-landfill_buffer <- 20000
+landfill_buffer <- 22000
 output_file_name <- "output//treatment_Dandora_14_survey.rds"
 COUNTRY_value <- 404
 
@@ -282,7 +282,7 @@ print(landfill_polygon)
 landfill_year <- landfill_polygon %>%
   filter(year == year_selected)
 
-plot_title <- paste("Spatial Data for",city_selected,landfill_selected, (",year_selected,"))
+plot_title <- paste("Spatial Data for",city_selected,landfill_selected,year_selected)
 
 ggplot() +
   geom_sf(data = city_data) + 
@@ -304,7 +304,7 @@ dhs_gps_year <- dhs_gps_year %>%
   filter(URBAN_RURA == "U")
 
 # Create the plot
-plot_title <- paste("Spatial Data for",city_selected,"with Clusters (",year_selected,")")
+plot_title <- paste("Spatial Data for",city_selected,"with Clusters", year_selected)
 
 ggplot() +
   geom_sf(data = city_data) + 
@@ -480,8 +480,8 @@ control_city_variable <- control_city %>%
 print(control_city_variable)
 print(treatment_landfill_variable)
 
-write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
-write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
+#write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
+#write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
 
 
 
@@ -499,12 +499,14 @@ combined_dataDandora <- rbind(treatment_landfill_variable, control_city_variable
 write.csv(combined_dataDandora, "output/combined_dataDandora.csv", row.names = FALSE)
 
 
-p <- ggplot(combined_dataDandora, aes(x = factor(WEALTHQHH), y = ..count.., fill = Group)) + 
+p <- ggplot(combined_dataDandora, aes(x = factor(WEALTHQHH), y = after_stat(count), fill = Group)) +
   geom_bar(stat = "count", position = position_dodge(width = 0.9), color = "black") +
-  scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
+  
+  #   scale_x_discrete(labels = c("Poorest", "Poorer", "Middle", "Richer", "Richest")) +
   labs(title = plot_title,
        x = "Wealth Quintile",
-       y = "Count") +
+       y = "Count",
+       caption = "1: Poorest 2: Poor 3: Middle 4: Rich 5: Richest") +
   scale_fill_manual(values = c("Treatment" = "green", "Control" = "blue")) +
   theme_minimal()
 
