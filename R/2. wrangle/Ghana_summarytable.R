@@ -62,6 +62,7 @@ summary_table <- Ghana_all_landfills_polygon_nogeometry %>%
     Min =  round(min(area_ha, na.rm = TRUE), 3),
     Max = round(max(area_ha, na.rm = TRUE), 3),
     Mean = round(mean(area_ha, na.rm = TRUE),3),
+    Stdev = round(sd(area_ha, na.rm = TRUE), 3),
     NAs = sum(is.na(area_ha)),
     Observations = n()
                    

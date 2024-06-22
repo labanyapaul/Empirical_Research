@@ -144,7 +144,7 @@ Kenya_all_landfills_polygon_nogeometry <- temp_all_landfills_polygon
 output_dir <- here::here("output")
 
 output_file <- file.path(output_dir, "Kenya_all_landfills_polygon_nogeometry.csv")
-#write.table(Kenya_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
+write.table(Kenya_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
 
 
 #############################################################
@@ -180,7 +180,7 @@ ggplot(data = filtered_data) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
 # save
-#ggsave("report/images/Kenya_landfillarea.png", width = 10, height = 6, dpi = 300)
+ggsave("report/images/Kenya_landfillarea.png", width = 10, height = 6, dpi = 300)
 
 #############################################################
 # Ghana summary table for all years
