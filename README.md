@@ -3,7 +3,7 @@ This is to show where some of the data has been saved and to follow along on imp
 * Landfill Polygons
 - As we did not have enough information in some landfills due to missing satellite imagery/ missing years. We have taken the year before and replicated it for the year after (missing imagery), and for the other years which are also missing. 
 
-* Unit measurements are in foot -> The CRS used EPSG: 2136 measurement unit is 'Gold Coast foot'. 
+* The CRS used EPSG: 2136 measurement unit is 'Gold Coast foot'. However, all data is read in hectars. (From foot/meters to hectares)
 
 
 # Intersecting cities 
