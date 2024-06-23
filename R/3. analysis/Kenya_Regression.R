@@ -42,3 +42,10 @@ model_kenya <- plm(WEALTHQHH~ Treatment, data = combined_dataKenya, model = "wit
 # Summarize the results
 summary(model_kenya)
 
+#Regression table for model_kenya
+
+library(stargazer)
+stargazer(model_kenya, type = "text")
+
+# Save the regression table
+stargazer(model_kenya, type = "html", out = "output/model_kenya.html")

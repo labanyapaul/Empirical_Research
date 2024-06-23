@@ -46,3 +46,13 @@ model_Ghana <- plm(WEALTHQHH ~ Treatment, data = combined_dataGhana_2014, model 
 
 summary(model_Ghana)
 
+#Regression table for model_Ghana and model_GhanaTimeD
+
+library(stargazer)
+
+stargazer(model_Ghana, model_GhanaTimeD, type = "text")
+
+# Save the regression table
+
+stargazer(model_Ghana, model_GhanaTimeD, type = "html", out = "output/model_Ghana.html")
+

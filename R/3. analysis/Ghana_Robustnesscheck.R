@@ -69,3 +69,11 @@ Ghana_datacontrol_2014 <- pdata.frame(Ghana_datacontrol_2014, index = c("ADM1NAM
 model_Ghanacontrol <- plm(WEALTHQHH ~ Treatment + HHEADSEXHH_male, data = Ghana_datacontrol_2014, model = "within")
 
 summary(model_Ghanacontrol)
+
+#Regression tables
+library(stargazer)
+
+stargazer(model_GhanaTimeDcontrol, model_Ghanacontrol, type = "text", title =  "Ghana_Robustnesscheck", align = TRUE)
+
+#save the Regression tables
+stargazer(model_GhanaTimeDcontrol, model_Ghanacontrol, type = "html", title = " Ghana_Robustnesscheck", out = "output/RobustnessResultsGhana.html", align = TRUE)

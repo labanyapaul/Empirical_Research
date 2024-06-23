@@ -60,3 +60,12 @@ Kenya_datacontrolFemale <- Kenya_datacontrol %>%
 model_KenyacontrolFemale <-plm(WEALTHQHH ~ Treatment+ HHEADSEXHH_female,data = Kenya_datacontrolFemale, model = "within")
 
 summary(model_KenyacontrolFemale)
+
+#Regression table
+
+library(stargazer)
+stargazer(model_Kenyacontrol, model_KenyacontrolFemale, type = "text")
+ #Save the regression table
+stargazer(model_Kenyacontrol, model_KenyacontrolFemale, type = "html", out = "output/Kenya_Robustnesscheck.html")
+
+
