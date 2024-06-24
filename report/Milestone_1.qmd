@@ -1,20 +1,22 @@
 ---
 title: Landfills in Sub-Saharan Africa A Case Study of Ghana and Kenya
-author: Nykol Tudor and Labanya Paul
+author: Nykol Armacanqui Martinez de Tudor and Labanya Paul
 
 format: 
   html: 
     toc: true
     toc_depth: 2
     self-contained: true
-bibliography: references.bib
+bibliography: bibliography.bib
 ---
 
 # 1. Research Proposal
 
 ## *Motivation*
 
-The staggering reality of over 15 million individuals inhabiting garbage dump communities globally, though likely an under reported figure, highlights a pressing concern. This number is not static; it's steadily increasing. Alarmingly, a significant portion of this population, conservatively estimated at two-thirds, resides in the sub-Saharan Africa region alone. The well-being of these individuals, teetering on the edge of poverty, demands urgent attention. When we speak of well-being in this context, we refer primarily to wealth. We want to understand how living near landfills affects communities. These environments are often synonymous with destitution and neglect. By studying this, we hope to help these communities by analysing and finding ways to make their lives better through future policy making.
+The staggering reality of over 15 million individuals inhabiting garbage dump communities globally, though likely an under reported figure, highlights a pressing concern. This number is not static; it's steadily increasing (@noauthor_about_2024). Alarmingly, a significant portion of this population, conservatively estimated at two-thirds, resides in the sub-Saharan Africa region alone. The well-being of these individuals, teetering on the edge of poverty, demands urgent attention. In this context, well-being primary refers to wealth, with income serving as a proxy for it.
+
+We aim to analyze how living near landfills affects these communities. These environments are often synonymous with destitution and neglect. By studying this, we hope to improve the lives of those in these communities through informed future policymaking.
 
 ## *Research question*
 
@@ -22,67 +24,78 @@ How does proximity to landfills impact the wealth of people living in Ghana and 
 
 ## *Literature overview*
 
-Existing scientific research investigates the relationship of income opportunities among populations residing near landfills. Previous studies in Kenya and Ghana have explored the health and environmental impacts of landfill proximity, as well as initiatives aimed at formalizing waste picker activities and proposing solid waste management strategies (Oteng-Ababio, 2014; Lissah et al., 2020; Adzawla et al., 2019; Obiri-Nyarko et al., 2021; Kaluli et al., 2011). However, none have specifically addressed the relative strength of the impact of income for individuals near these sites. In the case of Kenya, Wekisa et al. (2020) conducted a study titled "Spatial distribution of waste collection points and their implications on quality of life in Mombasa County, Kenya," aiming to elucidate the relationship between proximity to garbage collection points/landfills and the Quality of Life Index. Employing Pearson correlation coefficient analysis, the research revealed a noteworthy positive correlation between income levels and proximity to landfills. However, this correlation came at a cost: increased exposure to diseases and a decline in air quality were observed as consequences of such proximity.
+Existing scientific research in Kenya and Ghana investigates the health and environmental impacts of landfill proximities, showing detrimental effects in both the short and long term (@obiri-nyarko_assessment_2021; @lettor_assessing_2018; @mattiello_health_2013; @fazzo_health_2023; @kenneth_kamumbu_mugo_assessment_2015). However, few studies have specifically addressed the relative strength of the impact of income for individuals near these sites.
 
-In a similar context, Dr. Simon K. Kimani's research delved into the impact of pollutant exposure on the health of women waste pickers at Dandora Dumpsite in Nairobi, Kenya. Utilizing a questionnaire- based data collection method and a cross-sectional study design, the investigation aimed to assess the health status of female landfill workers in Dandora. The findings were alarming, indicating that a staggering 90.8% of the female waste pickers had experienced illness within the past six months. Further contributing to the understanding of waste management's socio-economic ramifications, Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on Socioeconomic Lives of Residents of Dandora," focused on households living near the Dandora dumpsite. Through questionnaire surveys involving 121 households, the research examined two key variables: income from solid waste management and household expenditure. Descriptive and correlation analyses unveiled a substantial finding: the total income derived from solid waste management contributed a significant 82.88% towards the total household expenditure. Moreover, a statistically significant correlation (r=0.389, p=0.01) underscored the interplay between income generated from waste management activities and household financial stability. These collective insights underscore the complex trade-offs between income generation and health risks faced by individuals engaged in landfill work.
+In Kenya, a study aimed to elucidate the relationship between proximity to garbage collection points/landfills and the Quality of Life Index. Employing a Pearson correlation coefficient analysis, the research revealed a noteworthy positive correlation between income levels and proximity to landfills. However, this correlation came at a cost: increased exposure to diseases and a decline in air quality were observed as consequences of such proximity (@wekisa_spatial_2020) . Another study, contributing to the understanding of waste management's socio-economic ramifications, focused on households living near the Dandora dumpsite. Through questionnaire surveys involving 121 households, the research examined two key variables: income from solid waste management and household expenditure. Descriptive and correlation analyses unveiled a substantial finding: the total income derived from solid waste management contributed a significant 82.88% towards the total household expenditure. Moreover, a statistically significant correlation (r=0.389, p=0.01) underscored the interplay between income generated from waste management activities and household financial stability (@wangatia_influence_2011).
 
-In the context of Ghana, Obiri- Nyarko et al. 2021 collected soil samples from various zones in the Kpone landfill site to investigate key variables: the quantity and spatial distribution of heavy metals and their effects on health risks and agricultural suitability. The investigation using AAS (Atomic Absorption Spectrophotometry) to identify arsenic, copper, zinc, lead, and mercury in landfill soil revealed that while low concentrations of these metals may not pose immediate harm to humans, prolonged and direct exposure to elevated levels presents significant health risks. Specifically, even at low concentrations, arsenic and lead exhibit adverse effects on both the environment and human health. Particularly vulnerable are children, for whom ingestion of substances from these landfills constitutes almost all the associated risk (99.31%). Analysis indicates that pathways to carcinogenic health hazards primarily involve ingestion and dermal contact, with inhalation being the least significant. Notably, the relatively high concentration of arsenic in the soils contributes significantly to elevated cancer risks, reaching 99.9% in adults. In a separate investigation conducted by Lettor (2018), the study examined the health implications of waste management operations at the Tamale landfill. The research encompassed residential areas within a five-hundred-meter radius of the landfill site in Tamale. Sample collection procedures were randomized, and data were gathered through interviews, focus groups, and questionnaires. The findings revealed that over 90% of individuals near the landfill experienced odours, contrasting with only 2% reported further than five-hundred-meters away. Moreover, the study identified improper waste disposal practices leading to contamination of groundwater and surface waters. It was evident from the results that inadequate management and failure to adhere to international standards expose nearby residents to various diseases and contaminants.
+Additionally, a study analyzed solid waste management policies in Nairobi and Mombasa, focusing on how the implementation of these policies could shift from a criminal perspective to a regulatory framework. The goal was to demonstrate how effective waste management could create wealth and employment while reducing pollution. The findings revealed that the mechanisms of a top-down approach are not well aligned due to mismanagement, the prevalence of informal and illegal dumpsites, and cartel domination. Consequently, there is a significant gap in successful policy implementation (@haregu_assessment_2017).
 
-Mensah and Nalumu (2023) investigated the motivations and challenges of informal sector workers in the context of income generation. Employing a mixed-method approach involving interviews and questionnaires, the researchers utilized statistical analysis tools such as SPSS (Statistical Package for the Social Sciences), followed by Exploratory Factor Analysis (EFA) and Relative Importance Index (RII), to discern patterns and draw conclusions. Their findings suggest that waste pickers may prioritize immediate financial gain over their health due to economic necessity, as evidenced by their willingness to endure short-term and long-term health risks associated with landfill work. This highlights the primacy of survival considerations in shaping the decision-making of informal sector workers. In a study conducted by Owusu-Sekyere (2018), the effects of landfills in Kumasi on economic development were examined. The research used focus groups and in-depth interviews involving stakeholders such as public health departments, employment desks, waste management departments, environmental sanitation offices, as well as households and informal workers. The findings revealed several positive economic impacts associated with landfills, including benefits accruing to waste pickers through the collection of recyclable materials (such as plastics, metals including copper, gold, and silver, and glass), farmers benefiting from cultivatable areas, and homeowners experiencing appreciation in property values due to the construction of access roads for the landfill area. Notably, 90% of respondents reported a positive impact on land value. These findings underscore the role of landfills in job creation and their potential contribution to poverty alleviation within nearby communities, where monetary considerations often outweigh health risks.
+In Ghana, various studies have been conducted. One such study investigated the motivations and challenges of informal sector workers in the context of income generation. Employing a mixed-method approach involving interviews and questionnaires, the researchers utilized statistical analysis tools such as the Statistical Package for the Social Sciences (SPSS) followed by Exploratory Factor Analysis (EFA) and Relative Importance Index (RII) to discern patterns and draw conclusions. Their findings suggest that waste pickers may prioritize immediate financial gain over their health due to economic necessity, as evidenced by their willingness to endure short-term and long-term health risks associated with landfill work. This highlights the primacy of survival considerations in shaping the decision-making of informal sector workers (@mensah_transforming_2024).
+
+Another study conducted by Owusu and Sekyere (2018) examined the effects of landfills in Kumasi on economic development. The research used focus groups and in-depth interviews involving stakeholders such as public health departments, employment desks, waste management departments, environmental sanitation offices, as well as households and informal workers. The findings revealed several positive economic impacts associated with landfills, including benefits accruing to waste pickers through the collection of recyclable materials (such as plastics, metals including copper, gold, and silver, and glass), farmers benefiting from cultivatable areas, and homeowners experiencing appreciation in property values due to the construction of access roads for the landfill area. Notably, 90% of respondents reported a positive impact on land value. These results show the role of landfills in job creation and their potential contribution to poverty alleviation within nearby communities, where monetary considerations can outweigh health risks (@fletcher_urban_2016).
+
+Another study looked at the overall role of waste pickers and their contribution to poverty alleviation and the circular economy. It specifically focused on the recycling and reusing, and transformation of electronic and electrical waste. The study examined 45 case studies, as well as online resources and international reports. They found that in developing countries like Ghana, informal waste pickers are significantly increasing due to economic constraints (cutting welfare, rising unemployment, etc.) and an increase in waste generation. Collecting and selling these items contribute to their household income. Waste pickers earn almost US\$2 per day, and in Ghana, scrap dealers can make profits from dismantling, reincorporating into production, and reselling illegally. The study further highlights how this area should be formalized as a way to empower what waste pickers are already doing as a public service (@morais_global_2022). These collective scientific studies show the complex trade-offs between the livelihoods of the most vulnerable and the waste management policies entrusted by the government.
 
 ## *Data Description*
 
-Georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from IPUMS DHS databases. The datasets are structured at the household level, collected via questionnaires administered to household members. Our main variables include "Wealth Index Quantile Household" which serves as a proxy for household income levels. Our other variable is proximity to landfills, in both Ghana and Kenya.To map out where the landfills are and how they have changed over time (in terms of size), we use imagery from Google Earth Pro covering 6 years, from 2008 to 2014. These variables will help us determine how household wealth (income) has been affected whilst being in close proximity to landfills, with comparison to the control group (using city data). Landfills that are worked on in the beginning stages are:
+Georeferenced data obtained from the Demographic and Health Surveys (DHS) for Ghana and Kenya, employing secondary data sourced from IPUMS DHS databases (@noauthor_ipums-dhs_nodate). The datasets are structured at the household level, collected via questionnaires administered to household members. Our main variable is 'Wealth Index Quantile Household' which serves as a proxy for household income levels. Our other variable is proximity to landfills in both Ghana and Kenya.To map out where the landfills are and how they have changed over time (in terms of size), we use imagery from Google Earth Pro covering 6 years, from 2008 to 2014 (@noauthor_earth_nodate). These variables will help us determine how household wealth (income) has been affected whilst being in close proximity to landfills, with comparison to the control group (using city data). Landfills that are worked on in the beginning stages are:
 
-i\) Ghana- Agbogbloshie landfill, Oti landfill, Gbalahi landfill, Sofokrom landfill, Pantang Borla dumpsite, Awutu Senya dumpsite landfill, Nkanfoa landfill, Sherigu Bolgatanga dumpsite, Wa landfill, Nsumia dumpsite.
+Ghana -
 
-ii\) Kenya- Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite, Kayole, Nyeri, Thika dumpsite,Kiteezi Landfill and Maputo city landfill.
+-   Agbogbloshie landfill, Oti landfill, Gbalahi landfill, Sofokrom landfill, Pantang Borla dumpsite, Awutu Senya dumpsite landfill, Nkanfoa landfill, Sherigu Bolgatanga dumpsite, Wa landfill, Nsumia dumpsite.
+
+Kenya -
+
+-   Dandora Dumpsite, Gioto dumpsite ,Kisumu Municipal garbage site, Mwakirunge dumpsite, Kayole, Nyeri, Thika dumpsite,Kiteezi Landfill and Maputo city landfill.
 
 Out of these landfills, only a few intersected with the DHS city data. These will be worked on in further stages:
 
-iii\) Ghana- Agbogbloshie landfill, and Oti landfill.
+Ghana -
 
-iv\) Ghana- Dandora dumpsite, Mombasa landfill, and Kibera landfill.
+-   Agbogbloshie landfill, and Oti landfill.
+
+Kenya -
+
+-   Dandora dumpsite, Maweni landfill, and Kibera landfill.
 
 ## *Empirical Strategy*
 
-Setting: The unit of study consists of households within the Ghana and Kenya region. The units of study are dispersed around the country, with Kenya landfills consisting of 7 and Ghana consisting of 10. There are landfill areas which are calculated between 2008 to 2014, an observation of 7 years.
+Setting: The unit of study consists of clusters of households within the Ghana and Kenya region. The households total are 282,836, with Kenya at 192,355 and Ghana at 90,481. Households are dispersed around the country. Landfill areas are calculated between 2008 to 2015, an observation of 7 years. Kenya landfills originally consisted of 7 but only 3 (Dandora, Kibera and Maweni) had intersecting data with cities Nairobi and Mombasa. Ghana landfills originally consisted of 10 but only 2 (Agbogbloshie and Oti) had intersecting data with cities Accra and Kumasi.
 
-Treatment: The treatment group comprises of households living within a 10 km radius of a landfill. This group would be exposed to the effects of landfills derived from its proximity, influencing the wealth variable.
+Treatment: The treatment group comprises of households living within a set distance of the landfill. This group would be exposed to the effects of landfill proximity, influencing the wealth variable. Distance to landfill is different in every landfill (varying buffer sizes):
 
-Controls: The control group consists of households within a 10 km radius of the city center or main market area, not exposed to landfill effects. This allows us to compare the treatment group's wealth to the control group's. However, the presence of a patriarch in a household could confound the experiment, as households with a senior male figure might have a different wealth index compared to those without.
+Kenya -
 
-Bias and Identification: A potential bias we've identified stems from variations in landfill types across Ghana and Kenya. Some landfills are government-maintained and engineered according to specific protocols, while others are informal dumping sites, often termed "illegal," which fail to meet standard regulations and have a more detrimental impact on nearby communities.
+-   Dandora: 0.204 ha
 
-To address this variation, we will employ a Difference-in-Differences (DiD) model with a continuous treatment variable. This type of model is useful in cases where treatment is not simply a matter of being treated or not but can be received to different extents. This approach extends the traditional DiD model, which typically uses a binary treatment indicator, to account for varying treatment intensities. This is important in our context because not all landfills are comparable, and the extent of their impact on surrounding households can differ significantly.
+-   Kibera: 0.172 ha
 
-We would like to show that treatment effect on the treated-type parameters can be identified under a generalized parallel trends assumption similar to the binary treatment setup. However, interpreting differences in these parameters across different values of the treatment can be particularly challenging due to selection bias that is not ruled out by the parallel trends assumption. We would ultimately like to provide treatment effect decomposition results, highlighting the parameters associated with popular linear two-way fixed-effect (TWFE) specifications over the time periods.
+-   Maweni: 0.093 ha
 
-Using this methodology, we aim to investigate the long-term effects on the income of individuals residing near landfills. We expect to find a positive effect on income levels, due to potential economic opportunities associated with landfills.
+Ghana -
 
-Some packages: [@archive; @base]
+-   Agbogbloshie: 0.139 ha
 
-# 6. References
+-   Oti: 0.186 ha
 
--   Rockström, J., et al. (2009). Planetary boundaries: Exploring the safe operating space for humanity. Ecology and Society, 14(2), 32.
--   United Nations 2024, https://www.un.org/esa/sustdev/natlinfo/indicators/methodology_sheets/consumption_production/waste_generation.pdf
--   US Environmental Protection Agency (2024) https://www.epa.gov/landfills/basic-information-about-landfills
--   Global Waste Index (2022) https://waste-management-world.com/research/global-waste-index-2022-ranking-the-biggest-waste-polluters-worldwide/
--   OEC, 2023 (https://oec.world/en/profile/hs/scrap-plastic
--   The Guardian (2021) https://www.theguardian.com/environment/2021/dec/31/waste-colonialism-countries-grapple-with-wests-unwanted-plastic
--   World Bank (2012) https://documents1.worldbank.org/curated/en/302341468126264791/pdf/68135-REVISED-What-a-Waste-2012-Final-updated.pdf
--   Matiello et al. 2013 http://gurasos.org/statico/documentacion/Health%20effects%20associated%20with%20the%20disposal%20of%20solid%20waste%20in%20landfills%20and%20incinerators%20in%20populations%20living%20in%20surrounding%20areas.pdf
--   Health (2021) https://www.health.ny.gov/environmental/outdoors/air/landfill_gas.htm#:\~:text=Short%2Dterm%20exposures%20(typically%20up,%2C%20nausea%2C%20and%20breathing%20difficulties.
--   Wisconsin Department of Natural Resources (2023) https://dnr.wisconsin.gov/topic/OpenBurning/Impacts.html
--   (Morais et al. 2022). https://iopscience.iop.org/article/10.1088/1748-9326/ac6b49
--   (Ezeah et al. 2013). Ezeah C, Fazakerley J A and Roberts C L 2013 Emerging trends in informal sector recycling in developing and transition countries Waste Manage. 33 2509–19
--   (Oteng-Ababio 2014;
--   Lissah et al. 2020;
--   Adzawla et al. 2019;
--   Obiri-Nyarko et al. 2021;
--   Kaluli et al. 2011
--   Wekisa et al. (2020)
--   Vincenzio Manyah Wangatia's study, "The Influence of Solid Waste Management Practices on Socioeconomic Lives of Residents of Dandora,"
--   Lettor (2018),
--   Mensah and Nalumu (2023)
--   Owusu- Sekyere (2018)
+Controls: The control group consists of households within a set distance of the city center, which would not be exposed to landfill effects. This allows us to compare the treatment group's wealth to the control group's. Distance to city center is different in every landfill (consistent buffer size + varying ring size):
+
+Kenya -
+
+-   Dandora: 0.093 ha + 0.056 ha = 0.149 ha
+
+-   Kibera: 0.093 ha + 0.019 ha = 0.112 ha
+
+-   Maweni: 0.093 ha + 0.019 ha = 0.122 ha
+
+Ghana -
+
+-   Agbogbloshie: 0.093 ha + 0.074 ha = 0.167 ha
+
+-   Oti: 0.093 ha + 0.006 ha = 0.099 ha
+
+Bias and Identification: A potential bias identified stems from variations in landfill types across Ghana and Kenya. Some landfills are government-maintained and engineered according to specific protocols, while others are informal dumping sites, often termed "illegal," which fail to meet standard regulations and have a more detrimental impact on nearby communities. Furthermore, the presence of a patriarch in a household could confound the experiment, as households with a senior male figure might have a different wealth index compared to those without.
+
+To address this variation, we will employ a Ordinary Least Squares model..
+
+# Bibliography

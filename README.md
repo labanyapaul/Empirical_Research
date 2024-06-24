@@ -5,6 +5,8 @@ This is to show where some of the data has been saved and to follow along on imp
 
 * The CRS used EPSG: 2136 measurement unit is 'Gold Coast foot'. However, all data is read in hectars. (From foot/meters to hectares)
 
+* All data is shown with 3 decimal points. 
+
 
 # Intersecting cities 
 
