@@ -1,7 +1,7 @@
 # Intrepretation of Ghana Wealth index in Control and Treatment group 
 
 # Load the data
-library(plm)
+library(fixest)
 library(readr)
 
 
@@ -17,15 +17,12 @@ combined_dataGhana$Year_2014 <- ifelse(combined_dataGhana$DHSYEAR == 2014, 1, 0)
 # Create dummy variable for Group
 combined_dataGhana$Treatment <- ifelse(combined_dataGhana$Group == "Treatment", 1, 0)
 
-#Interaction term
-combined_dataGhana$Year_Treatment <- combined_dataGhana$Year_2014 * combined_dataGhana$Treatment
 
 # Run the regression
-# Ensure the data is in the right format for plm
-combined_dataGhana <- pdata.frame(combined_dataGhana, index = c("ADM1NAME", "DHSYEAR"))
 
-# Run the fixed effects model
-model_GhanaTimeD <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatment, data = combined_dataGhana, model = "within")
+# Run the fixed effects model. TWFE- Landfills and Year
+
+model_GhanaTimeD <- feols(WEALTHQHH ~  Treatment |Year+ADM1NAME, data = combined_dataGhana)
 
 # Summarize the results
 summary(model_GhanaTimeD)
@@ -38,21 +35,22 @@ combined_dataGhana_2014 <- combined_dataGhana[combined_dataGhana$Year_2014 == 1,
 
 #Run the regression for just 2014(to make it comparable with Kenya)
 
-# Ensure the data is in the right format for plm
-combined_dataGhana_2014<- pdata.frame(combined_dataGhana_2014, index = c("ADM1NAME"))
 
-# Run the fixed effects model
-model_Ghana <- plm(WEALTHQHH ~ Treatment, data = combined_dataGhana_2014, model = "within")
+# Run the fixed effects model(FE-Landfills)
+
+model_Ghana <- feols(WEALTHQHH ~ Treatment|ADM1NAME, data = combined_dataGhana_2014)
 
 summary(model_Ghana)
 
 #Regression table for model_Ghana and model_GhanaTimeD
 
-library(stargazer)
+library(etable)
 
-stargazer(model_Ghana, model_GhanaTimeD, type = "text")
+Reg_tableGhana <- etable(model_Ghana)
+Reg_tableGhanaTWFE<- etable(model_GhanaTimeD)
 
-# Save the regression table
+#save the regression table
 
-stargazer(model_Ghana, model_GhanaTimeD, type = "html", out = "output/model_Ghana.html")
+write.table(Reg_tableGhana, "output/Reg_tableGhana.csv", sep = ",")
+write.table(Reg_tableGhanaTWFE, "output/Reg_tableGhanaTWFE.csv", sep = ",")
 
