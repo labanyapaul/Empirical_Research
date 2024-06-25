@@ -37,43 +37,42 @@ Ghana_datacontrol$Group <- as.factor(Ghana_datacontrol$Group)
 Ghana_datacontrol$Year_2014 <- ifelse(Ghana_datacontrol$DHSYEAR == 2014, 1, 0)
 Ghana_datacontrol$Treatment <- ifelse(Ghana_datacontrol$Group == "Treatment", 1, 0)
 
-# Create interaction term
-Ghana_datacontrol$Year_Treatment <- Ghana_datacontrol$Year_2014 * Ghana_datacontrol$Treatment
 
 # Create dummy variables for HHEADSEXHH
 Ghana_datacontrol$HHEADSEXHH_male <- ifelse(Ghana_datacontrol$HHEADSEXHH == 1, 1, 0)
 Ghana_datacontrol$HHEADSEXHH_female <- ifelse(Ghana_datacontrol$HHEADSEXHH == 2, 1, 0)
 Ghana_datacontrol$HHEADSEXHH_transgender <- ifelse(Ghana_datacontrol$HHEADSEXHH == 3, 1, 0)
 
-# Ensure the data is in the right format for plm
-Ghana_datacontrol <- pdata.frame(Ghana_datacontrol, index = c("ADM1NAME", "DHSYEAR"))
+# Run the Two way fixed effects model with control
 
-# Run the fixed effects model
-model_GhanaTimeDcontrol <- plm(WEALTHQHH ~ Year_2014 + Treatment + Year_Treatment  + HHEADSEXHH_male, data = Ghana_datacontrol, model = "within")
+model_GhanaTimeDcontrol <- feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|Year+ADM1NAME, data = Ghana_datacontrol)
 
 summary(model_GhanaTimeDcontrol)
 
-#Part 2: Running fixed effects dropping the Time dummy and the Interaction term(Year_Treatment).
-#We do the Part 2 to make it comparable with Kenya.(As in Kenya we do not have 2008 data,hence no Time dummy)
+#Part 2: Running fixed effect(Fixed effect-Landfills) with control variable.
+#We do the Part 2 to make it comparable with Kenya.(As in Kenya we do not have 2008 data)
 #
 
 #Filter the Ghana_datacontrol  for 2014 only
 
 Ghana_datacontrol_2014 <- Ghana_datacontrol[Ghana_datacontrol$Year_2014 == 1,]
 
-# Ensure the data is in the right format for plm
 
-Ghana_datacontrol_2014 <- pdata.frame(Ghana_datacontrol_2014, index = c("ADM1NAME"))
 
 # Run the fixed effects model with control HHEADSEXHH_male
-model_Ghanacontrol <- plm(WEALTHQHH ~ Treatment + HHEADSEXHH_male, data = Ghana_datacontrol_2014, model = "within")
+
+model_Ghanacontrol <- feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|ADM1NAME, data = Ghana_datacontrol_2014)
 
 summary(model_Ghanacontrol)
 
 #Regression tables
-library(stargazer)
+library(etable)
 
-stargazer(model_GhanaTimeDcontrol, model_Ghanacontrol, type = "text", title =  "Ghana_Robustnesscheck", align = TRUE)
+Reg_tableGhanacontrol <- etable(model_Ghanacontrol)
+Reg_tableGhanaTWFEcontrol<- etable(model_GhanaTimeDcontrol)
 
-#save the Regression tables
-stargazer(model_GhanaTimeDcontrol, model_Ghanacontrol, type = "html", title = " Ghana_Robustnesscheck", out = "output/RobustnessResultsGhana.html", align = TRUE)
+#save the regression table
+
+write.table(Reg_tableGhanacontrol, "output/Reg_tableGhanacontrol.txt", sep = ",")
+
+write.table(Reg_tableGhanaTimeDcontrol, "output/Reg_tableGhanaTimeDcontrol.txt", sep = ",")
