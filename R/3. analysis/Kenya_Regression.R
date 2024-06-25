@@ -33,8 +33,7 @@ View(combined_dataKenya)
 # Create dummy variable for Group
 combined_dataKenya$Treatment <- ifelse(combined_dataKenya$Group == "Treatment", 1, 0)
 
-# Ensure the data is in the right format for plm
-combined_dataKenya <- pdata.frame(combined_dataKenya, index = c("ADM1NAME"))
+
 
 # Run the fixed effects model
 library(fixest)
