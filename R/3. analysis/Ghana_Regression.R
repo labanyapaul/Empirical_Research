@@ -51,6 +51,6 @@ Reg_tableGhanaTWFE<- etable(model_GhanaTimeD)
 
 #save the regression table
 
-write.table(Reg_tableGhana, "output/Reg_tableGhana.csv", sep = ",")
-write.table(Reg_tableGhanaTWFE, "output/Reg_tableGhanaTWFE.csv", sep = ",")
+write.table(Reg_tableGhana, "output/Reg_tableGhana.txt", sep = ",")
+write.table(Reg_tableGhanaTWFE, "output/Reg_tableGhanaTWFE.txt", sep = ",")
 
