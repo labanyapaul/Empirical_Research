@@ -35,13 +35,12 @@ Kenya_datacontrol$Treatment <- ifelse(Kenya_datacontrol$Group == "Treatment", 1,
 # Create dummy variables for HHEADSEXHH is male
 Kenya_datacontrol$HHEADSEXHH_male <- ifelse(Kenya_datacontrol$HHEADSEXHH == 1, 1, 0)
 Kenya_datacontrol$HHEADSEXHH_female <- ifelse(Kenya_datacontrol$HHEADSEXHH == 2, 1, 0)
-# Ensure the data is in the right format for plm
 
-Kenya_datacontrol<-pdata.frame(Kenya_datacontrol, index = c("ADM1NAME"))
 
 # Run the fixed effects model
 
-model_Kenyacontrol <-plm(WEALTHQHH ~ Treatment+ HHEADSEXHH_male,data = Kenya_datacontrol, model = "within")
+library(fixest)
+model_Kenyacontrol <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_male|ADM1NAME,data = Kenya_datacontrol)
 
 summary(model_Kenyacontrol)
 
@@ -57,15 +56,21 @@ Kenya_datacontrolFemale <- Kenya_datacontrol %>%
   
 # Run the fixed effects model
 
-model_KenyacontrolFemale <-plm(WEALTHQHH ~ Treatment+ HHEADSEXHH_female,data = Kenya_datacontrolFemale, model = "within")
+model_KenyacontrolFemale <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_female|ADM1NAME,data = Kenya_datacontrolFemale, )
 
 summary(model_KenyacontrolFemale)
 
-#Regression table
+#Save the Regression table for model_Kenyacontrol and model_KenyacontrolFemale using etable and save the table in output folder
 
-library(stargazer)
-stargazer(model_Kenyacontrol, model_KenyacontrolFemale, type = "text")
- #Save the regression table
-stargazer(model_Kenyacontrol, model_KenyacontrolFemale, type = "html", out = "output/Kenya_Robustnesscheck.html")
+library(etable)
 
+# Generate the regression table
 
+Reg_tableKenyacontrol <- etable(model_Kenyacontrol)
+
+Reg_tableKenyacontrolFemale <- etable(model_KenyacontrolFemale)
+
+#save the regression table
+
+write.table(Reg_tableKenyacontrol, "output/Reg_tableKenyacontrol.txt", sep = ",", row.names = FALSE)
+write.table(Reg_tableKenyacontrolFemale, "output/Reg_tableKenyacontrolFemale.txt", sep = ",", row.names = FALSE)
