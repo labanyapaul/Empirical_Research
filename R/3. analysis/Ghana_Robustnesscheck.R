@@ -1,9 +1,11 @@
 #Part 1: Running fixed effects with control variable if the Head of the household is a Male
-#We do the Part 1 including the Time dummy and the Interaction term(Year_Treatment).
+
 
 #loading the data from DHS Ipums (HHEADSEXHH)
 library(dplyr)
 library(readr)
+library(fixest)
+library(etable)
 idhs_00007 <- read_csv("output/idhs_00007.csv", show_col_types = FALSE)
 View(idhs_00007)
 
@@ -61,7 +63,7 @@ Ghana_datacontrol_2014 <- Ghana_datacontrol[Ghana_datacontrol$Year_2014 == 1,]
 
 # Run the fixed effects model with control HHEADSEXHH_male
 
-model_Ghanacontrol <- feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|ADM1NAME, data = Ghana_datacontrol_2014)
+model_Ghanacontrol <- fixest::feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|ADM1NAME, data = Ghana_datacontrol_2014)
 
 summary(model_Ghanacontrol)
 
@@ -75,4 +77,4 @@ Reg_tableGhanaTWFEcontrol<- etable(model_GhanaTimeDcontrol)
 
 write.table(Reg_tableGhanacontrol, "output/Reg_tableGhanacontrol.txt", sep = ",")
 
-write.table(Reg_tableGhanaTimeDcontrol, "output/Reg_tableGhanaTimeDcontrol.txt", sep = ",")
+write.table(Reg_tableGhanaTWFEcontrol, "output/Reg_tableGhanaTWFEcontrol.txt", sep = ",")
