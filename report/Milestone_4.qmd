@@ -13,7 +13,7 @@ editor:
 ---
 
 4.  Results
-The results of the study are presented in this section. The results are divided into two parts: the first part presents the results of the analysis of the data collected from the landfills in (1) Ghana and (2) Kenya.
+The results of the study are presented in this section. The results are divided into two parts: the first part presents the results of the analysis of the data collected from the landfills in -Ghana and  and the second part -Kenya.
 
 For Ghana when we did Two way fixed effects model, we found that the coefficient of the Treatment variable is -0.0648, although not statistically significant.The negative coefficient can be still interpreted as there is a negative impact on wealth if household is near the landfill i.e it belongs to the treatment group. But as the result is not statistically significant, we cannot come to any conclusion.
 
