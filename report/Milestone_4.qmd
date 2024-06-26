@@ -17,11 +17,39 @@ The results of the study are presented in this section. The results are divided 
 
 For Ghana when we did Two way fixed effects model, we found that the coefficient of the Treatment variable is -0.0648, although not statistically significant.The negative coefficient can be still interpreted as there is a negative impact on wealth if household is near the landfill i.e it belongs to the treatment group. But as the result is not statistically significant, we cannot come to any conclusion.
 
+
+
+	model_GhanaTimeD
+Dependent Var.:	WEALTHQHH
+ 	 
+Treatment	-0.0648 (0.1259)
+Fixed-Effects:	----------------
+ADM1NAME	Yes
+Year	Yes
+_______________	________________
+S.E.: Clustered	by: ADM1NAME
+Observations	7,232
+R2	0.01981
+Within R2	0.00215
+
 ```{r}
 #I want to show the regression table saved in the file "Reg_tableGhanaTWFE.txt", it is saved in the output folder
-
 ```
 We also performed only landfill Fixed effect for Ghana(to make it comparable for Kenya).The coefficient of interest came to be -0.0531, although again not statistically significant.
+
+	model_Ghana
+Dependent Var.:	WEALTHQHH
+ 	 
+Treatment	-0.0531 (0.1718)
+Fixed-Effects:	----------------
+ADM1NAME	Yes
+_______________	________________
+S.E.: Clustered	by: ADM1NAME
+Observations	3,428
+R2	0.00406
+Within R2	0.00135
+
+
 
 ```{r}
 #I want to show the regression table saved in the file "Reg_tableGhana.txt", it is saved in the output folder
@@ -30,8 +58,22 @@ We also performed only landfill Fixed effect for Ghana(to make it comparable for
 
 For Kenya as mentioned earlier, we had data for one year 2014. As a result we could perform only landfill fixed effect model. The coefficient of interest came to be 	0.1559. Although again not statistically significant, but here it shows a positive impact on wealth if household is near the landfill i.e it belongs to the treatment group. This result is quite opposite to what we got for Ghana.
 
+	model_kenya
+Dependent Var.:	WEALTHQHH
+ 	 
+Treatment	0.1559 (0.1661)
+Fixed-Effects:	---------------
+ADM1NAME	Yes
+_______________	_______________
+S.E.: Clustered	by: ADM1NAME
+Observations	4,762
+R2	0.01385
+Within R2	0.01098
+
+
+
 ```{r}
 #I want to show the regression table saved in the file "Reg_tableKenya.txt", it is saved in the output folder
-
+ 
 ```
 
