@@ -1,4 +1,4 @@
-# Intrepretation of Ghana Wealth index in Control and Treatment group 
+
 
 # Load the data
 library(fixest)
@@ -22,7 +22,7 @@ combined_dataGhana$Treatment <- ifelse(combined_dataGhana$Group == "Treatment", 
 
 # Run the fixed effects model. TWFE- Landfills and Year
 
-model_GhanaTimeD <- feols(WEALTHQHH ~  Treatment |Year+ADM1NAME, data = combined_dataGhana)
+model_GhanaTimeD <- feols(WEALTHQHH ~  Treatment |ADM1NAME+Year, data = combined_dataGhana)
 
 # Summarize the results
 summary(model_GhanaTimeD)
@@ -50,7 +50,8 @@ Reg_tableGhana <- etable(model_Ghana)
 Reg_tableGhanaTWFE<- etable(model_GhanaTimeD)
 
 #save the regression table
+write.table(Reg_tableGhana, "output/Reg_tableGhana.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
-write.table(Reg_tableGhana, "output/Reg_tableGhana.txt", sep = ",")
-write.table(Reg_tableGhanaTWFE, "output/Reg_tableGhanaTWFE.txt", sep = ",")
+
+write.table(Reg_tableGhanaTWFE, "output/Reg_tableGhanaTWFE.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 

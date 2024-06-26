@@ -75,6 +75,5 @@ Reg_tableGhanaTWFEcontrol<- etable(model_GhanaTimeDcontrol)
 
 #save the regression table
 
-write.table(Reg_tableGhanacontrol, "output/Reg_tableGhanacontrol.txt", sep = ",")
-
-write.table(Reg_tableGhanaTWFEcontrol, "output/Reg_tableGhanaTWFEcontrol.txt", sep = ",")
+write.table(Reg_tableGhanacontrol, "output/Reg_tableGhanacontrol.txt",  row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+write.table(Reg_tableGhanaTWFEcontrol, "output/Reg_tableGhanaTWFEcontrol.txt",  row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")

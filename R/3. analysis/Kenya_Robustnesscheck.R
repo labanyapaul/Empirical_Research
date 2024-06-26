@@ -72,5 +72,5 @@ Reg_tableKenyacontrolFemale <- etable(model_KenyacontrolFemale)
 
 #save the regression table
 
-write.table(Reg_tableKenyacontrol, "output/Reg_tableKenyacontrol.txt", sep = ",", row.names = FALSE)
-write.table(Reg_tableKenyacontrolFemale, "output/Reg_tableKenyacontrolFemale.txt", sep = ",", row.names = FALSE)
+write.table(Reg_tableKenyacontrol, "output/Reg_tableKenyacontrol.txt",  row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+write.table(Reg_tableKenyacontrolFemale, "output/Reg_tableKenyacontrolFemale.txt", , row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
