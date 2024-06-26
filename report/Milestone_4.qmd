@@ -12,11 +12,26 @@ editor:
     wrap: 72
 ---
 
-# 4.  Results
+4.  Results
+The results of the study are presented in this section. The results are divided into two parts: the first part presents the results of the analysis of the data collected from the landfills in (1) Ghana and (2) Kenya.
 
-## Regression tables
+For Ghana when we did Two way fixed effects model, we found that the coefficient of the Treatment variable is -0.0648, although not statistically significant.The negative coefficient can be still interpreted as there is a negative impact on wealth if household is near the landfill i.e it belongs to the treatment group. But as the result is not statistically significant, we cannot come to any conclusion.
 
-## Interpretation
+```{r}
+#I want to show the regression table saved in the file "Reg_tableGhanaTWFE.txt", it is saved in the output folder
 
+```
+We also performed only landfill Fixed effect for Ghana(to make it comparable for Kenya).The coefficient of interest came to be -0.0531, although again not statistically significant.
 
+```{r}
+#I want to show the regression table saved in the file "Reg_tableGhana.txt", it is saved in the output folder
+
+```
+
+For Kenya as mentioned earlier, we had data for one year 2014. As a result we could perform only landfill fixed effect model. The coefficient of interest came to be 	0.1559. Although again not statistically significant, but here it shows a positive impact on wealth if household is near the landfill i.e it belongs to the treatment group. This result is quite opposite to what we got for Ghana.
+
+```{r}
+#I want to show the regression table saved in the file "Reg_tableKenya.txt", it is saved in the output folder
+
+```
 
