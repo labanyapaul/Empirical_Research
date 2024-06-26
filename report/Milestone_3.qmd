@@ -27,78 +27,61 @@ and Kenya.
 Relevance to our Paper: In our research, we aim to analyze the impact of
 living near landfills on household wealth. The proximity to a landfill
 serves as a continuous treatment variable, as the degree of exposure
-varies with distance from the landfill. The referenced paper's
-methodology is particularly suitable for our study due to the following
-reasons:
+varies with distance from the landfill. 
 
-• Challenges with Continuous Treatment Variables: The authors discuss
-the difficulties in interpreting treatment effects across different
-levels of a continuous treatment due to potential selection bias. This
-insight is vital for our study, as households' proximity to landfills
-may not be randomly assigned, and factors influencing household location
-choice could confound our estimates. • Alternative Estimation
-Procedures: The paper introduces alternative estimation methods that
-address the limitations of traditional linear two-way fixed-effects
-(TWFE) models. These methods can provide more reliable and interpretable
-estimates of treatment effects in the presence of continuous treatments,
-making them suitable for our analysis of the economic impact of landfill
-proximity on household wealth. Application to our study By utilizing the
-continuous treatment DiD approach from the referenced paper, our study
-will: Identify the causal impact of proximity to landfills on household
-wealth. Account for variations in treatment intensity (distance to
-landfill) across households. Mitigate potential selection bias through
-robust estimation techniques.
 
-Study Setting: Countries: Ghana and Kenya Time Periods: 2008 to 2014
-Landfills: 6 major landfills across the two countries Treatment and
-Control Groups: Treatment Group: Households within a 10 km radius of a
-landfill. Control Group: Households within a 10 km radius of a city
-center or main market area, not exposed to landfill effects.
-Confounding/Control Variable: Patriarch Presence: Included as a control
-variable since households with a senior male figure might have a
-different wealth index compared to those without.
+Econometric Approach: The econometric method used in here is OLS fixed effects model.We 
+implemented Two way fixed effects model . The intuition behind this
+model is to control for-
+(1) time-invariant unobserved heterogeneity among the landfills(Individual effects). Every landfill is different from one another - they differ in area, population around it etc.To control for this individual effect, we include landfill fixed effects in the model. 
+(2)Time specific unobserved heterogeneity- We have two time periods in our data 2008 and 2014 for Ghana. We include year fixed effects to control for this time specific unobserved heterogeneity. 
 
-Model Specification The regression equation to estimate the effect of
-landfill proximity on household wealth is:
+For Kenya , due to lack of data, we could not implement the two way fixed effect model.We have data for just 2014. We implemented one way fixed effect model. We included landfill fixed effects in the model to control for Time Invariant unobserved heterogeneity.
 
-$$ wealth_{it} = \delta_s + \sum_{t=2008}^{2014} \gamma_{t} \times Year_t + \beta \times Patriarch_{it} + \phi \times (Treated_i \times Year_t) + \epsilon_{it}
+We used the following model specification for Ghana and Kenya:
 
-$$ 
 
-〖Wealth〗*it= δ_s+∑*(t=2008)\^2014▒〖γ\_(t ) 〗\* 〖Year〗\_t+β
-\*〖Patriach〗\_it+φ\*(〖Treated〗\_i\*〖Year〗\_t )+ϵ_it where:
-〖Wealth〗\_it=Wealth index for household i in year t. 〖Year〗\_t: Year
-dummy variables for each year from 2008 to 2014. Patriarch=Control
-variable indicating the presence of a patriarch in the household.
-Treated: Dummy variable indicating whether a household is within 10 km
-of a landfill (1 if treated, 0 if control). ϕ: Coefficient on the
-interaction term, capturing the treatment effect.
+Where: Main outcome Variable - Wealth Index
+       Independent Variable- Treatment(Proximity to Landfill of the households) 
+       Fixed Effects - Landfill Fixed Effects, Year Fixed Effects
+       Control Variable - Head of the Household is a male.
+   
 
-Explanation Outcome Variable (Wealth Index): The main outcome of
-interest is the wealth index of households. Treatment Variable (Treated
-Dummy): \_Treated is a binary variable representing whether a household
-is near a landfill (treated) or near a city center (control). Time
-Dummies (〖Year〗\_t): Dummy variables for each year from 2008 to 2014,
-capturing year-specific effects. Interaction Term (Treated
-×〖Year〗\_t): This interaction term allows the treatment effect to vary
-over time, estimating whether the proximity to landfills has a
-differential impact on wealth in each year. Expected outcome- We
-anticipate finding a positive effect on household wealth for those near
-landfills due to potential economic opportunities associated with
-landfill activities. The interaction terms will help determine whether
-this effect changes over time, providing insights into the long-term
-impacts of landfill proximity on household wealth.
+The model is estimated using OLS regression. The coefficient of interest is the Treatment Variable(which indicates the households in the treatment group i.e living in close proximity to lanfills). The model is estimated separately for Ghana and Kenya to understand the impact of landfill proximity on household wealth in each country. Head of the household is male figure is used as the control variable, assuming that in a presence of a patriarch,household income would be more.The results are interpreted to provide insights into the economic implications of living near landfills in Sub-Saharan Africa.
 
-Interpretation-
 
-The coefficients on the interaction terms will indicate whether the
-effect of living near landfills on wealth changes across different
-years. A significant positive coefficient for a particular year would
-suggest that households near landfills experienced a greater increase in
-wealth in that year compared to those near city centers. By adopting
-this methodology, we can systematically investigate the long-term
-effects of living near landfills on household wealth, accounting for
-variations in treatment intensities over a seven-year period. This
-approach ensures a rigorous analysis, offering valuable insights for
-policymakers and stakeholders regarding the socioeconomic implications
-of landfill management.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
