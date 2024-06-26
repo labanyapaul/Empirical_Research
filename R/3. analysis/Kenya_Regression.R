@@ -49,12 +49,18 @@ library(etable)
 # Load necessary libraries
 library(fixest)
 library(here)
+library(modelsummary)
 
 # Fit the model
 model_kenya <- fixest::feols(WEALTHQHH ~ Treatment | ADM1NAME, data = combined_dataKenya)
 
+
 # Generate the regression table
 Reg_tableKenya <- etable(model_kenya)
+
+modelsummary(model_kenya)
+
+
 
 #save the regression table
 write.table(Reg_tableKenya, "output/reg_tableKenya.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
