@@ -29,7 +29,7 @@ not statistically significant, we cannot come to any conclusion.
 
 ![](images/Reg_tableGhanaTWFE.png){width="432"}
 
-```{}
+```         
 ```
 
 We also performed only landfill Fixed effect for Ghana(to make it
@@ -41,7 +41,7 @@ although again not statistically significant.
 
 ![](images/Reg_tableGhana.png){width="410"}
 
-```{}
+```         
 ```
 
 For Kenya as mentioned earlier, we had data for one year 2014. As a
@@ -53,5 +53,5 @@ This result is quite opposite to what we got for Ghana.
 
 ![](images/Reg_tableKenya.png){width="398"}
 
-```{}
+```         
 ```
