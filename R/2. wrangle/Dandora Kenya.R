@@ -224,6 +224,13 @@ print(city_data)
 # Calculate centroid of polygon
 city_center <- city_data %>%
   st_centroid() 
+
+#calculate centroid using st_centroid() of landfill polygon
+landfill_center <- all_landfills_polygon %>%
+  filter(landfill_name == landfill_selected) %>%
+  st_centroid()
+
+
 # Plot city center point
 plot_title <- paste("Spatial Data for",city_selected,"with City Center Point")
 ggplot() +
@@ -243,6 +250,7 @@ plot_title <- paste(landfill_selected,"Landfill Polygons Over Years")
 print(landfill_sf)
 ggplot() +
   geom_sf(data = landfill_sf) +
+  geom_sf(data = landfill_center, color = "black", size = 1) + 
   facet_wrap(~year) +
   ggtitle(plot_title) +
   theme(legend.position = "bottom") +

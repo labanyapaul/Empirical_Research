@@ -142,7 +142,7 @@ Ghana_all_landfills_polygon_nogeometry <- temp_all_landfills_polygon
 output_dir <- here::here("output")
 
 output_file <- file.path(output_dir, "Ghana_all_landfills_polygon_nogeometry.csv")
-write.table(Ghana_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
+#write.table(Ghana_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
 
 # Load the city data from the gpkg file
 city_data <- st_read(here::here("input/world_2015_20000.gpkg"))
@@ -273,9 +273,15 @@ run_analysis <- function(city, year){
     filter(cty_name == city_selected)
   print(city_data)
   
+  #calculate centroid using st_centroid() of landfill polygon
+  landfill_center <- all_landfills_polygon %>%
+    filter(landfill_name == landfill_selected) %>%
+    st_centroid()
+  
   # Calculate centroid of polygon
   city_center <- city_data %>%
     st_centroid() 
+  
   # Plot city center point
   plot_title <- paste("Spatial Data for",city_selected,"with City Center Point")
   p<- ggplot()  +
@@ -295,6 +301,7 @@ run_analysis <- function(city, year){
   print(landfill_sf)
   p<- ggplot()  +
     geom_sf(data = landfill_sf) +
+    geom_sf(data = landfill_center, color = "black", size = 1) + 
     facet_wrap(~year) +
     ggtitle(plot_title) +
     theme(legend.position = "bottom") +
@@ -584,7 +591,7 @@ run_analysis <- function(city, year){
 output_dir <- here::here("output")
 
 output_file <- file.path(output_dir, "combined_dataghana.csv")
-write.table(combined_dataGhana, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
+#write.table(combined_dataGhana, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
 
   #________________________________________________________________________________
 } 
