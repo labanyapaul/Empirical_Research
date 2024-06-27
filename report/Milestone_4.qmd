@@ -27,7 +27,13 @@ not statistically significant, we cannot come to any conclusion.
 ```         
 ```
 
-![](images/Reg_tableGhanaTWFE.png){width="432"}
+```{r}
+library(here)
+library(modelsummary)
+Reg_tableGhanaTWFE <- readRDS(here("output/Reg_tableGhanaTWFE.rds"))
+
+Reg_tableGhanaTWFE|> modelsummary()
+```
 
 ```         
 ```
@@ -39,7 +45,11 @@ although again not statistically significant.
 ```         
 ```
 
-![](images/Reg_tableGhana.png){width="410"}
+```{r}
+Reg_tableGhana <- readRDS(here("output/Reg_tableGhana.rds"))
+
+Reg_tableGhana|> modelsummary()
+```
 
 ```         
 ```
@@ -51,7 +61,11 @@ statistically significant, but here it shows a positive impact on wealth
 if household is near the landfill i.e it belongs to the treatment group.
 This result is quite opposite to what we got for Ghana.
 
-![](images/Reg_tableKenya.png){width="398"}
-
 ```         
+```
+
+```{r}
+Reg_tableKenya <- readRDS(here("output/Reg_tableKenya.rds"))
+
+Reg_tableKenya|> modelsummary()
 ```

@@ -23,6 +23,10 @@ View(combined_dataMombasa)
 
 combined_dataKenya <- rbind(combined_dataKibera, combined_dataDandora, combined_dataMombasa)
 
+#Change the column name ADM1NAME to LANDFILLS
+
+combined_dataKenya <- combined_dataKenya %>%
+  rename(LANDFILLS = ADM1NAME)
 #Save combined_dataKenya as csv file
 
 write_csv(combined_dataKenya, "output/combined_dataKenya.csv")
@@ -37,13 +41,10 @@ combined_dataKenya$Treatment <- ifelse(combined_dataKenya$Group == "Treatment", 
 
 # Run the fixed effects model
 library(fixest)
-model_kenya <- fixest::feols(WEALTHQHH ~ Treatment| ADM1NAME, data = combined_dataKenya)
+model_kenya <- fixest::feols(WEALTHQHH ~ Treatment| LANDFILLS, data = combined_dataKenya)
 # Summarize the results
 summary(model_kenya)
 
-#Regression table for model_kenya using etable and save the table in output folder
-
-library(etable)
 
 
 # Load necessary libraries
@@ -52,17 +53,16 @@ library(here)
 library(modelsummary)
 
 # Fit the model
-model_kenya <- fixest::feols(WEALTHQHH ~ Treatment | ADM1NAME, data = combined_dataKenya)
+model_kenya <- fixest::feols(WEALTHQHH ~ Treatment | LANDFILLS, data = combined_dataKenya)
 
 
 # Generate the regression table
-Reg_tableKenya <- etable(model_kenya)
+
 
 modelsummary(model_kenya)
+Reg_tableKenya <- modelsummary(model_kenya, output = "modelsummary_list")
 
-#save the regression table
-write.table(Reg_tableKenya, "output/Reg_tableKenya.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+#Save rds file
+saveRDS(Reg_tableKenya, "output/Reg_tableKenya.rds")
 
-# View the regression table
-View(Reg_tableKenya)
 

@@ -17,17 +17,27 @@ combined_dataGhana$Year_2014 <- ifelse(combined_dataGhana$DHSYEAR == 2014, 1, 0)
 # Create dummy variable for Group
 combined_dataGhana$Treatment <- ifelse(combined_dataGhana$Group == "Treatment", 1, 0)
 
+#Change the column name ADM1NAME to LANDFILLS
+
+combined_dataGhana <- combined_dataGhana %>%
+  rename(LANDFILLS = ADM1NAME)
 
 # Run the regression
 
 # Run the fixed effects model. TWFE- Landfills and Year
 
-model_GhanaTimeD <- feols(WEALTHQHH ~  Treatment |ADM1NAME+Year, data = combined_dataGhana)
+model_GhanaTimeD <- feols(WEALTHQHH ~  Treatment |LANDFILLS+Year, data = combined_dataGhana)
 
 # Summarize the results
 summary(model_GhanaTimeD)
 
 modelsummary::modelsummary(model_GhanaTimeD)
+Reg_tableGhanaTWFE <- modelsummary(model_GhanaTimeD, output = "modelsummary_list")
+
+#Save rds file
+saveRDS(Reg_tableGhanaTWFE, "output/Reg_tableGhanaTWFE.rds")
+
+
 
 #Filter for just 2014 for the combined_treatmentcontrol data
 
@@ -39,23 +49,13 @@ combined_dataGhana_2014 <- combined_dataGhana[combined_dataGhana$Year_2014 == 1,
 
 # Run the fixed effects model(FE-Landfills)
 
-model_Ghana <- feols(WEALTHQHH ~ Treatment|ADM1NAME, data = combined_dataGhana_2014)
+model_Ghana <- feols(WEALTHQHH ~ Treatment|LANDFILLS, data = combined_dataGhana_2014)
 
 summary(model_Ghana)
 
 modelsummary::modelsummary(model_Ghana)
+Reg_tableGhana <- modelsummary(model_Ghana, output = "modelsummary_list")
 
-#Regression table for model_Ghana and model_GhanaTimeD
-
-library(etable)
-
-Reg_tableGhana <- etable(model_Ghana)
-
-Reg_tableGhanaTWFE<- etable(model_GhanaTimeD)
-
-#save the regression table
-write.table(Reg_tableGhana, "output/Reg_tableGhana.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
-
-
-write.table(Reg_tableGhanaTWFE, "output/Reg_tableGhanaTWFE.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+#Save rds file
+saveRDS(Reg_tableGhana, "output/Reg_tableGhana.rds")
 
