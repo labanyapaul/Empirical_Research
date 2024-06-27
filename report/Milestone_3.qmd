@@ -15,30 +15,21 @@ editor:
 # 3. Econometric approach
 
 Economic Model of Reference Taken from the Literature Reference Paper:
-We reference the paper "Difference-in-Differences with a Continuous
-Treatment" by Brantly Callaway, Andrew Goodman-Bacon, and Pedro H. C.
-Sant’Anna. This paper provides an analytical framework for employing a
-Difference-in-Differences (DiD) approach in scenarios where the
-treatment variable is continuous rather than binary. This framework is
-highly relevant for our study, as we are investigating the impact of
-varying degrees of exposure to landfills on household wealth in Ghana
-and Kenya.
+"Advancing sustainable transitions: A spatial analysis of socio-environmental dynamics of landfills across the United States" by Clare E.B Cannon. This  study  theoretically specifies and empirically analyses how socioeconomic, racial, and gender status, and disasters contribute to unequal risks to environmental inequalities to evaluate the understudied effects of landfills, as a form of unsustainability, across the United States.The paper implements OLS regression and spatial errors models with landfills data as the dependent variable and socioeconomic data as the independent variable.
 
-Relevance to our Paper: In our research, we aim to analyze the impact of
-living near landfills on household wealth. The proximity to a landfill
-serves as a continuous treatment variable, as the degree of exposure
-varies with distance from the landfill. 
+Relevance to our Paper:
+This model is highly relevant to our study which focusses on the impact of landfills on household wealth in Ghana and Kenya. By applying a similar econometric approach, we  aim to understand how varying degrees of exposure to landfills affect household wealth in Sub-Saharan Africa.
 
 
 
 Econometric Approach:
 
-overview:The econometric method used in this study is Ordinary Least Squares Fixed Effects Model.We specifically implemented Two Way Fixed Effects model to control for Individual and Time specific unobserved heterogeneity .
+Overview:The econometric method used in this study is Ordinary Least Squares Fixed Effects Model.We specifically implemented Two Way Fixed Effects model to control for Individual and Time specific unobserved heterogeneity .
 
 Model for Ghana:
 
 For Ghana we employed TWFE model-
-(i)Time Invariant Unobserved Heterogeneity(Individual Effects): Each landfill differs in characteristics like area,maintainence by government,surrounding population,etc. To control for this individual effects, we included landfill fixed effects in the model.
+(i)Time Invariant Unobserved Heterogeneity(Individual Effects): Each landfill differs in characteristics like area,maintainence by government,surrounding population,etc. To control for this individual effects , we included landfill fixed effects in the model.
 
 (ii)Time Specific Unobserved Heterogeneity:Our data encompasses two time periods 2008 and 2014 . Year fixed effects are included to control for variations specific to these time periods.
 
