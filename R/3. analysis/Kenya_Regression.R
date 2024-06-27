@@ -61,7 +61,7 @@ Reg_tableKenya <- etable(model_kenya)
 modelsummary(model_kenya)
 
 #save the regression table
-write.table(Reg_tableKenya, "output/reg_tableKenya.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+write.table(Reg_tableKenya, "output/Reg_tableKenya.txt", row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
 
 # View the regression table
 View(Reg_tableKenya)

@@ -3,7 +3,7 @@
 # Load the data
 library(fixest)
 library(readr)
-
+library(modelsummary)
 
 combined_dataGhana <- read_csv("output//combined_dataGhana.csv")
 View(combined_dataGhana)
@@ -27,6 +27,7 @@ model_GhanaTimeD <- feols(WEALTHQHH ~  Treatment |ADM1NAME+Year, data = combined
 # Summarize the results
 summary(model_GhanaTimeD)
 
+modelsummary::modelsummary(model_GhanaTimeD)
 
 #Filter for just 2014 for the combined_treatmentcontrol data
 
@@ -42,11 +43,14 @@ model_Ghana <- feols(WEALTHQHH ~ Treatment|ADM1NAME, data = combined_dataGhana_2
 
 summary(model_Ghana)
 
+modelsummary::modelsummary(model_Ghana)
+
 #Regression table for model_Ghana and model_GhanaTimeD
 
 library(etable)
 
 Reg_tableGhana <- etable(model_Ghana)
+
 Reg_tableGhanaTWFE<- etable(model_GhanaTimeD)
 
 #save the regression table
