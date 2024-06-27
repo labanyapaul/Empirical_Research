@@ -46,13 +46,24 @@ Ghana_datacontrol$HHEADSEXHH_male <- ifelse(Ghana_datacontrol$HHEADSEXHH == 1, 1
 Ghana_datacontrol$HHEADSEXHH_female <- ifelse(Ghana_datacontrol$HHEADSEXHH == 2, 1, 0)
 Ghana_datacontrol$HHEADSEXHH_transgender <- ifelse(Ghana_datacontrol$HHEADSEXHH == 3, 1, 0)
 
+#Change column name ADM1NAME to LANDFILLS
+
+Ghana_datacontrol <- Ghana_datacontrol %>%
+  rename(LANDFILLS = ADM1NAME)
+
 # Run the Two way fixed effects model with control
 
-model_GhanaTimeDcontrol <- feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|Year+ADM1NAME, data = Ghana_datacontrol)
+model_GhanaTimeDcontrol <- feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|LANDFILLS+Year, data = Ghana_datacontrol)
 
 summary(model_GhanaTimeDcontrol)
 
 modelsummary::modelsummary(model_GhanaTimeDcontrol)
+
+Reg_tableGhanaTWFEcontrol <- modelsummary(model_GhanaTimeDcontrol, output = "modelsummary_list")
+
+#Save rds file
+
+saveRDS(Reg_tableGhanaTWFEcontrol, "output/Reg_tableGhanaTWFEcontrol.rds")
 
 
 #Part 2: Running fixed effect(Fixed effect-Landfills) with control variable.
@@ -67,19 +78,14 @@ Ghana_datacontrol_2014 <- Ghana_datacontrol[Ghana_datacontrol$Year_2014 == 1,]
 
 # Run the fixed effects model with control HHEADSEXHH_male
 
-model_Ghanacontrol <- fixest::feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|ADM1NAME, data = Ghana_datacontrol_2014)
+model_Ghanacontrol <- fixest::feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|LANDFILLS, data = Ghana_datacontrol_2014)
 
 summary(model_Ghanacontrol)
 
 modelsummary::modelsummary(model_Ghanacontrol)
 
-#Regression tables
-library(etable)
+Reg_tableGhanacontrol <- modelsummary(model_Ghanacontrol, output = "modelsummary_list")
 
-Reg_tableGhanacontrol <- etable(model_Ghanacontrol)
-Reg_tableGhanaTWFEcontrol<- etable(model_GhanaTimeDcontrol)
+#Save rds file
 
-#save the regression table
-
-write.table(Reg_tableGhanacontrol, "output/Reg_tableGhanacontrol.txt",  row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
-write.table(Reg_tableGhanaTWFEcontrol, "output/Reg_tableGhanaTWFEcontrol.txt",  row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
+saveRDS(Reg_tableGhanacontrol, "output/Reg_tableGhanacontrol.rds")

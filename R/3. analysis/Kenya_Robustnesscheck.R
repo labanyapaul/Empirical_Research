@@ -38,14 +38,21 @@ Kenya_datacontrol$HHEADSEXHH_male <- ifelse(Kenya_datacontrol$HHEADSEXHH == 1, 1
 Kenya_datacontrol$HHEADSEXHH_female <- ifelse(Kenya_datacontrol$HHEADSEXHH == 2, 1, 0)
 
 
+
 # Run the fixed effects model
 
 library(fixest)
-model_Kenyacontrol <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_male|ADM1NAME,data = Kenya_datacontrol)
+model_Kenyacontrol <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_male|LANDFILLS,data = Kenya_datacontrol)
 
 summary(model_Kenyacontrol)
 
 modelsummary::modelsummary(model_Kenyacontrol)
+
+Reg_tableKenyacontrol <- modelsummary(model_Kenyacontrol, output = "modelsummary_list")
+
+#Save rds file
+saveRDS(Reg_tableKenyacontrol, "output/Reg_tableKenyacontrol.rds")
+
 #Part 2:Running fixed effects with control variables but here we are adding,
 #The dummy if the household head is a female, we are using HHEADSEXHH_male as the reference category.
 #To see the effect relative to when household head is a male.
@@ -58,24 +65,10 @@ Kenya_datacontrolFemale <- Kenya_datacontrol %>%
   
 # Run the fixed effects model
 
-model_KenyacontrolFemale <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_female|ADM1NAME,data = Kenya_datacontrolFemale, )
+model_KenyacontrolFemale <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_female|LANDFILLS,data = Kenya_datacontrolFemale, )
 
 summary(model_KenyacontrolFemale)
 
 modelsummary::modelsummary(model_KenyacontrolFemale)
 
-#Save the Regression table for model_Kenyacontrol and model_KenyacontrolFemale using etable and save the table in output folder
 
-library(etable)
-
-# Generate the regression table
-
-Reg_tableKenyacontrol <- etable(model_Kenyacontrol)
-
-
-Reg_tableKenyacontrolFemale <- etable(model_KenyacontrolFemale)
-
-#save the regression table
-
-write.table(Reg_tableKenyacontrol, "output/Reg_tableKenyacontrol.txt",  row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
-write.table(Reg_tableKenyacontrolFemale, "output/Reg_tableKenyacontrolFemale.txt", , row.names = FALSE, col.names = TRUE, quote = FALSE, sep = "\t")
