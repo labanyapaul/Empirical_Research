@@ -3,6 +3,7 @@
 #loading the data from DHS Ipums (HHEADSEXHH)
 library(dplyr)
 library(readr)
+library(modelsummary)
 idhs_00007 <- read_csv("output/idhs_00007.csv", show_col_types = FALSE)
 View(idhs_00007)
 
@@ -44,6 +45,7 @@ model_Kenyacontrol <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_male|ADM1NA
 
 summary(model_Kenyacontrol)
 
+modelsummary::modelsummary(model_Kenyacontrol)
 #Part 2:Running fixed effects with control variables but here we are adding,
 #The dummy if the household head is a female, we are using HHEADSEXHH_male as the reference category.
 #To see the effect relative to when household head is a male.
@@ -60,6 +62,8 @@ model_KenyacontrolFemale <-fixest::feols(WEALTHQHH ~ Treatment+ HHEADSEXHH_femal
 
 summary(model_KenyacontrolFemale)
 
+modelsummary::modelsummary(model_KenyacontrolFemale)
+
 #Save the Regression table for model_Kenyacontrol and model_KenyacontrolFemale using etable and save the table in output folder
 
 library(etable)
@@ -67,6 +71,7 @@ library(etable)
 # Generate the regression table
 
 Reg_tableKenyacontrol <- etable(model_Kenyacontrol)
+
 
 Reg_tableKenyacontrolFemale <- etable(model_KenyacontrolFemale)
 

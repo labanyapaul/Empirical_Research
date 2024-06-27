@@ -6,6 +6,7 @@ library(dplyr)
 library(readr)
 library(fixest)
 library(etable)
+library(modelsummary)
 idhs_00007 <- read_csv("output/idhs_00007.csv", show_col_types = FALSE)
 View(idhs_00007)
 
@@ -51,6 +52,9 @@ model_GhanaTimeDcontrol <- feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|Year+AD
 
 summary(model_GhanaTimeDcontrol)
 
+modelsummary::modelsummary(model_GhanaTimeDcontrol)
+
+
 #Part 2: Running fixed effect(Fixed effect-Landfills) with control variable.
 #We do the Part 2 to make it comparable with Kenya.(As in Kenya we do not have 2008 data)
 #
@@ -66,6 +70,8 @@ Ghana_datacontrol_2014 <- Ghana_datacontrol[Ghana_datacontrol$Year_2014 == 1,]
 model_Ghanacontrol <- fixest::feols(WEALTHQHH ~ Treatment + HHEADSEXHH_male|ADM1NAME, data = Ghana_datacontrol_2014)
 
 summary(model_Ghanacontrol)
+
+modelsummary::modelsummary(model_Ghanacontrol)
 
 #Regression tables
 library(etable)

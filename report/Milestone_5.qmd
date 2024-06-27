@@ -12,3 +12,20 @@ bibliography: references.bib
 
 # Robustness checks
 
+For robustness checks, We added control variable to our models.We added the control -that wether the the head of the household is a male or not(HHEADSEX_male). We ran the regression for both Ghana and Kenya.
+
+For Ghana, we ran the Two way fixed effects model with control variable The coefficient of the Treatment variable is -0.065, although not statistically significant. The negative coefficient can be still interpreted as there is a negative impact on wealth if household is near the landfill i.e it belongs to the treatment group. But as the result is not statistically significant, we cannot come to any conclusion. A negative coefficient of -0.001 for the control variable HHEAD_male is also not statistically significant.
+
+![](images/Reg_tableGhanaTWFEcontrol.png){width="465"}
+
+For ghana Landfill effects for the year 2014, the results did not differ much from the TWFE.
+
+Both the treatment and control coefficient were negative and statistically insignificant. But, now the coefficient for the control variable increased to -0.023. From the negative coefficient of the control variable we can say that a household having a male member as its head does not definitely conclude that the household will have more income. Although none of the results are statistically significant hence no conclusions could be drawn.
+
+![](images/Reg_tableGhanacontrol.png){width="463"}
+
+For Kenya, We ran landfill fixed effects with the control.
+
+The treatment coefficient is positive 0.095. It shows that being close to the landfills has a positive impact on the wealth/income of the household. The coefficient of control variable remains negative -0.016. Again unfortunately neither of the results are statistically significant to draw conclusions.
+
+![](images/Reg_tableKenyacontrol.png){width="467"}
