@@ -1,86 +1,37 @@
 ---
 title: Landfills in Sub-Saharan Africa A Case Study of Ghana and Kenya
-author: Nykol Tudor and Labanya Paul
+author: Nykol Armacanqui Martinez de Tudor and Labanya Paul
+
 format: 
   html: 
     toc: true
     toc_depth: 2
     self-contained: true
-biliography: bibliography.bib
-editor: 
-  markdown: 
-    wrap: 72
+bibliography: bibliography.bib
 ---
 
 # 3. Econometric approach
 
-Economic Model of Reference Taken from the Literature Reference Paper:
-"Advancing sustainable transitions: A spatial analysis of socio-environmental dynamics of landfills across the United States" by Clare E.B Cannon. This  study  theoretically specifies and empirically analyses how socioeconomic, racial, and gender status, and disasters contribute to unequal risks to environmental inequalities to evaluate the understudied effects of landfills, as a form of unsustainability, across the United States.The paper implements OLS regression and spatial errors models with landfills data as the dependent variable and socioeconomic data as the independent variable.
+The economic model of reference was taken from a study based on landfills across the United States. This study theoretically specifies and empirically analyses how socioeconomic, racial, and gender status, and disasters contribute to unequal risks to environmental inequalities to evaluate the understudied effects of landfills, as a form of unsustainable practices, across the United States.The paper implements OLS regression and spatial errors models with landfills data as the dependent variable and socioeconomic data as the independent variable (@cannon_advancing_2024).
 
-Relevance to our Paper:
-This model is highly relevant to our study which focusses on the impact of landfills on household wealth in Ghana and Kenya. By applying a similar econometric approach, we  aim to understand how varying degrees of exposure to landfills affect household wealth in Sub-Saharan Africa.
-
-
+Relevance to our research: This model is highly relevant to our study which focuses on the impact of landfills on household wealth in Ghana and Kenya. By applying a similar econometric approach, we aim to understand how varying degrees of exposure to landfills affect household wealth in Sub-Saharan Africa.
 
 Econometric Approach:
 
-Overview:The econometric method used in this study is Ordinary Least Squares Fixed Effects Model.We specifically implemented Two Way Fixed Effects model to control for Individual and Time specific unobserved heterogeneity .
+Overview: The econometric method used in this study is Ordinary Least Squares Fixed Effects Model. We specifically implemented Two Way Fixed Effects model to control for Individual and Time specific unobserved heterogeneity .
 
 Model for Ghana:
 
-For Ghana we employed TWFE model-
-(i)Time Invariant Unobserved Heterogeneity(Individual Effects): Each landfill differs in characteristics like area,maintainence by government,surrounding population,etc. To control for this individual effects , we included landfill fixed effects in the model.
+For Ghana we employed TWFE model- (i) Time Invariant Unobserved Heterogeneity(Individual Effects): Each landfill differs in characteristics like area, maintenance by government, surrounding population, among others. To control for this individual effects we included landfill fixed effects in the model.
 
 (ii)Time Specific Unobserved Heterogeneity:Our data encompasses two time periods 2008 and 2014 . Year fixed effects are included to control for variations specific to these time periods.
 
-Model for Kenya:
-For Kenya , due to lack of data, we could not implement the two way fixed effects model.We have data for the year 2014. We implemented fixed effect model. We included landfill fixed effects in the model to control for time invariant unobserved heterogeneity.
+Model for Kenya: For Kenya , due to lack of data, we could not implement the two way fixed effects model. We have data for the year 2014. We implemented fixed effect model. We included landfill fixed effects in the model to control for time invariant unobserved heterogeneity.
 
- Model specification:
+Model specification:
 
- Main outcome Variable - Wealth Index
- Independent Variable- Treatment(Proximity to Landfill of the households) 
- Fixed Effects - 
- Landfill Fixed Effects
- Year Fixed Effects(only for Ghana)
- Control Variable - Head of the Household is a male.
-   
+Main outcome Variable - Wealth Index Independent Variable- Treatment (Proximity to Landfill of the households) Fixed Effects - Landfill Fixed Effects Year Fixed Effects (only for Ghana) Control Variable - Head of the Household is a male.
 
-The model is estimated using OLS regression. The coefficient of interest is the Treatment Variable(which indicates the households in the treatment group i.e living in close proximity to lanfills). The model is estimated separately for Ghana and Kenya to understand the impact of landfill proximity on household wealth in each country. Head of the household is male figure is used as the control variable, assuming that in a presence of a patriarch would affect the household income.The results are interpreted to provide insights into the economic implications of living near landfills in Sub-Saharan Africa.
+The model is estimated using OLS regression. The coefficient of interest is the Treatment Variable (which indicates the households in the treatment group i.e living in close proximity to landfills). The model is estimated separately for Ghana and Kenya to understand the impact of landfill proximity on household wealth in each country. Head of the household is male figure is used as the control variable, assuming that in a presence of a patriarch would affect the household income. The results are interpreted to provide insights into the economic implications of living near landfills in Sub-Saharan Africa.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Bibliography
