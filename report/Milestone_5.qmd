@@ -41,3 +41,7 @@ Reg_tableKenyacontrol <- readRDS(here("output/Reg_tableKenyacontrol.rds"))
 
 Reg_tableKenyacontrol|> modelsummary()
 ```
+
+## Bilbliography
+
+[@here][@modelsummary]
