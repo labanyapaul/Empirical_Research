@@ -65,4 +65,3 @@ Reg_tableKenya <- modelsummary(model_kenya, output = "modelsummary_list")
 #Save rds file
 saveRDS(Reg_tableKenya, "output/Reg_tableKenya.rds")
 
-
