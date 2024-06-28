@@ -14,6 +14,7 @@ library(geos)
 library(here)
 library(kableExtra)
 library(gt)
+library(scales)
 
 # Define the directory where your KMZ files <are stored
 kmz_dir <- here::here("input/Kenya/Landfills")
@@ -151,6 +152,7 @@ years <- unique(Kenya_all_landfills_polygon_nogeometry$year)
 
 ggplot(data = Kenya_all_landfills_polygon_nogeometry) +
   geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
+  scale_y_continuous(labels = comma) +  
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
   labs(y = "Area (sqmt)",
@@ -168,6 +170,7 @@ years_filtered <- unique(filtered_data$year)
 
 ggplot(data = filtered_data) +
   geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
+  scale_y_continuous(labels = comma) +  
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
   labs(y = "Area (sqmt)",

@@ -15,6 +15,8 @@ library(here)
 library(kableExtra)
 library(gt)
 library(gtsummary)
+library(formatR)
+library(scales)
 
 Ghana_all_landfills_polygon_nogeometry <- read_csv("output/Ghana_all_landfills_polygon_nogeometry.csv", show_col_types = FALSE)
 
@@ -26,6 +28,7 @@ years <- unique(Ghana_all_landfills_polygon_nogeometry$year)
 
 ggplot(data = Ghana_all_landfills_polygon_nogeometry) +
   geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
+  scale_y_continuous(labels = comma) +  
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
   labs(y = "Area (sqmt)",
@@ -39,10 +42,13 @@ ggplot(data = Ghana_all_landfills_polygon_nogeometry) +
 filtered_data <- Ghana_all_landfills_polygon_nogeometry %>%
   filter(landfill_name %in% c("Oti", "Agbogbloshie"))
 
+# Get unique years for filtering
 years_filtered <- unique(filtered_data$year)
 
+# Create the plot
 ggplot(data = filtered_data) +
-  geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
+  geom_col(aes(x = as.character(year), y = area_sqmt, fill = landfill_name)) +
+  scale_y_continuous(labels = comma) +  
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
   labs(y = "Area (sqmt)",
@@ -51,7 +57,6 @@ ggplot(data = filtered_data) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-# save
 ggsave("report/images/Ghana_landfillarea.png", width = 10, height = 6, dpi = 300)
 
 #############################################################
