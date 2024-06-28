@@ -10,12 +10,17 @@ biliography: bibliography.bib
 editor: 
   markdown: 
     wrap: 72
+bibliography: references.bib
 ---
 
-4.  Results The results of the study are presented in this section. The
-    results are divided into two parts: the first part presents the
-    results of the analysis of the data collected from the landfills in
-    -Ghana and and the second part -Kenya.
+4.  
+
+    ## Results
+
+    The results of the study are presented in this section. The results
+    are divided into two parts: the first part presents the results of
+    the analysis of the data collected from the landfills in -Ghana and
+    and the second part -Kenya.
 
 For Ghana when we did Two way fixed effects model, we found that the
 coefficient of the Treatment variable is -0.065, although not
@@ -69,3 +74,7 @@ Reg_tableKenya <- readRDS(here("output/Reg_tableKenya.rds"))
 
 Reg_tableKenya|> modelsummary()
 ```
+
+## Bibliography
+
+[@here][@modelsummary]
