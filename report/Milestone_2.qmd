@@ -7,24 +7,24 @@ format:
     toc: true
     toc_depth: 2
     self-contained: true
-bibliography: references.bib
+bibliography: bibliography.bib
 ---
 
-# 2. The data set
+## 2. The data set
 
 ## *Sources*
 
 DHS Program – <https://dhsprogram.com/>, 16.05.2024.
 
-DHS IPUMS – <https://www.idhsdata.org/idhs/>, 16.05.2024.
+DHS IPUMS – <https://www.idhsdata.org/idhs/>, 16.05.2024. @noauthor_ipums-dhs_nodate
 
-Google Earth Pro – <https://earth.google.com/intl/earth/versions/>, 10.05.2024
+Google Earth Pro – <https://earth.google.com/intl/earth/versions/>, 10.05.2024 @noauthor_earth_nodate
 
 Variables -
 
-• Wealth variable: “Household wealth index in quantiles”. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys. It consists of labels to depict wealth categories - 1: poorest, 2: poorer, 3: middle, 4: richer, and 5: richest. There is also 8: missing, and 9:NIU (not in universe) labels but these are not included after data wrangling (drop NA's).
+• Wealth variable: 'Household wealth index in quantiles'. This shows the households wealth in 5 equal parts (sample divided into 5 equal sized groups). This index is constructed using data from surveys. It consists of labels to depict wealth categories - 1: poorest, 2: poorer, 3: middle, 4: richer, and 5: richest. There is also 8: missing, and 9:NIU (not in universe) labels but these are not included after data wrangling (drop NA's).
 
--   Landfill variable: This is shown through the size of the landfills throughout the years, originally in meters squared, but the unit of measurement used is hectares. For the landfill and city buffers and rings, the original unit of measurement was foot, but it has also been changed to hectares.
+-   Landfill variable: This is shown through the area size of the landfills throughout the years, in meters squared. For the landfill, city center buffers and rings in the wrangling phase, the original unit of measurement is in 'Gold Coast Foot' which represents the radius. This is a unit of measurement used in Ghana and is equivalent to 0.3048 meters. Kenya has also used this unit of measurement and CRS.
 
 Sample period –
 
@@ -34,44 +34,58 @@ The wealth data sample may be unreliable due to limited surveys and a short samp
 
 ## Summary statistics
 
-![Figure 1. Summary statistic of Ghana](images/Ghana_SummaryTable.png){fig-align="center"}
+![These were the summary statistics of all the landfills in Ghana, the main landfills used in the regression and analysis phase are Oti and Agbogbloshie.](images/ghana summary table.png)
 
-The main landfills used in the regression are Oti and Agbogbloshie.
-
-![Figure 2. Summary Statistic of Kenya](images/Kenya_SummaryTable.png)
-
-The main landfills used in the regression are Dandora, Kibera and Maweni.
+![These were the summary statistics of all the landfills in Kenya, the main landfills studied were Dandora, Kibera and Maweni.](images/kenya summary table.png)
 
 # Landfills
 
-![](images/Ghana/Ghana_landfillarea.png)
+### Ghana
 
-![](images/Ghana/Accra/Ghana_Agbogbloshie_polygon.png)
+![These show all the landfill areas derived from the Ghana polygons. The biggest landfill is Agbogbloshie located in the capital city of Accra. ](images/ghana_all_landfills_area.png)
 
-![](images/Ghana/Kumasi/Ghana_Oti_polygon.png)
+![The change in Agbogbloshie landfill growth through the years.](images/Ghana/Accra/Ghana_Agbogbloshie_polygon.png)
 
-![](images/Kenya/Kenya_landfillarea.png)
+![The change in Oti landfill growth throughout the years 2008 to 2014.](images/Ghana/Kumasi/Ghana_Oti_polygon.png)
 
-![](images/Kenya/Dandora/Kenya_Dandora_polygon.png)
+### Kenya
 
-![](images/Kenya/Kibera/Kenya_Kibera_polygon.png)
+![These show all the landfill areas derived from the Kenya polygons. The biggest landfill is Dandora located in the capital city of Nairobi.](images/kenya_all_landfills_area.png){alt="These show all the landfill areas derived from the Kenya polygons. The biggest landfill is Dandora located in the capital city of Nairobi."}
 
-![](images/Kenya/Mombasa/Kenya_Mombasa_polygon.png)
+![The change in Dandora landfill growth through the years.](images/Kenya/Dandora/Kenya_Dandora_polygon.png)
+
+![The change in Kibera landfill growth through the years.](images/Kenya/Kibera/Kenya_Kibera_polygon.png)
+
+![The change in Maweni landfill growth through the years.](images/Kenya/Mombasa/Kenya_Mombasa_polygon.png)
 
 ## *Descriptive statistics*
 
-![Figure 3. General Household Wealth Index in Ghana](images/Ghana/wealthqhh_overallghana_hist.png){width="511"}
+![Histogram 1. This shows the average household wealth index in Ghana consisting of years 2008 and 2014. The majority of the households have a wealth index of 1: Poorest, while the least amount of households have a wealth index of 5: Richest.](images/Ghana/wealthqhh_overallghana_hist.png){width="511"}
 
-![Figure 4. Household Wealth Index in Ghana for years 2008 and 2014](images/Ghana/wealthqhh_ghana_hist.png){width="502"}
+![Histogram 2. This shows the household wealth index in Ghana for specifically year 2008 and 2014. Both follow similar trends, but we can see that in year 2014 the amount of households categorized as Poorest increase, while Richer and Richest decreased compared to the previous year.](images/Ghana/wealthqhh_ghana_hist.png){width="502"}
 
-Figures 3. and 4. show the distribution of wealth index quintiles for Ghana in 2008 and 2014. The wealth index quintiles are divided into five categories: poorest, poorer, middle, richer, and richest. The histogram shows that the majority of households fall into the middle and poorer wealth quintiles, with fewer households in the richest and poorest quantiles.
+![Histogram 3. This shows the average household wealth index for Kenya.](images/Kenya/wealthqhh_overallkenya_hist.png){width="487"}
 
-![Figure 5. General Household Wealth Index in Kenya](images/Kenya/wealthqhh_overallkenya_hist.png){width="487"}
+![Histogram 4. This shows the household wealth index for Kenya for the year 2008 and 2014. The result in 2008 shows could be considered insignificant due to the low amount of household data available. It shows a relative same count for 1:Poorest and 5: Richest. For the year 2014, the results are more consistent with Ghana. However, it is important to note that the household count in Kenya for year 2014 is significantly larger than Ghana's count.](images/Kenya/wealthqhh_kenya_hist0814.png){width="546"}
 
-![Figure 6. Household Wealth Index in Kenya for years 2008 and 2014](images/Kenya/wealthqhh_kenya_hist0814.png){width="546"}
+## Preliminary Results  
 
-Figures 5. and 6.
+![Histogram 5. Wealth index quantile for Ghana, Agbogbloshie landfill. Both treatment and control groups have the most number of households within wealth index 5: Richest, however the control group has a higher count compared to the treatment.](images/Ghana/Accra/Ghana_AccraTreatmentControl_2008.png)
+
+![Histogram 6. Wealth index quantile for Ghana, Agbogbloshie landfill. Control group has the most number of households within the wealth index 5: Richest. While the treatment group has a much lower count, and is more evenly distributed between 4: Richer and 5: Richest. ](images/Ghana/Accra/Ghana_AccraTreatmentControl_2014.png)
+
+![Histogram 7. Wealth index quantile for Ghana, Oti landfill. It is evident that the control group has the most households within the wealth index of 4. and 5. Whilst the treatment group has a lower count overall.](images/Ghana/Kumasi/Ghana_KumasiTreatmentControl_2008.png)
+
+![Histogram 8. Wealth index quantile for Ghana, Oti landfill. The control group has a higher count within the household index 5 and is the only group within household index 2: Poor.](images/Ghana/Kumasi/Ghana_KumasiTreatmentControl_2014.png)
+
+![Histogram 9. Wealth index quantile for Kenya, Dandora landfill. Control group is mostly within the wealth index of 4: Richer and 5: Richest. However, the treatment group has the highest amount of households within the wealth quantile 5.](images/Kenya/Dandora/Kenya_DandoraTreatmentControl_2014.png)
+
+![Histogram 10. Wealth index for Kenya, Kibera landfill. Control group is mostly situated in wealth index 5: Richest. The treatment group holds the only count within wealth index 1: Poorest.](images/Kenya/Kibera/Kenya_KiberaTreatmentControl_2014.png)
+
+![Histogram 11. Wealth index quantile for Kenya, Maweni landfill. There is a strong difference between count of control and treatment group within wealth index 5: Richest.](images/Kenya/Mombasa/Kenya_MombasaTreatmentControl_2014.png)
+
+# Bibliography
 
 # Packages
 
-[@archive; @haven; @tidyverse; @tidyr; @dplyr; @ggplot2; @here; @maptiles; @sf; @kableExtra; @gt; @gtsummary; @unglue; @units; @readr; @ggspatial; @knitr; @geos; @plm]
+[@archive; @haven; @tidyverse; @tidyr; @dplyr; @ggplot2; @here; @maptiles; @sf; @kableExtra; @gt; @gtsummary; @unglue; @readr; @units; @ggspatial; @knitr; @geos; @scales]
