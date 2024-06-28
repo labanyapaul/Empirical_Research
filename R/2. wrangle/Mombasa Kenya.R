@@ -123,7 +123,7 @@ all_landfills_polygon <- summarized_data %>%
 
 # Ensure the area is in numeric format for plotting
 all_landfills_polygon <- all_landfills_polygon %>%
-  mutate(area_sqmt = drop_units(set_units(area, "m^2")))
+  mutate(area_m2 = drop_units(set_units(area, "m^2")))
 
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
@@ -260,9 +260,9 @@ ggplot() +
 
 plot_title <- paste(landfill_selected,"Landfill Area Over Time")
 ggplot(data = landfill_sf) +
-  geom_col(aes(x = as.character(year), y = area_sqmt)) +
+  geom_col(aes(x = as.character(year), y = area_m2)) +
   coord_flip() +
-  labs(y = "Area (sqmt)", x = "Year") + 
+  labs(y = "Area (m2)", x = "Year") + 
   ggtitle(plot_title) +
   theme_minimal()
 

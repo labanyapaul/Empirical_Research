@@ -127,7 +127,7 @@ all_landfills_polygon <- summarized_data %>%
 
 # Ensure the area is in numeric format for plotting
 all_landfills_polygon <- all_landfills_polygon %>%
-  mutate(area_sqmt = drop_units(set_units(area, "m^2")))
+  mutate(area_m2 = drop_units(set_units(area, "m^2")))
 
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
@@ -151,11 +151,11 @@ write.table(Kenya_all_landfills_polygon_nogeometry, output_file, sep = ",", row.
 years <- unique(Kenya_all_landfills_polygon_nogeometry$year)
 
 ggplot(data = Kenya_all_landfills_polygon_nogeometry) +
-  geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
+  geom_col(aes(x = year |> as.character(), y = area_m2, fill = landfill_name)) +
   scale_y_continuous(labels = comma) +  
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
-  labs(y = "Area (sqmt)",
+  labs(y = "Area (m2)",
        x = "",
        fill = "Landfill") +
   theme_minimal() +
@@ -169,11 +169,11 @@ filtered_data <- Kenya_all_landfills_polygon_nogeometry %>%
 years_filtered <- unique(filtered_data$year)
 
 ggplot(data = filtered_data) +
-  geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
+  geom_col(aes(x = year |> as.character(), y = area_m2, fill = landfill_name)) +
   scale_y_continuous(labels = comma) +  
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
-  labs(y = "Area (sqmt)",
+  labs(y = "Area (m2)",
        x = "",
        fill = "Landfill") +
   theme_minimal() +
@@ -187,11 +187,11 @@ ggsave("report/images/Kenya_landfillarea.png", width = 10, height = 6, dpi = 300
 summary_table <- Kenya_all_landfills_polygon_nogeometry %>%
   group_by(landfill_name) %>%
   summarize(
-    Min =  round(min(area_sqmt, na.rm = TRUE), 3),
-    Max = round(max(area_sqmt, na.rm = TRUE), 3),
-    Mean = round(mean(area_sqmt, na.rm = TRUE),3),
-    Stdev = round(sd(area_sqmt, na.rm = TRUE), 3),
-    NAs = sum(is.na(area_sqmt)),
+    Min =  round(min(area_m2, na.rm = TRUE), 2),
+    Max = round(max(area_m2, na.rm = TRUE), 2),
+    Mean = round(mean(area_m2, na.rm = TRUE),2),
+    Stdev = round(sd(area_m2, na.rm = TRUE), 2),
+    NAs = sum(is.na(area_m2)),
     Observations = n()
     
   )
@@ -209,7 +209,7 @@ gt_table <- summary_table %>%
     title = "Table 2. Summary Statistics of Kenya Landfills 2008- 2014"
   ) %>%
   tab_footnote(
-    footnote = "Note: Area is in square meters (sqmt).",
+    footnote = "Note: Area is in square meters (m2).",
     locations = cells_title(groups = "title")
   ) %>%
   cols_align(

@@ -34,7 +34,7 @@ In Ghana, various studies have been conducted. One such study investigated the m
 
 Another study conducted by Owusu and Sekyere (2018) examined the effects of landfills in Kumasi on economic development. The research used focus groups and in-depth interviews involving stakeholders such as public health departments, employment desks, waste management departments, environmental sanitation offices, as well as households and informal workers. The findings revealed several positive economic impacts associated with landfills, including benefits accruing to waste pickers through the collection of recyclable materials (such as plastics, metals including copper, gold, and silver, and glass), farmers benefiting from cultivatable areas, and homeowners experiencing appreciation in property values due to the construction of access roads for the landfill area. Notably, 90% of respondents reported a positive impact on land value. These results show the role of landfills in job creation and their potential contribution to poverty alleviation within nearby communities, where monetary considerations can outweigh health risks (@fletcher_urban_2016).
 
-Another study looked at the overall role of waste pickers and their contribution to poverty alleviation and the circular economy. It specifically focused on the recycling and reusing, and transformation of electronic and electrical waste. The study examined 45 case studies, as well as online resources and international reports. They found that in developing countries like Ghana, informal waste pickers are significantly increasing due to economic constraints (cutting welfare, rising unemployment, etc.) and an increase in waste generation. Collecting and selling these items contribute to their household income. Waste pickers earn almost US\$2 per day, and in Ghana, scrap dealers can make profits from dismantling, reincorporating into production, and reselling illegally. The study further highlights how this area should be formalized as a way to empower what waste pickers are already doing as a public service (@morais_global_2022). These collective scientific studies show the complex trade-offs between the livelihoods of the most vulnerable and the waste management policies entrusted by the government.
+Another study looked at the overall role of waste pickers and their contribution to poverty alleviation and the circular economy. It specifically focused on the recycling and reusing, and transformation of electronic and electrical waste. The study examined 45 case studies, as well as online resources and international reports. They found that in developing countries like Ghana, informal waste pickers are significantly increasing due to economic constraints (cutting welfare, rising unemployment, etc.) and an increase in waste generation. Collecting and selling these items contribute to their household income. Waste pickers earn almost US\$2 per day, and in Ghana, scrap dealers can make profits from dismantling, reincorporating into production, and reselling illegally. The study further highlights how this area should be formalized as a way to empower what waste pickers are already doing as a public service (@morais_global_2022). These scientific studies show the complex trade-offs between the livelihoods of the most vulnerable and the waste management policies entrusted by the government.
 
 ## *Data Description*
 
@@ -62,37 +62,37 @@ Kenya -
 
 Setting: The unit of study consists of clusters of households within the Ghana and Kenya region. The households total are 282,836, with Kenya at 192,355 and Ghana at 90,481. Households are dispersed around the country. Landfill areas are calculated between 2008 to 2014, an observation of 6 years. Kenya landfills originally consisted of 7 but only 3 (Dandora, Kibera and Maweni) had intersecting data with cities Nairobi and Mombasa. Ghana landfills originally consisted of 10 but only 2 (Agbogbloshie and Oti) had intersecting data with cities Accra and Kumasi.
 
-Treatment: The treatment group comprises of households living within a set distance of the landfill. This group would be exposed to the effects of landfill proximity, influencing the wealth variable. Distance to landfill is different in every landfill (varying buffer sizes):
+Treatment: The treatment group comprises of households living within a set distance of the landfill. This group would be exposed to the effects of landfill proximity, influencing the wealth variable. Buffer distance to landfill is different in every one (varying landfill buffer sizes):
 
 Kenya -
 
--   Dandora: 0.204 ha
+-   Dandora: 22,000 feet (equivalent to 6,705.6 meters)
 
--   Kibera: 0.172 ha
+-   Kibera: 18,500 feet (5,638.8 meters)
 
--   Maweni: 0.093 ha
+-   Maweni: 10,000 feet (3,048 meters)
 
 Ghana -
 
--   Agbogbloshie: 0.139 ha
+-   Agbogbloshie: 15,000 feet (4,572 meters)
 
--   Oti: 0.186 ha
+-   Oti: 20,000 feet (6,096 meters)
 
-Controls: The control group consists of households within a set distance of the city center, which would not be exposed to landfill effects. This allows us to compare the treatment group's wealth to the control group's. Distance to city center is different in every landfill (consistent buffer size + varying ring size):
+Controls: The control group consists of households within a set distance of the city center, which would not be exposed to landfill effects. This allows us to compare the treatment group's wealth to the control group's. Distance to city center is different in every landfill (consistent city center buffer size + varying ring size):
 
 Kenya -
 
--   Dandora: 0.093 ha + 0.056 ha = 0.149 ha
+-   Dandora: 10,000 feet + 6,000 feet = 16,000 feet (4,876.8 meters)
 
--   Kibera: 0.093 ha + 0.019 ha = 0.112 ha
+-   Kibera: 10,000 feet + 2,000 feet = 12,000 feet (3,657.6 meters)
 
--   Maweni: 0.093 ha + 0.019 ha = 0.122 ha
+-   Maweni: 10,000 feet + 10,000 feet = 20,000 feet (6,096 meters)
 
 Ghana -
 
--   Agbogbloshie: 0.093 ha + 0.074 ha = 0.167 ha
+-   Agbogbloshie: 10,000 feet + 8,000 feet = 18,000 feet (5,486.4 meters)
 
--   Oti: 0.093 ha + 0.006 ha = 0.099 ha
+-   Oti: 10,000 feet + 6,000 feet = 16,000 feet (4,876.8 meters)
 
 Bias and Identification: A potential bias identified stems from variations in landfill types across Ghana and Kenya. Some landfills are government-maintained and engineered according to specific protocols, while others are informal dumping sites, often termed "illegal," which fail to meet standard regulations and have a more detrimental impact on nearby communities. Furthermore, the presence of a patriarch in a household could confound the experiment, as households with a senior male figure might have a different wealth index compared to those without.
 

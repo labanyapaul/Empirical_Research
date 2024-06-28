@@ -133,7 +133,7 @@ Ghana_all_landfills_polygon_nogeometry  <- all_landfills_polygon %>%
   sf::st_drop_geometry(Ghana_all_landfills_polygon_nogeometry)
 
 Ghana_all_landfills_polygon_nogeometry <- Ghana_all_landfills_polygon_nogeometry |> 
-  mutate(area_sqmt = drop_units(set_units(area, "m^2")))
+  mutate(area_m2 = drop_units(set_units(area, "m2")))
 
 #save to /output
 
@@ -309,9 +309,9 @@ run_analysis <- function(city, year){
   
   plot_title <- paste(landfill_selected,"Landfill Area Over Time")
   ggplot(data = landfill_sf) +
-    geom_col(aes(x = as.character(year), y = area_ha)) +
+    geom_col(aes(x = as.character(year), y = area_m2)) +
     coord_flip() +
-    labs(y = "Area (ha)", x = "Year") + 
+    labs(y = "Area (m2)", x = "Year") + 
     ggtitle(plot_title) +
     theme_minimal()
   print(p)
