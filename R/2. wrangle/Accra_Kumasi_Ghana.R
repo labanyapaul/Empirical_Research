@@ -123,26 +123,24 @@ all_landfills_polygon <- summarized_data %>%
   mutate(area = st_area(geometry))
 
 # Ensure the area is in numeric format for plotting
-all_landfills_polygon <- all_landfills_polygon %>%
-  mutate(area_ha = as.numeric(area) / 10000) # Convert area to hectares
+#all_landfills_polygon <- all_landfills_polygon %>%
 
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
 st_crs(all_landfills_polygon)
 
-temp_all_landfills_polygon  <- all_landfills_polygon %>%
-  sf::st_drop_geometry(temp_all_landfills_polygon)
+Ghana_all_landfills_polygon_nogeometry  <- all_landfills_polygon %>%
+  sf::st_drop_geometry(Ghana_all_landfills_polygon_nogeometry)
 
-view(temp_all_landfills_polygon)
-
-Ghana_all_landfills_polygon_nogeometry <- temp_all_landfills_polygon
+Ghana_all_landfills_polygon_nogeometry <- Ghana_all_landfills_polygon_nogeometry |> 
+  mutate(area_sqmt = drop_units(set_units(area, "m^2")))
 
 #save to /output
 
 output_dir <- here::here("output")
 
 output_file <- file.path(output_dir, "Ghana_all_landfills_polygon_nogeometry.csv")
-#write.table(Ghana_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
+write.table(Ghana_all_landfills_polygon_nogeometry, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
 
 # Load the city data from the gpkg file
 city_data <- st_read(here::here("input/world_2015_20000.gpkg"))

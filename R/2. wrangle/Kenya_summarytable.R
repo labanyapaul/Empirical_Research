@@ -126,18 +126,15 @@ all_landfills_polygon <- summarized_data %>%
 
 # Ensure the area is in numeric format for plotting
 all_landfills_polygon <- all_landfills_polygon %>%
-  mutate(area_ha = as.numeric(area) / 10000) # Convert area to hectares
+  mutate(area_sqmt = drop_units(set_units(area, "m^2")))
 
 # Display the summarized polygon data with area for all landfills
 print(all_landfills_polygon)
 st_crs(all_landfills_polygon)
 
-temp_all_landfills_polygon  <- all_landfills_polygon %>%
-  sf::st_drop_geometry(temp_all_landfills_polygon)
 
-view(temp_all_landfills_polygon)
-
-Kenya_all_landfills_polygon_nogeometry <- temp_all_landfills_polygon
+Kenya_all_landfills_polygon_nogeometry  <- all_landfills_polygon %>%
+  sf::st_drop_geometry(Ghana_all_landfills_polygon_nogeometry)
 
 #save to /output
 
@@ -153,10 +150,10 @@ write.table(Kenya_all_landfills_polygon_nogeometry, output_file, sep = ",", row.
 years <- unique(Kenya_all_landfills_polygon_nogeometry$year)
 
 ggplot(data = Kenya_all_landfills_polygon_nogeometry) +
-  geom_col(aes(x = year |> as.character(), y = area_ha, fill = landfill_name)) +
+  geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
-  labs(y = "Area (ha)",
+  labs(y = "Area (sqmt)",
        x = "",
        fill = "Landfill") +
   theme_minimal() +
@@ -170,10 +167,10 @@ filtered_data <- Kenya_all_landfills_polygon_nogeometry %>%
 years_filtered <- unique(filtered_data$year)
 
 ggplot(data = filtered_data) +
-  geom_col(aes(x = year |> as.character(), y = area_ha, fill = landfill_name)) +
+  geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
-  labs(y = "Area (ha)",
+  labs(y = "Area (sqmt)",
        x = "",
        fill = "Landfill") +
   theme_minimal() +
@@ -187,11 +184,11 @@ ggsave("report/images/Kenya_landfillarea.png", width = 10, height = 6, dpi = 300
 summary_table <- Kenya_all_landfills_polygon_nogeometry %>%
   group_by(landfill_name) %>%
   summarize(
-    Min =  round(min(area_ha, na.rm = TRUE), 3),
-    Max = round(max(area_ha, na.rm = TRUE), 3),
-    Mean = round(mean(area_ha, na.rm = TRUE),3),
-    Stdev = round(sd(area_ha, na.rm = TRUE), 3),
-    NAs = sum(is.na(area_ha)),
+    Min =  round(min(area_sqmt, na.rm = TRUE), 3),
+    Max = round(max(area_sqmt, na.rm = TRUE), 3),
+    Mean = round(mean(area_sqmt, na.rm = TRUE),3),
+    Stdev = round(sd(area_sqmt, na.rm = TRUE), 3),
+    NAs = sum(is.na(area_sqmt)),
     Observations = n()
     
   )
@@ -209,7 +206,7 @@ gt_table <- summary_table %>%
     title = "Table 2. Summary Statistics of Kenya Landfills 2008- 2014"
   ) %>%
   tab_footnote(
-    footnote = "Note: Area is in hectares (ha).",
+    footnote = "Note: Area is in square meters (sqmt).",
     locations = cells_title(groups = "title")
   ) %>%
   cols_align(

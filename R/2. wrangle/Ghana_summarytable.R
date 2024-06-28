@@ -25,10 +25,10 @@ Ghana_all_landfills_polygon_nogeometry <- read_csv("output/Ghana_all_landfills_p
 years <- unique(Ghana_all_landfills_polygon_nogeometry$year)
 
 ggplot(data = Ghana_all_landfills_polygon_nogeometry) +
-  geom_col(aes(x = year |> as.character(), y = area_ha, fill = landfill_name)) +
+  geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
-  labs(y = "Area (ha)",
+  labs(y = "Area (sqmt)",
        x = "",
        fill = "Landfill") +
   theme_minimal() +
@@ -42,10 +42,10 @@ filtered_data <- Ghana_all_landfills_polygon_nogeometry %>%
 years_filtered <- unique(filtered_data$year)
 
 ggplot(data = filtered_data) +
-  geom_col(aes(x = year |> as.character(), y = area_ha, fill = landfill_name)) +
+  geom_col(aes(x = year |> as.character(), y = area_sqmt, fill = landfill_name)) +
   facet_wrap(~landfill_name, scales = "free_y") +
   coord_flip() +
-  labs(y = "Area (ha)",
+  labs(y = "Area (sqmt)",
        x = "",
        fill = "Landfill") +
   theme_minimal() +
@@ -59,11 +59,11 @@ ggsave("report/images/Ghana_landfillarea.png", width = 10, height = 6, dpi = 300
 summary_table <- Ghana_all_landfills_polygon_nogeometry %>%
   group_by(landfill_name) %>%
   summarize(
-    Min =  round(min(area_ha, na.rm = TRUE), 3),
-    Max = round(max(area_ha, na.rm = TRUE), 3),
-    Mean = round(mean(area_ha, na.rm = TRUE),3),
-    Stdev = round(sd(area_ha, na.rm = TRUE), 3),
-    NAs = sum(is.na(area_ha)),
+    Min =  round(min(area_sqmt, na.rm = TRUE), 3),
+    Max = round(max(area_sqmt, na.rm = TRUE), 3),
+    Mean = round(mean(area_sqmt, na.rm = TRUE),3),
+    Stdev = round(sd(area_sqmt, na.rm = TRUE), 3),
+    NAs = sum(is.na(area_sqmt)),
     Observations = n()
                    
   )
@@ -81,7 +81,7 @@ gt_table <- summary_table %>%
     title = "Table 1. Summary Statistics of Ghana Landfills 2008- 2014"
   ) %>%
   tab_footnote(
-    footnote = "Note: Area is in hectares (ha).",
+    footnote = "Note: Area is in square meters (sqmt).",
     locations = cells_title(groups = "title")
   ) %>%
   cols_align(
