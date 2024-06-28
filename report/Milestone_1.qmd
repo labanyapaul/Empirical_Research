@@ -24,7 +24,7 @@ How does proximity to landfills impact the wealth of people living in Ghana and 
 
 ## *Literature overview*
 
-Existing scientific research in Kenya and Ghana investigates the health and environmental impacts of landfill proximities, showing detrimental effects in both the short and long term (@obiri-nyarko_assessment_2021; @lettor_assessing_2018; @mattiello_health_2013; @fazzo_health_2023; @kenneth_kamumbu_mugo_assessment_2015). However, few studies have specifically addressed the relative strength of the impact of income for individuals near these sites.
+Existing scientific research in Kenya and Ghana investigates the health and environmental impacts of landfill proximities, showing detrimental effects in both the short and long term (@obiri-nyarko_assessment_2021; @lettor_assessing_2018; @mattiello_health_2013; @fazzo_health_2023; @kenneth_kamumbu_mugo_assessment_2015). However, few studies have specifically addressed the relative strength of the impact of income (wealth) for individuals near these sites.
 
 In Kenya, a study aimed to elucidate the relationship between proximity to garbage collection points/landfills and the Quality of Life Index. Employing a Pearson correlation coefficient analysis, the research revealed a noteworthy positive correlation between income levels and proximity to landfills. However, this correlation came at a cost: increased exposure to diseases and a decline in air quality were observed as consequences of such proximity (@wekisa_spatial_2020) . Another study, contributing to the understanding of waste management's socio-economic ramifications, focused on households living near the Dandora dumpsite. Through questionnaire surveys involving 121 households, the research examined two key variables: income from solid waste management and household expenditure. Descriptive and correlation analyses unveiled a substantial finding: the total income derived from solid waste management contributed a significant 82.88% towards the total household expenditure. Moreover, a statistically significant correlation (r=0.389, p=0.01) underscored the interplay between income generated from waste management activities and household financial stability (@wangatia_influence_2011).
 
@@ -60,7 +60,7 @@ Kenya -
 
 ## *Empirical Strategy*
 
-Setting: The unit of study consists of clusters of households within the Ghana and Kenya region. The households total are 282,836, with Kenya at 192,355 and Ghana at 90,481. Households are dispersed around the country. Landfill areas are calculated between 2008 to 2015, an observation of 7 years. Kenya landfills originally consisted of 7 but only 3 (Dandora, Kibera and Maweni) had intersecting data with cities Nairobi and Mombasa. Ghana landfills originally consisted of 10 but only 2 (Agbogbloshie and Oti) had intersecting data with cities Accra and Kumasi.
+Setting: The unit of study consists of clusters of households within the Ghana and Kenya region. The households total are 282,836, with Kenya at 192,355 and Ghana at 90,481. Households are dispersed around the country. Landfill areas are calculated between 2008 to 2014, an observation of 6 years. Kenya landfills originally consisted of 7 but only 3 (Dandora, Kibera and Maweni) had intersecting data with cities Nairobi and Mombasa. Ghana landfills originally consisted of 10 but only 2 (Agbogbloshie and Oti) had intersecting data with cities Accra and Kumasi.
 
 Treatment: The treatment group comprises of households living within a set distance of the landfill. This group would be exposed to the effects of landfill proximity, influencing the wealth variable. Distance to landfill is different in every landfill (varying buffer sizes):
 
@@ -98,4 +98,4 @@ Bias and Identification: A potential bias identified stems from variations in la
 
 To address this variation, we will employ a Ordinary Least Squares model..
 
-# Bibliography
+## Bibliography

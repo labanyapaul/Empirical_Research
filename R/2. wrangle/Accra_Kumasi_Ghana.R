@@ -342,6 +342,10 @@ run_analysis <- function(city, year){
   landfill_year <- landfill_polygon %>%
     filter(year == year_selected)
   
+  #calculate centroid using st_centroid() of landfill polygon
+  landfill_year_center <- landfill_year %>%
+    st_centroid()
+  
   plot_title <- paste("Spatial Data for",city_selected,"with City Center Point and", landfill_selected, year_selected)
   
   p<- ggplot()  +
@@ -493,8 +497,8 @@ run_analysis <- function(city, year){
     ggspatial::annotation_scale() +
     ggtitle(plot_title)
   print(p)
-  #save to respective names
   
+  #save to respective names
   treatment_landfill <- landfill_dhs_outBig_points
   print(treatment_landfill)
   
@@ -540,11 +544,16 @@ run_analysis <- function(city, year){
     left_join(ghana_wealthqhh, by = c("DHSID" = "DHSID", "DHSYEAR" = "YEAR"))
   
   
-  print(control_city_variable)
+  #print(control_city_variable)
+  #print(landfill_year_center)
+  # find distance from landfill_center to each cluster in treatment_landfill_variable
 
+  treatment_landfill_variable$distance_landfill_cent <- st_distance(treatment_landfill_variable$geometry,landfill_year_center)
   
-     #write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
-     #write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
+ 
+  control_city_variable$distance_landfill_cent <- st_distance(control_city_variable$geometry,landfill_year_center)
+  #write.table(control_city_variable, "./control_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./control_landfill_data.csv"), append = T)
+  #write.table(treatment_landfill_variable, "./treatment_landfill_data.csv", sep = ",", row.names = FALSE, col.names = !file.exists("./treatment_landfill_data.csv"), append = T)
 
 
   
@@ -591,7 +600,7 @@ run_analysis <- function(city, year){
 output_dir <- here::here("output")
 
 output_file <- file.path(output_dir, "combined_dataghana.csv")
-#write.table(combined_dataGhana, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
+write.table(combined_dataGhana, output_file, sep = ",", row.names = FALSE, col.names = !file.exists(output_file), append = T)
 
   #________________________________________________________________________________
 } 
