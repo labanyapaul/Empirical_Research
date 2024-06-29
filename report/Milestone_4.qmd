@@ -7,27 +7,13 @@ format:
     toc_depth: 2
     self-contained: true
 biliography: bibliography.bib
-editor: 
-  markdown: 
-    wrap: 72
-bibliography: references.bib
 ---
 
-4.  
+## Results
 
-    ## Results
+The results of the study are presented in this section. The results are divided into two parts: the first part presents the results of the analysis of the data collected from the landfills in -Ghana and and the second part -Kenya.
 
-    The results of the study are presented in this section. The results
-    are divided into two parts: the first part presents the results of
-    the analysis of the data collected from the landfills in -Ghana and
-    and the second part -Kenya.
-
-For Ghana when we did Two way fixed effects model, we found that the
-coefficient of the Treatment variable is -0.065, although not
-statistically significant.The negative coefficient can be still
-interpreted as there is a negative impact on wealth if household is near
-the landfill i.e it belongs to the treatment group. But as the result is
-not statistically significant, we cannot come to any conclusion.
+For Ghana when we did Two way fixed effects model, we found that the coefficient of the Treatment variable is -0.065, although not statistically significant.The negative coefficient can be still interpreted as there is a negative impact on wealth if household is near the landfill i.e it belongs to the treatment group. But as the result is not statistically significant, we cannot come to any conclusion.
 
 ```         
 ```
@@ -43,9 +29,7 @@ Reg_tableGhanaTWFE|> modelsummary()
 ```         
 ```
 
-We also performed only landfill Fixed effect for Ghana(to make it
-comparable for Kenya).The coefficient of interest came to be -0.0531,
-although again not statistically significant.
+We also performed only landfill Fixed effect for Ghana(to make it comparable for Kenya).The coefficient of interest came to be -0.0531, although again not statistically significant.
 
 ```         
 ```
@@ -59,12 +43,7 @@ Reg_tableGhana|> modelsummary()
 ```         
 ```
 
-For Kenya as mentioned earlier, we had data for one year 2014. As a
-result we could perform only landfill fixed effect model. The
-coefficient of interest came to be 0.1559. Although again not
-statistically significant, but here it shows a positive impact on wealth
-if household is near the landfill i.e it belongs to the treatment group.
-This result is quite opposite to what we got for Ghana.
+For Kenya as mentioned earlier, we had data for one year 2014. As a result we could perform only landfill fixed effect model. The coefficient of interest came to be 0.1559. Although again not statistically significant, but here it shows a positive impact on wealth if household is near the landfill i.e it belongs to the treatment group. This result is quite opposite to what we got for Ghana.
 
 ```         
 ```
