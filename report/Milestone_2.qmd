@@ -28,21 +28,21 @@ Variables -
 
 Sample period –
 
-• We will examine the years 2008 and 2014 for the wealth variable. The total units of study consisted of 282,836 units, but after cleaning and wrangling; the treatment group consists of Kenya at 1,537 households and Ghana at 2,803 households. The control group consists of 2,408 households in Kenya and Ghana at 5,852. For landfill data, we will use satellite imagery between the years 2008 to 2014.
+• We will examine the years 2008 and 2014 for the wealth variable. The total units of study consisted of 282,836 units, but after cleaning and wrangling; the units of study of Kenya at 4,762 households and Ghana at 7,232 households. For landfill data, we will use satellite imagery between the years 2008 to 2014.
 
 The wealth data sample may be unreliable due to limited surveys and a short sample period. Landfill data accuracy may also be affected by image quality issues on Google Earth Pro.
 
 ## Summary statistics
 
-![These were the summary statistics of all the landfills in Ghana, the main landfills used in the regression and analysis phase are Oti and Agbogbloshie.](images/ghana summary table.png)
+![These were the summary statistics of all the landfills in Ghana, the main landfills used in the regression and analysis phase are Oti and Agbogbloshie.](images/ghana%20summary%20table.png)
 
-![These were the summary statistics of all the landfills in Kenya, the main landfills studied were Dandora, Kibera and Maweni.](images/kenya summary table.png)
+![These were the summary statistics of all the landfills in Kenya, the main landfills studied were Dandora, Kibera and Maweni.](images/kenya%20summary%20table.png)
 
 # Landfills
 
 ### Ghana
 
-![These show all the landfill areas derived from the Ghana polygons. The biggest landfill is Agbogbloshie located in the capital city of Accra. ](images/ghana_all_landfills_area.png)
+![These show all the landfill areas derived from the Ghana polygons. The biggest landfill is Agbogbloshie located in the capital city of Accra.](images/ghana_all_landfills_area.png)
 
 ![The change in Agbogbloshie landfill growth through the years.](images/Ghana/Accra/Ghana_Agbogbloshie_polygon.png)
 
@@ -50,7 +50,7 @@ The wealth data sample may be unreliable due to limited surveys and a short samp
 
 ### Kenya
 
-![These show all the landfill areas derived from the Kenya polygons. The biggest landfill is Dandora located in the capital city of Nairobi.](images/kenya_all_landfills_area.png){alt="These show all the landfill areas derived from the Kenya polygons. The biggest landfill is Dandora located in the capital city of Nairobi."}
+![These show all the landfill areas derived from the Kenya polygons. The biggest landfill is Dandora located in the capital city of Nairobi.](images/kenya_all_landfills_area.png)
 
 ![The change in Dandora landfill growth through the years.](images/Kenya/Dandora/Kenya_Dandora_polygon.png)
 
@@ -68,11 +68,11 @@ The wealth data sample may be unreliable due to limited surveys and a short samp
 
 ![Histogram 4. This shows the household wealth index for Kenya for the year 2008 and 2014. The result in 2008 shows could be considered insignificant due to the low amount of household data available. It shows a relative same count for 1:Poorest and 5: Richest. For the year 2014, the results are more consistent with Ghana. However, it is important to note that the household count in Kenya for year 2014 is significantly larger than Ghana's count.](images/Kenya/wealthqhh_kenya_hist0814.png){width="546"}
 
-## Preliminary Results  
+## Preliminary Results
 
 ![Histogram 5. Wealth index quantile for Ghana, Agbogbloshie landfill. Both treatment and control groups have the most number of households within wealth index 5: Richest, however the control group has a higher count compared to the treatment.](images/Ghana/Accra/Ghana_AccraTreatmentControl_2008.png)
 
-![Histogram 6. Wealth index quantile for Ghana, Agbogbloshie landfill. Control group has the most number of households within the wealth index 5: Richest. While the treatment group has a much lower count, and is more evenly distributed between 4: Richer and 5: Richest. ](images/Ghana/Accra/Ghana_AccraTreatmentControl_2014.png)
+![Histogram 6. Wealth index quantile for Ghana, Agbogbloshie landfill. Control group has the most number of households within the wealth index 5: Richest. While the treatment group has a much lower count, and is more evenly distributed between 4: Richer and 5: Richest.](images/Ghana/Accra/Ghana_AccraTreatmentControl_2014.png)
 
 ![Histogram 7. Wealth index quantile for Ghana, Oti landfill. It is evident that the control group has the most households within the wealth index of 4. and 5. Whilst the treatment group has a lower count overall.](images/Ghana/Kumasi/Ghana_KumasiTreatmentControl_2008.png)
 
